@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<spotsNationalityCode>
+<header>
+<timestamp>2017-09-08T12:30:00</timestamp>
+<source>TIMS</source>
+<destination>SPOTS</destination>
+</header>
+<detail><code>AD</code><description>ANDORRAN</description></detail>
+<detail><code>AE</code><description>UNITED ARAB EM.</description></detail>
+<detail><code>AF</code><description>AFGHAN</description></detail>
+<detail><code>AG</code><description>ANTIGUA</description></detail>
+<detail><code>AL</code><description>ALBANIAN</description></detail>
+<detail><code>AM</code><description>ARMENIAN</description></detail>
+<detail><code>AN</code><description>NETHERLANDS ANTIL.</description></detail>
+<detail><code>AO</code><description>ANGOLAN</description></detail>
+<detail><code>AR</code><description>ARGENTINIAN</description></detail>
+<detail><code>AS</code><description>AMERICAN SAMOA</description></detail>
+<detail><code>AT</code><description>AUSTRIAN</description></detail>
+<detail><code>AU</code><description>AUSTRALIAN</description></detail>
+<detail><code>AZ</code><description>AZERBAIJANI</description></detail>
+<detail><code>BA</code><description>BOSNIAN</description></detail>
+<detail><code>BB</code><description>BARBADOS</description></detail>
+<detail><code>BD</code><description>BANGLADESHI</description></detail>
+<detail><code>BE</code><description>BELGIAN</description></detail>
+<detail><code>BF</code><description>BURKINA FASO</description></detail>
+<detail><code>BG</code><description>BULGARIAN</description></detail>
+<detail><code>BH</code><description>BAHRAINI</description></detail>
+<detail><code>BI</code><description>BURUNDI</description></detail>
+<detail><code>BJ</code><description>BENIN</description></detail>
+<detail><code>BL</code><description>BELARUSSIAN</description></detail>
+<detail><code>BN</code><description>BRUNEIAN</description></detail>
+<detail><code>BO</code><description>BOLIVIAN</description></detail>
+<detail><code>BR</code><description>BRAZILIAN</description></detail>
+<detail><code>BS</code><description>BAHAMAS</description></detail>
+<detail><code>BT</code><description>BHUTAN</description></detail>
+<detail><code>BU</code><description>MYANMAR</description></detail>
+<detail><code>BW</code><description>BOTSWANA</description></detail>
+<detail><code>BZ</code><description>BELIZE</description></detail>
+<detail><code>CA</code><description>CANADIAN</description></detail>
+<detail><code>CB</code><description>CROATIAN</description></detail>
+<detail><code>CF</code><description>C'TRAL AFRICAN REP</description></detail>
+<detail><code>CG</code><description>CONGO</description></detail>
+<detail><code>CH</code><description>SWISS</description></detail>
+<detail><code>CI</code><description>IVORY COAST</description></detail>
+<detail><code>CK</code><description>COOK ISLANDS</description></detail>
+<detail><code>CL</code><description>CHILEAN</description></detail>
+<detail><code>CM</code><description>CAMEROON</description></detail>
+<detail><code>CN</code><description>CHINESE</description></detail>
+<detail><code>CO</code><description>COLOMBIAN</description></detail>
+<detail><code>CR</code><description>COSTA RICAN</description></detail>
+<detail><code>CU</code><description>CUBAN</description></detail>
+<detail><code>CV</code><description>CAPE VERDE</description></detail>
+<detail><code>CY</code><description>CYPRIOT</description></detail>
+<detail><code>CZ</code><description>CZECH</description></detail>
+<detail><code>DG</code><description>GERMAN</description></detail>
+<detail><code>DJ</code><description>DJIBOUTI</description></detail>
+<detail><code>DK</code><description>DANISH</description></detail>
+<detail><code>DM</code><description>DOMINICA</description></detail>
+<detail><code>DO</code><description>DOMINICAN REPUBLIC</description></detail>
+<detail><code>DZ</code><description>ALGERIAN</description></detail>
+<detail><code>EC</code><description>ECUADORIAN</description></detail>
+<detail><code>EG</code><description>EGYPTIAN</description></detail>
+<detail><code>EH</code><description>WESTERN SAHARA</description></detail>
+<detail><code>EN</code><description>ESTONIAN</description></detail>
+<detail><code>ER</code><description>ERITREAN</description></detail>
+<detail><code>ES</code><description>SPANISH</description></detail>
+<detail><code>ET</code><description>ETHIOPIAN</description></detail>
+<detail><code>FI</code><description>FINNISH</description></detail>
+<detail><code>FJ</code><description>FIJIAN</description></detail>
+<detail><code>FR</code><description>FRENCH</description></detail>
+<detail><code>GA</code><description>GABON</description></detail>
+<detail><code>GB</code><description>BRITISH</description></detail>
+<detail><code>GC</code><description>BR DEP TER CITIZEN</description></detail>
+<detail><code>GD</code><description>GRENADIAN</description></detail>
+<detail><code>GE</code><description>BR OVERSEAS CIT.</description></detail>
+<detail><code>GF</code><description>FRENCH GUIANA</description></detail>
+<detail><code>GG</code><description>BR NAT. OVERSEAS</description></detail>
+<detail><code>GH</code><description>GHANAIAN</description></detail>
+<detail><code>GJ</code><description>BR PROTECTED PERS.</description></detail>
+<detail><code>GM</code><description>GAMBIAN</description></detail>
+<detail><code>GN</code><description>GUINEA</description></detail>
+<detail><code>GO</code><description>GEORGIAN</description></detail>
+<detail><code>GP</code><description>GUADELOUPE</description></detail>
+<detail><code>GQ</code><description>EQUATORIAL GUINEA</description></detail>
+<detail><code>GR</code><description>GREEK</description></detail>
+<detail><code>GT</code><description>GUATEMALA</description></detail>
+<detail><code>GU</code><description>GUAM</description></detail>
+<detail><code>GW</code><description>GUINEA-BISSAU</description></detail>
+<detail><code>GY</code><description>GUYANA</description></detail>
+<detail><code>HK</code><description>HONG KONG</description></detail>
+<detail><code>HN</code><description>HONDURAN</description></detail>
+<detail><code>HT</code><description>HAITIAN</description></detail>
+<detail><code>HU</code><description>HUNGARIAN</description></detail>
+<detail><code>HV</code><description>UPPER VOLTA</description></detail>
+<detail><code>ID</code><description>INDONESIAN</description></detail>
+<detail><code>IE</code><description>IRISH</description></detail>
+<detail><code>IL</code><description>ISRAELI</description></detail>
+<detail><code>IN</code><description>INDIAN</description></detail>
+<detail><code>IQ</code><description>IRAQI</description></detail>
+<detail><code>IR</code><description>IRANIAN</description></detail>
+<detail><code>IS</code><description>ICELAND</description></detail>
+<detail><code>IT</code><description>ITALIAN</description></detail>
+<detail><code>JM</code><description>JAMAICAN</description></detail>
+<detail><code>JO</code><description>JORDANIAN</description></detail>
+<detail><code>JP</code><description>JAPANESE</description></detail>
+<detail><code>KA</code><description>CAMBODIAN</description></detail>
+<detail><code>KE</code><description>KENYAN</description></detail>
+<detail><code>KG</code><description>KIRGHIZ</description></detail>
+<detail><code>KI</code><description>KIRIBATI</description></detail>
+<detail><code>KM</code><description>COMOROS</description></detail>
+<detail><code>KP</code><description>KOREAN, NORTH</description></detail>
+<detail><code>KR</code><description>KOREAN, SOUTH</description></detail>
+<detail><code>KS</code><description>KYRGHIS</description></detail>
+<detail><code>KV</code><description>KOSOVAR</description></detail>
+<detail><code>KW</code><description>KUWAITI</description></detail>
+<detail><code>KZ</code><description>KAZAKH</description></detail>
+<detail><code>LA</code><description>LAOTIAN</description></detail>
+<detail><code>LB</code><description>LEBANESE</description></detail>
+<detail><code>LC</code><description>ST. LUCIA</description></detail>
+<detail><code>LH</code><description>LITHUANIAN</description></detail>
+<detail><code>LI</code><description>LIECHTENSTEIN</description></detail>
+<detail><code>LK</code><description>SRI LANKAN</description></detail>
+<detail><code>LR</code><description>LIBERIAN</description></detail>
+<detail><code>LS</code><description>LESOTHO</description></detail>
+<detail><code>LU</code><description>LUXEMBOURG</description></detail>
+<detail><code>LV</code><description>LATVIAN</description></detail>
+<detail><code>LY</code><description>LIBYAN</description></detail>
+<detail><code>MA</code><description>MOROCCAN</description></detail>
+<detail><code>MB</code><description>MACEDONIA</description></detail>
+<detail><code>MC</code><description>MONACO</description></detail>
+<detail><code>MD</code><description>MOLDAVIAN</description></detail>
+<detail><code>MF</code><description>MICRONESIAN</description></detail>
+<detail><code>MG</code><description>MADAGASCAR</description></detail>
+<detail><code>MH</code><description>MARSHALLESE</description></detail>
+<detail><code>ML</code><description>MALI</description></detail>
+<detail><code>MN</code><description>MONGOLIAN</description></detail>
+<detail><code>MO</code><description>MACAO</description></detail>
+<detail><code>MQ</code><description>MARTINIQUE</description></detail>
+<detail><code>MR</code><description>MAURITANEAN</description></detail>
+<detail><code>MT</code><description>MALTESE</description></detail>
+<detail><code>MU</code><description>MAURITIAN</description></detail>
+<detail><code>MV</code><description>MALDIVIAN</description></detail>
+<detail><code>MW</code><description>MALAWI</description></detail>
+<detail><code>MX</code><description>MEXICAN</description></detail>
+<detail><code>MY</code><description>MALAYSIAN</description></detail>
+<detail><code>MZ</code><description>MOZAMBIQUE</description></detail>
+<detail><code>NA</code><description>NAMIBIA</description></detail>
+<detail><code>NC</code><description>NEW CALEDONIA</description></detail>
+<detail><code>NE</code><description>NIGER</description></detail>
+<detail><code>NG</code><description>NIGERIAN</description></detail>
+<detail><code>NI</code><description>NICARAGUAN</description></detail>
+<detail><code>NO</code><description>NORWEGIAN</description></detail>
+<detail><code>NP</code><description>NEPALESE</description></detail>
+<detail><code>NR</code><description>NAURUAN</description></detail>
+<detail><code>NS</code><description>NON-S'PORE CITIZEN</description></detail>
+<detail><code>NT</code><description>NETHERLANDS</description></detail>
+<detail><code>NU</code><description>NIUE ISLAND</description></detail>
+<detail><code>NZ</code><description>NEW ZEALANDER</description></detail>
+<detail><code>OM</code><description>OMAN</description></detail>
+<detail><code>PA</code><description>PANAMIAN</description></detail>
+<detail><code>PC</code><description>PACIFIC IS TRUST T</description></detail>
+<detail><code>PE</code><description>PERUVIAN</description></detail>
+<detail><code>PF</code><description>FRENCH POLYNESIA</description></detail>
+<detail><code>PG</code><description>PAPUA NEW GUINEA</description></detail>
+<detail><code>PH</code><description>FILIPINO</description></detail>
+<detail><code>PK</code><description>PAKISTANI</description></detail>
+<detail><code>PL</code><description>POLISH</description></detail>
+<detail><code>PN</code><description>PALESTINIAN</description></detail>
+<detail><code>PR</code><description>PUERTO RICAN</description></detail>
+<detail><code>PT</code><description>PORTUGUESE</description></detail>
+<detail><code>PY</code><description>PARAGUAY</description></detail>
+<detail><code>QA</code><description>QATAR</description></detail>
+<detail><code>RE</code><description>REUNION</description></detail>
+<detail><code>RF</code><description>RUSSIAN</description></detail>
+<detail><code>RO</code><description>ROMANIAN</description></detail>
+<detail><code>RW</code><description>RWANDA</description></detail>
+<detail><code>SA</code><description>SAUDI ARABIAN</description></detail>
+<detail><code>SB</code><description>SOLOMON ISLANDS</description></detail>
+<detail><code>SC</code><description>SEYCHELLES</description></detail>
+<detail><code>SD</code><description>SUDANESE</description></detail>
+<detail><code>SE</code><description>SWEDISH</description></detail>
+<detail><code>SG</code><description>SINGAPORE CITIZEN</description></detail>
+<detail><code>SI</code><description>SLOVENIAN</description></detail>
+<detail><code>SK</code><description>SLOVAK</description></detail>
+<detail><code>SL</code><description>SIERRA LEONE</description></detail>
+<detail><code>SN</code><description>SENEGALESE</description></detail>
+<detail><code>SO</code><description>SOMALI</description></detail>
+<detail><code>SR</code><description>SURINAME</description></detail>
+<detail><code>SS</code><description>STATELESS</description></detail>
+<detail><code>ST</code><description>SAO TOME &amp; PRINCI.</description></detail>
+<detail><code>SV</code><description>SALVADORAN</description></detail>
+<detail><code>SW</code><description>ST KITTS &amp; NEVIS</description></detail>
+<detail><code>SY</code><description>SYRIAN</description></detail>
+<detail><code>SZ</code><description>SWAZI</description></detail>
+<detail><code>TA</code><description>TIMOR</description></detail>
+<detail><code>TD</code><description>CHADIAN</description></detail>
+<detail><code>TG</code><description>TOGO</description></detail>
+<detail><code>TH</code><description>THAI</description></detail>
+<detail><code>TJ</code><description>TADZHIK</description></detail>
+<detail><code>TK</code><description>TOKELAU ISLANDS</description></detail>
+<detail><code>TM</code><description>TURKMEN</description></detail>
+<detail><code>TN</code><description>TUNISIA</description></detail>
+<detail><code>TO</code><description>TONGA</description></detail>
+<detail><code>TR</code><description>TURK</description></detail>
+<detail><code>TT</code><description>TRINIDAD &amp; TOBAGO</description></detail>
+<detail><code>TV</code><description>TUVALU</description></detail>
+<detail><code>TW</code><description>TAIWANESE</description></detail>
+<detail><code>TZ</code><description>TANZANIAN</description></detail>
+<detail><code>UG</code><description>UGANDIAN</description></detail>
+<detail><code>UK</code><description>BRITISH SUBJECT</description></detail>
+<detail><code>UN</code><description>UNKNOWN</description></detail>
+<detail><code>UR</code><description>UKRAINIAN</description></detail>
+<detail><code>US</code><description>AMERICAN</description></detail>
+<detail><code>UY</code><description>URUGUAY</description></detail>
+<detail><code>UZ</code><description>UZBEK</description></detail>
+<detail><code>VC</code><description>ST. VINCENT</description></detail>
+<detail><code>VE</code><description>VENEZUELAN</description></detail>
+<detail><code>VN</code><description>VIETNAMESE</description></detail>
+<detail><code>VU</code><description>VANUATU</description></detail>
+<detail><code>WF</code><description>WALLIS AND FUTUNA</description></detail>
+<detail><code>WS</code><description>SAMOAN</description></detail>
+<detail><code>YM</code><description>YEMENI</description></detail>
+<detail><code>YU</code><description>YUGOSLAV</description></detail>
+<detail><code>ZA</code><description>SOUTH AFRICAN</description></detail>
+<detail><code>ZM</code><description>ZAMBIAN</description></detail>
+<detail><code>ZR</code><description>ZAIRAN</description></detail>
+<detail><code>ZW</code><description>ZIMBABWEAN</description></detail>
+<detail><code>ZZ</code><description>SPOTS NATIONALITY</description></detail>
+<trailer>
+<totalNumber>221</totalNumber>
+</trailer>
+</spotsNationalityCode>

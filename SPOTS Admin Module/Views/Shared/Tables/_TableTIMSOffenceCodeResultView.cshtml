@@ -1,0 +1,51 @@
+﻿@model SPOTSAdminModule.ViewModels.SystemCodeViewModel
+
+@{
+    var rowNo = 0;
+}
+<div>
+    @if (Model != null && Model.TIMSOffenceCodeList != null)
+    {
+
+        <div class="row">
+            <div class="col-md-3 spotsMarginMediumTop spotsMarginMediumSmallBottom">
+                <b class="gi-1x">Total Records Found: @Model.TIMSOffenceCodeList.Count()</b>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <table class="table table-responsive table-striped table-hover" id="searchResult">
+                    <thead>
+                        <tr>
+                            <th>S/N</th>
+                            <th>Code Type</th>
+                            <th>Offence Code</th>
+                            <th>Caption</th>
+                            <th>Fine Amount</th>
+                            <th>Demerit Point</th>
+                            <th>Effective Date</th>
+                            <th>Offender Type</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in @Model.TIMSOffenceCodeList)
+                        {
+                            var rowClass = (rowNo % 2) == 0 ? "" : "alternateRow";
+                            <tr class="@rowClass">
+                                <td>@(rowNo += 1)</td>
+                                <td>@Model.TIMSCodeTypeDescription</td>
+                                <td>@item.TIMSOffenceCode.code</td>
+                                <td wrap="nowrap">@item.TIMSOffenceCode.caption</td>
+                                <td>@item.TIMSOffenceCode.fine_amount</td>
+                                <td>@item.TIMSOffenceCode.demerit_point</td>
+                                <td>@item.TIMSOffenceCode.effective_date</td>    
+                                <td>@item.offenderTypeDescription</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    }
+</div>

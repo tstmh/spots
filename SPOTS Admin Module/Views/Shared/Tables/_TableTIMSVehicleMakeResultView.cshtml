@@ -1,0 +1,38 @@
+﻿@model SPOTSAdminModule.ViewModels.SystemCodeViewModel
+
+@{
+    var rowNo = 0;
+}
+<div>
+    @if (Model != null && Model.TIMSVehicleMakeList != null)
+    {
+        <table style="width: 100%">
+            <tr>
+                <td style="text-align: left; width: 95%;"><div class="totalRecord" id="TotalRecord">Total Records Found: @Model.TIMSVehicleMakeList.Count()</div></td>
+            </tr>
+        </table>
+
+        <table id="searchResult">
+            <thead>
+                <tr>
+                    <th>S/N</th>
+                    <th>Code</th>
+                    <th>Code Description</th>
+                </tr>
+            </thead>
+
+        @foreach (var item in @Model.TIMSVehicleMakeList)
+        {
+            var rowClass = (rowNo % 2) == 0 ? "" : "alternateRow";
+
+            <tr class="@rowClass">
+                <td>@(rowNo += 1)</td>
+                <td>@item.code</td>
+                
+                <td wrap="nowrap">@item.description</td>
+            </tr>
+        }
+        </table>
+    }
+
+</div>

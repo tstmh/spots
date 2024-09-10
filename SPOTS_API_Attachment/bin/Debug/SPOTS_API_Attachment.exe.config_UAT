@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<configuration>
+  <configSections>
+    <!-- For more information on Entity Framework configuration, visit http://go.microsoft.com/fwlink/?LinkID=237468 -->
+    <section name="entityFramework" type="System.Data.Entity.Internal.ConfigFile.EntityFrameworkSection, EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" requirePermission="false" />
+  </configSections>
+  <startup>
+    <supportedRuntime version="v4.0" sku=".NETFramework,Version=v4.6.1" />
+  </startup>
+  <entityFramework>
+    <providers>
+      <provider invariantName="System.Data.SqlClient" type="System.Data.Entity.SqlServer.SqlProviderServices, EntityFramework.SqlServer" />
+    </providers>
+  </entityFramework>
+  <connectionStrings>
+    <add name="SPOTS_OAEntities" connectionString="metadata=res://*/SPOTS.csdl|res://*/SPOTS.ssdl|res://*/SPOTS.msl;provider=System.Data.SqlClient;provider connection string=&quot;Integrated Security=True;data source=10.41.182.33;initial catalog=SPOTS_OA_UAT;MultipleActiveResultSets=True;App=EntityFramework&quot;" providerName="System.Data.EntityClient" />
+  </connectionStrings>
+  <appSettings>
+    <add key="AttachmentPath" value="E:\SPOTS\SPOTS_API_Attachment\Attachment" />
+    <add key="BuildNo" value="20210830.1" />
+    <add key="FTP_Hostname" value="10.41.109.53" />
+    <add key="FTP_Username" value="ftpspots" />
+    <add key="FTP_Port" value="22" />
+    <add key="FTP_KeyPath" value="E:\SPOTS\SFTPHome\TrustStore\spotsii_private_openssh.ppk" />
+    <add key="FTP_PutRemoteFolder" value="/ftpcrme3/SPOTS2/in/" />
+    <add key="OSI_PDF_URL" value="https://spotsii.spf.uat/SPOTSAdminModule/Enquiry/PrintOSIToPdfForCrimes3?incidentNo=" />
+  </appSettings>
+  <runtime>
+    <assemblyBinding xmlns="urn:schemas-microsoft-com:asm.v1">
+      <dependentAssembly>
+        <assemblyIdentity name="System.Web.Mvc" publicKeyToken="31bf3856ad364e35" culture="neutral" />
+        <bindingRedirect oldVersion="0.0.0.0-5.2.3.0" newVersion="5.2.3.0" />
+      </dependentAssembly>
+    </assemblyBinding>
+  </runtime>
+</configuration>

@@ -1,0 +1,96 @@
+﻿@model SPOTSAdminModule.ViewModels.SystemCodeViewModel
+
+@{
+    var rowNo = 0;
+}
+
+<script src="~/Scripts/appjs/app.js"></script>
+
+@Html.AntiForgeryToken()
+@if (Model?.SystemCodeList != null)
+{  
+    <div class="row">
+        <div class="col-md-3 spotsMarginMediumTop spotsMarginMediumSmallBottom">
+            <b class="gi-1x">Total Records Found: @Model.SystemCodeList.Count()</b>            
+        </div>
+    @if (Model.IsSelectedCodeTypeEditable)
+    {
+        <div class="col-md-offset-11">
+            <div class="input">
+                <input class="add" type="submit" value="Add" />
+            </div>
+        </div>
+    }
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <table class="table table-responsive table-striped table-hover" id="searchResult">
+                <thead>
+                    <tr>
+                        <th>S/N</th>
+                        <th>Type</th>
+                        <th>Code Value</th>
+                        <th>Description</th>                        
+                        @if (Model.IsSelectedCodeTypeEditable)
+                        {
+                            <th>ACTION</th>
+                        }
+                    </tr>
+                </thead>
+
+                <tbody>
+                @if (Model.IsSelectedCodeTypeEditable)
+                {
+                    <tr class="addRow">
+                        <td>-</td>
+                        <td>@Model.SelectedCodeType</td>
+                        <td class="" id="">
+                            <div contenteditable="true" id="AddValue"  maxlength="50" size="50"></div>
+                        </td>
+                        <td class="" id="">
+                            <div contenteditable="true" id="AddDescription" maxlength="100" size="50"></div>
+                        </td>
+                        <td>
+                            <img class="save-add" alt="Edit" src="@Url.Content("~/Content/Images/save.png")" />
+                            <img class="cancel-add" alt="Edit" src="@Url.Content("~/Content/Images/cancel.png")" />
+                            <input type="hidden" id="SelectedCode" value="@Model.SelectedCode" />
+                        </td>
+                    </tr>
+                    }
+                    @foreach (var item in @Model.SystemCodeList)
+                    {
+                        var rowClass = (rowNo % 2) == 0 ? "" : "alternateRow";
+                        <tr class="@rowClass">
+                            <td>@(rowNo += 1)</td>
+                            <td>@Model.SelectedCodeType</td>
+                            <td class="" id="EditValueTD">
+                                <div contenteditable="false" id="EditValue">@item.value</div>
+                            </td>
+                            <td class="" id="EditDescriptionTD">
+                                <div contenteditable="false" id="EditDescription">@item.description</div>
+                            </td>
+
+                            @if (Model.IsSelectedCodeTypeEditable)
+                            {
+                                <td>
+                                    <img class="edit display-mode" alt="Edit" src="@Url.Content("~/Content/Images/edit.png")" />
+                                    <img class="delete display-mode" alt="Delete" src="@Url.Content("~/Content/Images/delete.png")" />
+                                    <img class="save edit-mode" alt="Save" src="@Url.Content("~/Content/Images/save.png")" />
+                                    <img class="cancel edit-mode" alt="Cancel" src="@Url.Content("~/Content/Images/cancel.png")" />
+                                    <input type="hidden" id="SelectedCode" value="@Model.SelectedCode" />
+                                    <input type="hidden" id="Key" value="@item.key" />
+                                </td>
+                            }
+                        </tr>
+                    }
+                </tbody>
+            </table>
+
+        </div>
+    </div>
+}
+
+
+
+

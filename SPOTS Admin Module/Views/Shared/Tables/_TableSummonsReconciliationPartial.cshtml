@@ -1,0 +1,69 @@
+﻿@model SPOTSAdminModule.ViewModels.SummonsReconciliationViewModel
+    
+@{ 
+    var rowNo = 0;
+}
+
+
+@if (Model != null && Model.SummonsReconciliationList != null)
+{
+    <div class="row">
+        <div class="col-md-3 spotsMarginMediumTop">
+            <h6 style="font-weight:bold">Total Records Found: @Model.SummonsReconciliationList.Count()</h6>
+            <h6>Generated on:@Model.GeneratedDateTime</h6>
+        </div>
+        @*@if (@Model.SummonsReconciliationList.Count() > 0)
+        {
+            <div align="right" class="col-md-1 col-md-offset-8 spotsMarginMediumSmallTop ">
+                <a href="@Url.Action("SummonsReconciliationExportToCsv", "Report", new { searchParameterString = Model.SearchParameterString })" alt="Export Image">
+                    <span class="glyphicon glyphicon-download-alt gi-2x spotsMarginMediumTop" style="color:black"></span>
+                </a>
+                <a href="@Url.Action("PrintSummonsReconciliationToPdf", "Report", new {searchParameterString = Model.SearchParameterString})" alt="Print to PDF Image">
+                    <span class="glyphicon glyphicon-print gi-2x" style="color:black"></span>
+                </a>
+            </div>
+        }*@
+    </div>
+
+    if (@Model.SummonsReconciliationList.Count() > 0)
+    {
+        <div class="row">
+            <div class="col-md-12">
+                <div class="table-responsive">
+                    <table class="table table-responsive table-striped table-hover" id="searchResult">
+                        <thead>
+                            <tr>
+                                <th>S/N</th>
+                                <th>Summons Type</th>
+                                <th>Report No.</th>
+                                <th>Offence Date</th>
+                                <th>Location</th>
+                                <th>Vehicle No.</th>
+                                <th>Offender NRIC</th>
+                                <th>Officer ID</th>
+                                <th>Officer Service No.</th>
+                                <th>Date Uploaded</th>
+                            </tr>
+                        </thead>
+                        @foreach (var summons in Model.SummonsReconciliationList)
+                        {
+                            var rowClass = (rowNo % 2) == 0 ? "" : "alternateRow";
+                            <tr class="@rowClass">
+                                <td>@(rowNo += 1)</td>
+                                <td>@(summons.Summon.summons_type == 1 ? "M401" : "M401E")</td>
+                                <td>@(summons?.TimsReportNo)</td>                                
+                                <td>@(summons?.OffenceDateTime.ToShortDateString() + " " + summons.OffenceDateTime.ToShortTimeString())
+                                <td>@(summons?.Location)</td>
+                                <td>@(summons?.VehicleNo)</td>
+                                <td>@(summons?.OffenderPersonNRIC)</td>
+                                <td>@(summons?.AdAccount)</td>
+                                <td>@(summons?.DisplayName)</td>
+                                <td>@(summons?.SentToTimsDateTime.ToShortDateString() + " " + summons.SentToTimsDateTime.ToShortTimeString())
+                            </tr>
+                        }                        
+                    </table>
+                </div>
+            </div>
+        </div>
+    }
+}

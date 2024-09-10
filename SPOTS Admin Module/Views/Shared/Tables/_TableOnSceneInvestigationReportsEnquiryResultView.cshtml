@@ -1,0 +1,60 @@
+﻿
+@model SPOTSAdminModule.ViewModels.OnSceneInvestigationReportsEnquiryViewModel
+
+@{
+    var rowNo = 0;
+}
+
+@if (Model?.AccidentReportsList != null)
+{
+    <div class="row">
+        <div class="col-md-3 spotsMarginMediumTop spotsMarginSmallBottom">
+            <b class="gi-1x">Total Records Found: @Model.AccidentReportsList.Count()</b>
+        </div>
+    </div>
+
+    if (Model.AccidentReportsList.Any())
+    {
+        <div class="row">
+            <div class="col-md-12">
+                <table class="table table-responsive table-striped table-hover" id="searchResult">
+                    <thead>
+                        <tr>
+                            <th>S/N</th>
+                            <th>Officer ID</th>
+                            <th>Officer Name</th>
+                            <th>Incident No.</th>
+                            <th>Investigation Officer</th>
+                            <th>Ext. No.</th>
+                            <th>Incident Date and Time</th>
+                            <th>Device ID</th>
+                        </tr>
+                    </thead>
+                    
+                    <tbody>
+                    @foreach (var accidentReport in Model.AccidentReportsList)
+                    {
+                        var rowClass = rowNo % 2 == 0 ? "" : "alternateRow";
+
+                        <tr class="@rowClass">
+                            <td>@(rowNo += 1)</td>
+                            <td>@(accidentReport.User?.ad_account)</td>
+                            <td>@(accidentReport.User?.display_name)</td>
+                            <td>
+                                <a href="@Url.Action("RetrieveOnSceneInvestigationReport", "Enquiry", new { incidentNo = @accidentReport.AccidentReport.incident_number })" target="_blank">
+                                    @(accidentReport.AccidentReport?.incident_number)
+                                </a>
+                            </td>
+                            <td>@(accidentReport.AccidentReport?.io_name)</td>
+                            <td>@(accidentReport.AccidentReport?.io_extension_number)</td>
+                            <td>@(accidentReport.AccidentReport?.accident_time)</td>
+                            <td>@(accidentReport.AccidentReport?.device_id)</td>
+                        </tr>
+                    }
+                    </tbody>                    
+                </table>
+            </div>
+        </div>
+    }
+}
+

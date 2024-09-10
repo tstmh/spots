@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="spotsLocationCode">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="header">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="timestamp" type="xs:dateTime"/>
+              <xs:element name="source" type="xs:string"/>
+              <xs:element name="destination" type="xs:string"/>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>    
+        <xs:element name="detail" maxOccurs="unbounded">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="locationCode" type="xs:string"/>
+              <xs:element name="locationDescription" type="xs:string"/>
+              <xs:element name="locationCodeType" type="xs:string"/>
+              <xs:element name="roadSpeedLimit" type="xs:string"/>
+              <xs:element name="silverZone" type="xs:string"/>
+              <xs:element name="dateCreated" type="xs:date"/>
+              <xs:element name="dateEffective" type="xs:date"/>
+              <xs:element name="dateModified" type="xs:date"/>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>            
+        <xs:element name="trailer">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="totalNumber" type="xs:positiveInteger"/>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>          
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

@@ -1,0 +1,365 @@
+﻿@model SPOTSAdminModule.ViewModels.SummonsM401EnquiryHyperLinkViewModel
+
+
+@{
+    ViewBag.Title = "SUMMONS m401";
+    Layout = "~/Views/Shared/_SummonsPdfLayout.cshtml";    
+    var dollar = "$";
+}
+
+@if (Model != null && Model.RetrievedSummonsM401.Summon != null)
+{
+    <div class="row">
+        <div class="col-xs-3">
+            <img src="~/Content/Images/SPFLogoPDF.png" />
+        </div>
+        <div align="right" class="col-md-3 col-md-offset-6 spotsMarginMediumSmallTop">
+            @*@if (Model.IsShowPrintButton)
+            {
+                <a href="@Url.Action("PrintSummonsM401PedestrianHyperLinkToPdf", "Enquiry")" title="Print">
+                    <span class="glyphicon glyphicon-print gi-2x" style="color:black"></span>
+                </a>
+            }*@
+            <h4 class="summonsDetails">
+                @ViewBag.Title
+            </h4>
+            <h4 class="summonsDetails">
+                <b>Ref No. </b>@Model.RetrievedSummonsM401.Summon.spots_id
+            </h4>
+            @if (@Model.RetrievedSummonsM401.Offence.tims_report_number.IsEmpty())
+            {
+                <h4 class="summonsDetails">
+                    <b>TIMS Report No.: N/A </b>
+                </h4>
+            }
+            else
+            {
+                <h4 class="summonsDetails">
+                    <b>TIMS Report No. </b>@Model.RetrievedSummonsM401.Offence.tims_report_number
+                </h4>
+            } 
+            <h4 class="summonsDetails">
+                <b>Officer ID: </b>@Model.RetrievedSummonsM401.User.ad_account
+            </h4>
+            <h4 class="summonsDetails">
+                <b>Officer Name: </b>@Model.RetrievedSummonsM401.User.display_name
+            </h4>
+        </div>
+    </div>
+
+    @*Location*@
+    <div class="collapse-group">
+        <h4 class="summonsesHyperLink" data-toggle="collapse" data-target="#location">Location &raquo;</h4>
+        <div class="collapse in" id="location">
+            <div class="row">
+                <table class="summonsesHyperLinkTable table table-responsive table-hover">
+                    <tr>
+                        <td class="col-xs-3">
+                            <b>Incident Occurred: </b>
+                        </td>
+                        <td class="col-xs-9 col-xs-pull-12">@Model.RetrievedSummonsM401.Location</td>
+                    </tr>
+                    <tr>
+                        <td class="col-xs-3">
+                            <b>Location Remarks</b>
+                        </td>
+                        <td class="col-xs-9 col-xs-pull-12">@Model.RetrievedSummonsM401.Summon.location_remarks</td>
+                    </tr>
+                    <tr>
+                        <td class="col-xs-3">
+                            <b>Special Zone: </b>
+                        </td>
+                        <td class="col-xs-9 col-xs-pull-12">@Model.RetrievedSummonsM401.SpecialZone</td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-3">
+                            <b>School Name: </b>
+                        </td>
+                        <td class="col-md-3 col-md-pull-12">@Model.RetrievedSummonsM401.Summon.school_name</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    @*
+        foreach vehicle
+    *@
+
+
+if (Model.RetrievedSummonsM401.SummonedPedestrian != null)
+{
+    <div class="collapse-group">
+        <h4 class="collapseHeader" data-toggle="collapse" data-target="#offenderType">@Model.RetrievedSummonsM401.OffenderType &raquo;</h4>
+        <div class="collapse in" id="offenderType">
+            <div class="row">
+                <h4 class="summonsesHyperLink">Offender @Model.RetrievedSummonsM401.Person.name</h4>
+            </div>
+            <div class="collapse-group">
+                <h4 class="summonsesHyperLinkLightBlue" data-toggle="collapse" data-target="#IDInfo">Identification Information &raquo;</h4>
+                <div class="collapse in" id="IDInfo">
+                    <div class="row">
+                        <table class="summonsesHyperLinkTable table table-responsive ">                            
+                            <tr>
+                                <td class="col-xs-3">
+                                    <b>Offender Name: </b>
+                                </td>
+                                <td class="col-xs-3">@Model.RetrievedSummonsM401.Person.name</td>
+                                <td class="col-xs-3">
+                                    <b>Offender Involvement: </b>
+                                </td>
+                                <td class="col-xs-3">@Model.RetrievedSummonsM401.OffenderType</td>
+                            </tr>
+                            <tr>
+                                <td class="col-xs-3">
+                                    <b>ID Type: </b>
+                                </td>
+                                <td class="col-xs-3">@Model.RetrievedSummonsM401.PersonIdType</td>
+                                <td class="col-xs-3">
+                                    <b>ID No.: </b>
+                                </td>
+                                <td class="col-xs-3">@Model.RetrievedSummonsM401.Person.id_number</td>
+                            </tr>
+                            <tr>
+                                <td class="col-xs-3">
+                                    <b>Date of Birth: </b>
+                                </td>
+                                <td class="col-xs-3">@( Model.RetrievedSummonsM401.Person.date_of_birth.HasValue ? Model.RetrievedSummonsM401.Person.date_of_birth.Value.ToShortDateString() : "" )</td>
+                                <td class="col-xs-3">
+                                    <b>Gender: </b>
+                                </td>
+                                <td class="col-xs-3">@Model.RetrievedSummonsM401.GenderType</td>
+                            </tr>
+                            <tr>
+                                <td class="col-xs-3">
+                                    <b>Age: </b>
+                                </td>
+                                @{
+                                    var age = 0;
+                                    if (Model.RetrievedSummonsM401.Person.date_of_birth.HasValue) { 
+                                        var today = DateTime.Today;
+                                        age = today.Year - Model.RetrievedSummonsM401.Person.date_of_birth.Value.Year;
+                                        // Go back to the year the person was born in case of a leap year
+                                        if (Model.RetrievedSummonsM401.Person.date_of_birth.Value > today.AddYears(-age))
+                                        {
+                                            age--;
+                                        }
+                                    }
+                                }
+                                <td class="col-md-3">@(age>0?age.ToString():"")</td>
+                                <td class="col-xs-3">
+                                    <b>Country of Birth: </b>
+                                </td>
+                                <td class="col-xs-3">@Model.RetrievedSummonsM401.BirthCountryCode</td>
+                            </tr>
+                            <tr>
+                                <td class="col-xs-3">
+                                    <b>Nationality: </b>
+                                </td>
+                                <td class="col-xs-3">@Model.RetrievedSummonsM401.NationalityCode</td>
+                                <td class="col-xs-3"></td>
+                                <td class="col-xs-3"></td>
+                            </tr>
+                            <tr>
+                                <td class="col-md-3">
+                                    <b>Contact Information 1: </b>
+                                </td>
+                                <td class="col-md-3">@Model.RetrievedSummonsM401.Person.contact_number_1</td>
+                                <td class="col-md-3">
+                                    <b>Contact Information 2: </b>
+                                </td>
+                                <td class="col-md-3">@Model.RetrievedSummonsM401.Person.contact_number_2</td>
+                            </tr>
+                            <tr>
+                                <td class="col-md-3">
+                                    <b>Remarks: </b>
+                                </td>
+                                <td class="col-md-3">@Model.RetrievedSummonsM401.Person.remarks</td>
+                                <td class="col-xs-3"></td>
+                                <td class="col-xs-3"></td>
+                            </tr>                                                        
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="collapse-group">
+                <div class="avoid">
+                    <h4 class="summonsesHyperLinkLightBlue" data-toggle="collapse" data-target="#address">Address Information &raquo;</h4>
+                    <div class="collapse in" id="address">
+                        <div class="row">
+                            <table class="summonsesHyperLinkTable table table-responsive ">
+                                <tr>
+                                    <td class="col-xs-3">
+                                        <b>Address Type: </b>
+                                    </td>
+                                    @if (Model.RetrievedSummonsM401.Person.address != null)
+                                    {
+                                        <td class="col-xs-3">@Model.RetrievedSummonsM401.AddressType</td>
+                                    }
+                                    else
+                                    {
+                                        <td class="col-xs-3"></td>
+                                    }
+                                    <td class="col-xs-3">
+                                        <b>Address is same as registered address: </b>
+                                    </td>
+                                    @if (Model.RetrievedSummonsM401.Person.address_same_as_registered == true)
+                                    {
+                                        <td class="col-xs-3">Yes</td>
+                                    }
+                                    else
+                                    {
+                                        <td class="col-xs-3">No</td>
+                                    }
+                                </tr>
+                                <tr>
+                                    <td class="col-xs-3">
+                                        <b>Block/House No.: </b>
+                                    </td>
+                                    @if (Model.RetrievedSummonsM401.Person.address != null)
+                                    {
+                                        <td class="col-xs-3">@Model.RetrievedSummonsM401.Person.address.block</td>
+                                    }
+                                    else
+                                    {
+                                        <td class="col-xs-3"></td>
+                                    }
+                                    <td class="col-xs-3">
+                                        <b>Floor: </b>
+                                    </td>
+                                    @if (Model.RetrievedSummonsM401.Person.address != null)
+                                    {
+                                        <td class="col-xs-3">@Model.RetrievedSummonsM401.Person.address.floor</td>
+                                    }
+                                    else
+                                    {
+                                        <td class="col-xs-3"></td>
+                                    }
+                                </tr>
+                                <tr>
+                                    <td class="col-xs-3">
+                                        <b>Street: </b>
+                                    </td>
+                                    @if (Model.RetrievedSummonsM401.Person.address != null)
+                                    {
+                                        <td class="col-xs-3">@Model.RetrievedSummonsM401.Person.address.street</td>
+                                    }
+                                    else
+                                    {
+                                        <td class="col-xs-3"></td>
+                                    }
+                                    <td class="col-xs-3">
+                                        <b>Unit No.: </b>
+                                    </td>
+                                    @if (Model.RetrievedSummonsM401.Person.address != null)
+                                    {
+                                        <td class="col-xs-3">@Model.RetrievedSummonsM401.Person.address.unit_number</td>
+                                    }
+                                    else
+                                    {
+                                        <td class="col-xs-3"></td>
+                                    }
+                                </tr>
+                                <tr>
+                                    <td class="col-xs-3">
+                                        <b>Building Name: </b>
+                                    </td>
+                                    @if (Model.RetrievedSummonsM401.Person.address != null)
+                                    {
+                                        <td class="col-xs-3">@Model.RetrievedSummonsM401.Person.address.building_name</td>
+                                    }
+                                    else
+                                    {
+                                        <td class="col-xs-3"></td>
+                                    }
+                                    <td class="col-xs-3">
+                                        <b>Postal Code: </b>
+                                    </td>
+                                    @if (Model.RetrievedSummonsM401.Person.address != null)
+                                    {
+                                        <td class="col-xs-3">@Model.RetrievedSummonsM401.Person.address.postal_code</td>
+                                    }
+                                    else
+                                    {
+                                        <td class="col-xs-3"></td>
+                                    }
+                                </tr>
+                                <tr>
+                                    <td class="col-xs-3">
+                                        <b>Remarks: </b>
+                                    </td>
+                                    @if (Model.RetrievedSummonsM401.Person.address != null)
+                                    {
+                                        <td class="col-xs-3">@Model.RetrievedSummonsM401.Person.address.address_remarks</td>
+                                    }
+                                    else
+                                    {
+                                        <td class="col-xs-3"></td>
+                                    }
+                                    <td class="col-xs-3"></td>
+                                    <td class="col-xs-3"></td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>                
+            </div>
+            <div class="collapse-group">
+                @foreach (var offence in Model.RetrievedSummonsM401.SummonedPedestrian.Offences)
+                {
+                    <h4 class="summonsesHyperLinkLightBlue" data-toggle="collapse" data-target="#offence">Offence @offence.offence_code &raquo;</h4>
+                    <div class="collapse in" id="offence">
+                        <div class="row">
+                            <table class="summonsesHyperLinkTable table table-responsive ">
+                                <tr>
+                                    <td class="col-xs-3">
+                                        <b>Offence Description: </b>
+                                    </td>
+                                    <td class="col-xs-3">@offence.description</td>
+                                    <td class="col-xs-3">
+                                        <b>Offence Code: </b>
+                                    </td>
+                                    <td class="col-xs-3">@offence.offence_code</td>
+                                </tr>
+                                <tr>
+                                    <td class="col-xs-3">
+                                        <b>Fine Amount: </b>
+                                    </td>
+                                    @if (offence.fine_amount.HasValue)
+                                    {
+                                        <td class="col-xs-3">@string.Concat(dollar, offence.fine_amount)</td>
+                                    }
+                                    else
+                                    {
+                                        <td class="col-xs-3"></td>
+                                    }
+                                    <td class="col-xs-3">
+                                        <b>Demerit Points: </b>
+                                    </td>
+                                    <td class="col-xs-3">@offence.demerit_point</td>
+                                </tr>
+                                <tr>
+                                    <td class="col-xs-3">
+                                        <b>Offence Date: </b>
+                                    </td>
+                                    <td class="col-xs-3">@offence.offence_time.ToShortDateString()</td>
+                                    <td class="col-xs-3">
+                                        <b>Offence Time: </b>
+                                    </td>
+                                    <td class="col-xs-3">@offence.offence_time.ToShortTimeString()</td>
+                                </tr>
+                                <tr>
+                                    <td class="col-xs-3">
+                                        <b>Description of Incident: </b>
+                                    </td>
+                                    <td class="col-xs-3" colspan="3">@offence.remarks</td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+    }
+}

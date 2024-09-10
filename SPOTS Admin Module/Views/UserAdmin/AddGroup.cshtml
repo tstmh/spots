@@ -1,0 +1,49 @@
+﻿@model SPOTSAdminModule.ViewModels.GroupViewModel
+
+<h2>Create New Group</h2>
+@using (Html.BeginForm())
+{
+
+    @Html.AntiForgeryToken()
+    <div class="row">
+        <div class="col-md-4">
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+            <label class="control-label">Group Name</label>
+            @Html.ValidationMessageFor(m => m.Group.group_name)
+
+            <div class="input">
+                @Html.TextBoxFor(m => m.Group.group_name, new { @class = "form-control", @placeholder = "Enter Group Name" })
+            </div>
+            
+            <label class="control-label">Group Description</label>
+
+            <div class="input">
+                @Html.TextBoxFor(m => m.Group.group_description, new { @class = "form-control", @placeholder = "Enter Group Description" })
+            </div>
+            <input class="save-button" type="submit" value="Save" contextmenu="Save" id="Save" name="Save" />            
+            <input class="cancel-button" type="button" contextmenu="Cancel" id="Cancel" name="Cancel" value="Cancel" onclick="location.href='@Url.Action("GetGroupList", "UserAdmin")'" />
+        </div>
+        <div class="col-md-4 greyBack">
+            <div>Select Access Rights</div><br />
+            @if (Model.AllAccessRights != null)
+            {
+                foreach (var acl in Model.AllAccessRights)
+                {
+                    <div>
+                        <input type="checkbox" name="accessRightsListCheckbox" value="@acl.access_id" /> @acl.access_rights_name
+                    </div>
+                }
+            }
+        </div>
+
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "GetGroupList")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

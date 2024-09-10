@@ -1,0 +1,83 @@
+﻿@model SPOTSAdminModule.ViewModels.UserViewModel
+
+
+<script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
+<script src="~/Scripts/loadingoverlay.min.js"></script>
+
+
+<script>
+    function OnSuccess(data)
+    {
+        if (data != null && data.success)
+        {
+            if (data.msg == "Success")
+            {
+                $.LoadingOverlay("show");
+                window.location.href = '@Url.Action("GetUserList", "UserAdmin")';
+                $.LoadingOverlay("hide");
+            }
+        }
+
+    }
+</script>
+
+
+@using (Ajax.BeginForm("AddUser", "UserAdmin",
+new AjaxOptions
+{
+    HttpMethod = "POST",
+    UpdateTargetId = "FormID",
+    InsertionMode = InsertionMode.Replace,
+    OnSuccess = "OnSuccess(data)"
+}, new {@id="FormID"}
+))
+{
+    @Html.AntiForgeryToken()
+
+
+    <div class="row">
+        <div class="col-md-12"><h3>Create New Account</h3></div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12"> @Html.ValidationSummary(true, "", new { @class = "text-danger" })</div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-4">        
+
+            <div class="col-md-10">
+                <div>Username</div>
+                @Html.EditorFor(model => model.User.ad_account, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.User.ad_account, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="col-md-10" style="margin-top:1em;">
+                <div>Display Name</div>
+                @Html.EditorFor(model => model.User.display_name, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.User.display_name, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="col-md-10">
+                <input type="submit" value="Save" />
+                <input type="button" contextmenu="Cancel" id="Cancel" name="Cancel" value="Cancel" onclick="location.href='@Url.Action("GetUserList", "UserAdmin")'" />
+            </div>
+
+        </div>
+        <div class="col-md-4 greyBack">
+            <div>Select User Group</div><br />
+            @if (Model != null)
+            {
+                foreach (var group in Model.AllGroups)
+                {
+                    <div>
+                        <input type="checkbox" name="groupListCheckbox" value="@group.group_id" /> @group.group_name
+                    </div>
+                }
+            }
+        </div>
+
+    </div>
+}
+
+

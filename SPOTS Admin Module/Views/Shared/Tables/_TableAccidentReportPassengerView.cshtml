@@ -1,0 +1,254 @@
+﻿@using SPOTS_Repository.Models
+
+@{
+
+    var accidentReportPassengerList = (List<OnSceneInvestigationReportsEnquiry>)ViewData["accidentReportPassengerList"];
+    var index = 0;
+    var id = "#";
+    var details = "Details";
+    var addressDetails = "AddressDetails";
+    var treatmentDetails = "TreatmentDetails";
+}
+
+
+@if (accidentReportPassengerList?.Count() > 0)
+{
+    <!--#region Vehicle Involved Information (con't)-->
+    <div class="collapse-group">
+        <h4 class="collapseHeader" data-toggle="collapse" data-target="#vehiclesInvolvedCont">
+            Vehicle/s Involved Information (Con't) &raquo;
+        </h4>
+        <div class="collapse in" id="vehiclesInvolvedCont">
+            @foreach (var passengerList in accidentReportPassengerList)
+            {
+                {
+                    index += 1;
+                }
+                <div class="collapse-group">
+                    <h4 class="summonsesHyperLink" data-toggle="collapse" data-target="#passengers">
+                        Passenger/s (@accidentReportPassengerList.Count()) &raquo;
+                    </h4>
+                    <div class="collapse in" id="passengers">
+                        <!--#region Vehicle's Passenger-->
+                        <div class="collapse-group">
+                            <h4 class="summonsesHyperLinkLightBlue" data-toggle="collapse" data-target="@id@index">
+                                Passenger @(passengerList.PersonPassenger?.name) @id@index &raquo;
+                            </h4>
+                            <!--#region Identification Details-->
+                            <div class="collapse in" id="@index">
+                                <div class="collapse-group">
+                                    <h4 class="summonsesHyperLinkLightBlue" data-toggle="collapse" data-target="@id@index@details">
+                                        Identification Details &raquo;
+                                    </h4>
+                                    <div class="collapse in" id="@index@details">
+                                        <div class="row">
+                                            <table class="summonsesHyperLinkTable table table-responsive table-hover">
+                                                <tr>
+                                                    <td class="col-xs-3">
+                                                        <b>Passenger Name: </b>
+                                                    </td>
+                                                    <td class="col-xs-3">@(passengerList.PersonPassenger?.name)</td>
+                                                    <td class="col-xs-3">
+                                                        <b>Contact Information 1: </b>
+                                                    </td>
+                                                    <td class="col-xs-3">@(passengerList.PersonPassenger?.contact_number_1)</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="col-xs-3">
+                                                        <b>Passenger Involved: </b>
+                                                    </td>
+                                                    <td class="col-xs-3">@(passengerList.PassengerPassengerTypeSystemCode?.value)</td>
+                                                    <td class="col-xs-3">
+                                                        <b>Contact Information 2: </b>
+                                                    </td>
+                                                    <td class="col-xs-3">@(passengerList.PersonPassenger?.contact_number_2)</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="col-xs-3">
+                                                        <b>ID Type: </b>
+                                                    </td>
+                                                    <td class="col-xs-3">@(passengerList.PassengerIdentityTypeSystemCode?.value)</td>
+                                                    <td class="col-xs-3">
+                                                        <b>Injury/Condition: </b>
+                                                    </td>
+                                                    <td class="highlighted">@(passengerList.PassengerInjuryTreatment?.injury_condition)</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="col-xs-3">
+                                                        <b>ID No.: </b>
+                                                    </td>
+                                                    <td class="col-xs-3">@(passengerList.PersonPassenger?.id_number)</td>
+                                                    <td class="col-xs-3">
+                                                        <b>Remarks: </b>
+                                                    </td>
+                                                    <td class="col-xs-3">@(passengerList.PersonPassenger?.remarks)</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="col-xs-3">
+                                                        <b>Date of Birth: </b>
+                                                    </td>
+                                                    @if (passengerList.PersonPassenger != null && passengerList.PersonPassenger.date_of_birth.HasValue)
+                                                    {
+                                                        <td class="col-xs-3">@passengerList.PersonPassenger.date_of_birth.Value.ToShortDateString()</td>
+                                                    }
+                                                    else
+                                                    {
+                                                        <td class="col-xs-3"></td>
+                                                    }
+                                                    <td class="col-xs-3">
+                                                        <b>Gender: </b>
+                                                    </td>
+                                                    <td class="col-xs-3">@(passengerList.PassengerGenderTypeSystemCode?.value)</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="col-xs-3">
+                                                        <b>Age: </b>
+                                                    </td>
+                                                    @if (passengerList.PersonPassenger != null && passengerList.PersonPassenger.date_of_birth.HasValue)
+                                                    {
+                                                        var today = DateTime.Today;
+                                                        var age = today.Year - passengerList.PersonPassenger.date_of_birth.Value.Year;
+                                                        // Go back to the year the person was born in case of a leap year
+                                                        if (passengerList.PersonPassenger.date_of_birth.Value > today.AddYears(-age))
+                                                        {
+                                                            age--;
+                                                        }
+                                                        <td class="col-md-3" colspan="3">@age</td>
+                                                    }
+                                                    else
+                                                    {
+                                                        <td class="col-md-3" colspan="3"></td>
+                                                    }
+                                                </tr>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--#endregion-->
+                            <!--#region Address Details-->
+                            <div class="collapse-group">
+                                <h4 class="summonsesHyperLinkLightBlue" data-toggle="collapse" data-target="@id@index@addressDetails">
+                                    Address Details &raquo;
+                                </h4>
+                                <div class="collapse in" id="@index@addressDetails">
+                                    <div class="row">
+                                        <table class="summonsesHyperLinkTable table table-responsive table-hover">
+                                            <tr>
+                                                <td class="col-xs-3">
+                                                    <b>Address Type: </b>
+                                                </td>
+                                                <td class="col-xs-3">@(passengerList.PassengerAddressTypeSystemCode?.value)</td>
+                                                <td class="col-xs-3">
+                                                    <b>Unit No: </b>
+                                                </td>
+                                                <td class="col-xs-3">@(passengerList.PassengerAddress?.unit_number)</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="col-xs-3">
+                                                    <b>Block/House No: </b>
+                                                </td>
+                                                <td class="col-xs-3">@(passengerList.PassengerAddress?.block)</td>
+                                                <td class="col-xs-3">
+                                                    <b>Building Name: </b>
+                                                </td>
+                                                <td class="col-xs-3">@(passengerList.PassengerAddress?.building_name)</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="col-xs-3">
+                                                    <b>Street: </b>
+                                                </td>
+                                                <td class="col-xs-3">@(passengerList.PassengerAddress?.street)</td>
+                                                <td class="col-xs-3">
+                                                    <b>Postal Code: </b>
+                                                </td>
+                                                <td class="col-xs-3">@(passengerList.PassengerAddress?.postal_code)</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="col-xs-3">
+                                                    <b>Floor: </b>
+                                                </td>
+                                                <td class="col-xs-3">@(passengerList.PassengerAddress?.floor)</td>
+                                                <td class="col-xs-3">
+                                                    <b>Remarks: </b>
+                                                </td>
+                                                <td class="col-xs-3">@(passengerList.PassengerAddress?.address_remarks)</td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--#endregion-->
+                            <!--#region Treatment Details-->
+                            <div class="collapse-group">
+                                <h4 class="summonsesHyperLinkLightBlue" data-toggle="collapse" data-target="@id@index@treatmentDetails">
+                                    Treatment, if any &raquo;
+                                </h4>
+                                <div class="collapse in" id="@index@treatmentDetails">
+                                    <div class="row">
+                                        <table class="summonsesHyperLinkTable table table-responsive table-hover">
+                                            <tr>
+                                                <td class="col-xs-3">
+                                                    <b>Ambulance No.: </b>
+                                                </td>
+                                                <td class="col-xs-3">@(passengerList.PassengerInjuryTreatment?.ambulance_number)</td>
+                                                <td class="col-xs-3">
+                                                    <b>AO Identity: </b>
+                                                </td>
+                                                <td class="col-xs-3">@(passengerList.PassengerInjuryTreatment?.ao_id)</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="col-xs-3">
+                                                    <b>Ambulance Arrival: </b>
+                                                </td>
+                                                @if (passengerList.PassengerInjuryTreatment != null && passengerList.PassengerInjuryTreatment.ambulance_arrival.HasValue)
+                                                {
+                                                    <td class="col-xs-3">@passengerList.PassengerInjuryTreatment.ambulance_arrival.Value.ToShortTimeString()</td>
+                                                }
+                                                else
+                                                {
+                                                    <td class="col-xs-3"></td>
+                                                }
+                                                <td class="col-xs-3">
+                                                    <b>Ambulance Departure: </b>
+                                                </td>
+                                                @if (passengerList.PassengerInjuryTreatment != null && passengerList.PassengerInjuryTreatment.ambulance_departure.HasValue)
+                                                {
+                                                    <td class="col-xs-3">@passengerList.PassengerInjuryTreatment.ambulance_departure.Value.ToShortTimeString()</td>
+                                                }
+                                                else
+                                                {
+                                                    <td class="col-xs-3"></td>
+                                                }
+                                            </tr>
+                                            <tr>
+                                                <td class="col-xs-3">
+                                                    <b>Hospital: </b>
+                                                </td>
+                                                <td class="col-xs-3">@(passengerList.PassengerInjuryTreatment?.hospital)</td>   
+                                                @if (passengerList.PassengerInjuryTreatment != null && passengerList.PassengerInjuryTreatment.other_hospital!=null)
+                                                {
+                                                    <td class="col-xs-3">
+                                                        <b>Others(Specify): </b>
+                                                    </td>
+                                                    <td class="col-xs-3">@passengerList.PassengerInjuryTreatment.other_hospital</td>
+                                                }
+                                                else
+                                                {
+                                                    <td class="col-xs-3" colspan="2"></td>
+                                                }                                             
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--#endregion-->
+                        </div>
+                        <!--#endregion-->
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+    <!--#endregion-->
+}

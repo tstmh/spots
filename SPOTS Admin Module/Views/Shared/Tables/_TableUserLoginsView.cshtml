@@ -1,0 +1,52 @@
+﻿@model SPOTSAdminModule.ViewModels.LogsViewModel
+
+@{
+    var rowNo = 0;
+}
+
+
+    @if (Model?.SystemLogsList != null)
+    {
+        <div class="row">
+            <div class="col-md-3 spotsMarginMediumTop spotsMarginMediumSmallBottom">
+                <b class="gi-1x">Total Records Found: @Model.SystemLogsList.Count()</b>
+            </div>
+        </div>
+
+        if (Model.SystemLogsList.Any())
+        {
+            <div class="row">
+                <div class="col-md-12">
+                    <table class="table table-responsive table-striped table-hover" id="searchResult">
+                        <thead>
+                            <tr>
+                                <th>S/N</th>
+                                <th>Transaction Time</th>
+                                <th>Application Type</th>
+                                <th>Device ID</th>
+                                <th>User ID</th>
+                                <th>User Name</th>
+                                <th>Description</th>
+                            </tr>
+                        </thead>
+
+                        @foreach (var systemLog in Model.SystemLogsList)
+                        {
+                            var rowClass = (rowNo % 2) == 0 ? "" : "alternateRow";
+
+                            <tr class="@rowClass">
+                                <td>@(rowNo += 1)</td>
+                                <td>@systemLog.Log.log_time</td>
+                                <td>@systemLog.SystemCode.value</td>
+                                <td>@systemLog.Log.device_id</td>
+                                <td>@systemLog.User.user_id</td>
+                                <td>@systemLog.User.display_name</td>
+                                <td>@systemLog.Log.description</td>
+                            </tr>
+                        }
+                    </table>
+                </div>
+            </div>
+
+        }
+    }

@@ -1,0 +1,76 @@
+﻿@model SPOTSAdminModule.ViewModels.UserViewModel
+
+<h2>Edit User Account</h2>
+@using (Html.BeginForm())
+{
+    var i = 0;
+    var username = Model.User.ad_account;
+    @Html.AntiForgeryToken()
+    <div class="row">
+        <div class="col-md-4">
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            @Html.HiddenFor(model => model.User.user_id)
+
+            <div class="input">
+                <label class="control-label">Username</label><br />
+                @Html.TextBox("frmUserName", @username, new { @class = "form-control", @readonly = "readonly" })
+                @Html.HiddenFor(model => model.User.ad_account)
+            </div>
+
+            <div class="input">
+                <label class="control-label">Display Name</label><br />
+                @Html.TextBoxFor(model => model.User.display_name, new { @class = "form-control", @readonly = "readonly" })
+            </div>
+
+            <div class="input">
+                <label class="control-label">E-mail</label><br />
+                @Html.TextBoxFor(model => model.User.email, new { @class = "form-control", @readonly = "readonly" })
+            </div>
+
+            <div class="input">
+                <label class="control-label">Department</label><br />
+                @Html.TextBoxFor(model => model.User.department, new { @class = "form-control", @readonly = "readonly" })
+            </div>
+
+            <div class="input">
+                <label class="control-label">Rank</label><br />
+                @Html.TextBoxFor(model => model.User.rank, new { @class = "form-control", @readonly = "readonly" })
+            </div>
+
+            <input class="save-button" type="submit" contextmenu="Save" id="Save" name="Save" value="Save" />
+            <input class="cancel-button" contextmenu="Cancel" id="Cancel" name="Cancel" value="Cancel" type="button" onclick="location.href='@Url.Action("GetUserList", "UserAdmin")'" />
+        </div>
+        <div class="col-md-4 greyBack">
+            <div>Select User Group</div><br />
+            @if (Model.AllGroups != null)
+            {
+                foreach (var group in Model.AllGroups)
+                {
+                    var checkedGroup = "";
+                    <div>
+
+                        @if (Model.GroupList != null)
+                        {
+                            foreach (var selectedGroup in Model.GroupList)
+                            {
+                                if (selectedGroup.group_id == group.group_id)
+                                {
+                                    checkedGroup = "checked='checked'";
+                                }
+                            }
+                        }
+                        <input type="checkbox" name="groupListCheckbox" value="@group.group_id" @checkedGroup /> @group.group_name
+                    </div>
+                }
+            }
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "GetUserList")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

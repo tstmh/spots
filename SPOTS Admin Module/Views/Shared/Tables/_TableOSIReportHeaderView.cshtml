@@ -1,0 +1,63 @@
+﻿@{
+    ViewBag.Title = "Accident Report First PO Form";
+    var listAccidentReportViewModel = (SPOTSAdminModule.ViewModels.ListAccidentReportViewModel)ViewData["listAccidentReportViewModel"];
+
+    var sketchPlans = listAccidentReportViewModel.AccidentReportsList.Where(y => y.SketchPlanAccidentReport != null).GroupBy(x => x.SketchPlanAccidentReport.sketch_id).Select(y => y.First());
+    var vdrs = listAccidentReportViewModel.AccidentReportsList.Where(y => y.VdrAccidentReport != null).GroupBy(x => x.VdrAccidentReport.vdr_id).Select(y => y.First());
+    var photos = listAccidentReportViewModel.AccidentReportsList.Where(y => y.PhotoAccidentReport != null).GroupBy(x => x.PhotoAccidentReport.photo_id).Select(y => y.First());
+
+    var boolShowImages = false;
+
+    if ((sketchPlans != null && sketchPlans.Any()) | (vdrs != null && vdrs.Any()) | (photos != null && photos.Any()))
+    {
+        boolShowImages = true;
+    }
+
+}
+
+
+
+<div class="row">
+    <div class="col-md-3" id="pdfLogo">
+        <img src="~/Content/Images/SPFLogoPDF.png" height="60" title="SPF Logo" alt="SPF Logo" />
+    </div>
+    <div align="right" class="col-md-3 col-md-offset-6 spotsMarginMediumSmallTop">
+
+        @*@if (listAccidentReportViewModel.IsShowPrintButton)
+        {
+            <a href="@Url.Action("PrintOnSceneInvestigationReportOnlyToPdf", "Enquiry")" title="Print">
+                <h4 class="summonsDetails">NP149E <span class="glyphicon glyphicon-print gi-2x" style="color:black"></span></h4>
+            </a>
+            if (boolShowImages)
+            {
+                <a href="@Url.Action("PrintOnSceneInvestigationReportImagesToPdf", "Enquiry")" title="Print">
+                    <h4 class="summonsDetails">Images <span class="glyphicon glyphicon-print gi-2x" style="color:black"></span></h4>
+                </a>
+            }
+
+        }*@
+        <h4 class="summonsHeader">@ViewBag.Title</h4>
+        <h4 class="summonsDetails">
+            <b>Incident Report No: </b>@(listAccidentReportViewModel?.IncidentReportNumber)
+        </h4>
+        <h4 class="summonsDetails">
+            <b>Accident Date/Time: </b>@(listAccidentReportViewModel?.AccidentTime)
+        </h4>
+        <h4 class="summonsDetails">
+            <b>IO Ext No: </b>@(listAccidentReportViewModel?.IOExtensionNumber)
+        </h4>
+        <h4 class="summonsDetails">
+            <b>IO Name: </b>@(listAccidentReportViewModel?.IOName)
+        </h4>
+       
+        <h4 class="summonsDetails">
+            <b>PO No: </b>@(listAccidentReportViewModel?.CreatedByNric)
+        </h4>
+            <h4 class="summonsDetails">
+                <b>PO Name: </b>@(listAccidentReportViewModel?.CreatedByDisplayName)
+        
+            </h4>
+        
+    </div>
+</div>
+

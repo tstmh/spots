@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<spotsVehicleTypeCode>
+<header>
+<timestamp>2017-09-08T12:30:00</timestamp>
+<source>TIMS</source>
+<destination>SPOTS</destination>
+</header>
+<detail><code>00</code><description>MOTORCYCLE</description><parentCode></parentCode><dateEffective>2004-06-10</dateEffective><dateCreated>2004-06-10</dateCreated><dateModified>2004-06-10</dateModified></detail>
+<detail><code>01</code><description>MOTOR SCOOTER</description><parentCode></parentCode><dateEffective>2004-06-10</dateEffective><dateCreated>2004-06-10</dateCreated><dateModified>2004-06-10</dateModified></detail>
+<detail><code>10</code><description>MOTOR CAR</description><parentCode></parentCode><dateEffective>2004-06-10</dateEffective><dateCreated>2004-06-10</dateCreated><dateModified>2004-06-10</dateModified></detail>
+<detail><code>11</code><description>STATION WAGON</description><parentCode></parentCode><dateEffective>2004-06-10</dateEffective><dateCreated>2004-06-10</dateCreated><dateModified>2004-06-10</dateModified></detail>
+<detail><code>12</code><description>MOTOR VAN</description><parentCode></parentCode><dateEffective>2004-06-10</dateEffective><dateCreated>2004-06-10</dateCreated><dateModified>2004-06-10</dateModified></detail>
+<detail><code>13</code><description>TWIN CABIN GOODS VEHICLE</description><parentCode></parentCode><dateEffective>2004-06-10</dateEffective><dateCreated>2011-02-07</dateCreated><dateModified>2011-02-07</dateModified></detail>
+<detail><code>20</code><description>BUS</description><parentCode></parentCode><dateEffective>2004-06-10</dateEffective><dateCreated>2004-06-10</dateCreated><dateModified>2004-06-10</dateModified></detail>
+<detail><code>30</code><description>LORRY</description><parentCode></parentCode><dateEffective>2004-06-10</dateEffective><dateCreated>2004-06-10</dateCreated><dateModified>2004-06-10</dateModified></detail>
+<detail><code>31</code><description>PICK-UP</description><parentCode></parentCode><dateEffective>2004-06-10</dateEffective><dateCreated>2004-06-10</dateCreated><dateModified>2004-06-10</dateModified></detail>
+<detail><code>32</code><description>CONTAINER</description><parentCode></parentCode><dateEffective>2004-06-10</dateEffective><dateCreated>2004-06-10</dateCreated><dateModified>2004-06-10</dateModified></detail>
+<detail><code>33</code><description>TIPPER/TRUCK</description><parentCode></parentCode><dateEffective>2004-06-10</dateEffective><dateCreated>2004-06-10</dateCreated><dateModified>2004-06-10</dateModified></detail>
+<detail><code>34</code><description>LAND ROVER/JEEP</description><parentCode></parentCode><dateEffective>2004-06-10</dateEffective><dateCreated>2004-06-10</dateCreated><dateModified>2004-06-10</dateModified></detail>
+<detail><code>40</code><description>TRAILER</description><parentCode></parentCode><dateEffective>2004-06-10</dateEffective><dateCreated>2004-06-10</dateCreated><dateModified>2004-06-10</dateModified></detail>
+<detail><code>61</code><description>TANKER</description><parentCode></parentCode><dateEffective>2004-06-10</dateEffective><dateCreated>2004-06-10</dateCreated><dateModified>2004-06-10</dateModified></detail>
+<detail><code>62</code><description>CRANE</description><parentCode></parentCode><dateEffective>2004-06-10</dateEffective><dateCreated>2004-06-10</dateCreated><dateModified>2004-06-10</dateModified></detail>
+<detail><code>63</code><description>AMBULANCE</description><parentCode></parentCode><dateEffective>2004-06-10</dateEffective><dateCreated>2004-06-10</dateCreated><dateModified>2004-06-10</dateModified></detail>
+<detail><code>65</code><description>FIRE BRIGADE</description><parentCode></parentCode><dateEffective>2004-06-10</dateEffective><dateCreated>2004-06-10</dateCreated><dateModified>2004-06-10</dateModified></detail>
+<detail><code>69</code><description>CEMENT MIXER</description><parentCode></parentCode><dateEffective>2004-06-10</dateEffective><dateCreated>2004-06-10</dateCreated><dateModified>2004-06-10</dateModified></detail>
+<detail><code>71</code><description>TRACTOR</description><parentCode></parentCode><dateEffective>2004-06-10</dateEffective><dateCreated>2004-06-10</dateCreated><dateModified>2004-06-10</dateModified></detail>
+<detail><code>72</code><description>ROLLER</description><parentCode></parentCode><dateEffective>2004-06-10</dateEffective><dateCreated>2004-06-10</dateCreated><dateModified>2004-06-10</dateModified></detail>
+<detail><code>73</code><description>EXCAVATOR</description><parentCode></parentCode><dateEffective>2004-06-10</dateEffective><dateCreated>2004-06-10</dateCreated><dateModified>2004-06-10</dateModified></detail>
+<detail><code>74</code><description>FORKLIFT</description><parentCode></parentCode><dateEffective>2004-06-10</dateEffective><dateCreated>2004-06-10</dateCreated><dateModified>2004-06-10</dateModified></detail>
+<detail><code>AS</code><description>AIRPORT SERVICES EQUIPMENT</description><parentCode></parentCode><dateEffective>2004-06-10</dateEffective><dateCreated>2007-03-27</dateCreated><dateModified>2007-03-27</dateModified></detail>
+<detail><code>AV</code><description>ARTICULATED VEHICLE</description><parentCode></parentCode><dateEffective>2004-06-10</dateEffective><dateCreated>2007-03-23</dateCreated><dateModified>2007-03-23</dateModified></detail>
+<detail><code>BC</code><description>BICYCLE</description><parentCode></parentCode><dateEffective>2004-06-10</dateEffective><dateCreated>2004-06-10</dateCreated><dateModified>2004-06-10</dateModified></detail>
+<detail><code>BD</code><description>BULLDOZER</description><parentCode></parentCode><dateEffective>2004-06-10</dateEffective><dateCreated>2007-03-27</dateCreated><dateModified>2007-03-27</dateModified></detail>
+<detail><code>CP</code><description>COMPACTOR</description><parentCode></parentCode><dateEffective>2004-06-10</dateEffective><dateCreated>2007-03-27</dateCreated><dateModified>2007-03-27</dateModified></detail>
+<detail><code>CT</code><description>CAR TRANSPORTER</description><parentCode></parentCode><dateEffective>2004-06-10</dateEffective><dateCreated>2007-03-23</dateCreated><dateModified>2007-03-23</dateModified></detail>
+<detail><code>DP</code><description>DUMPER</description><parentCode></parentCode><dateEffective>2004-06-10</dateEffective><dateCreated>2007-03-23</dateCreated><dateModified>2007-03-23</dateModified></detail>
+<detail><code>EP</code><description>ENGINEERING PLANT FOR SPECIFIC PURPOSE</description><parentCode></parentCode><dateEffective>2004-06-10</dateEffective><dateCreated>2007-03-27</dateCreated><dateModified>2007-03-27</dateModified></detail>
+<detail><code>ES</code><description>ELECTRIC SCOOTER</description><parentCode></parentCode><dateEffective>2004-06-10</dateEffective><dateCreated>2009-02-02</dateCreated><dateModified>2009-02-03</dateModified></detail>
+<detail><code>FF</code><description>FIRE FIGHTING VEHICLE</description><parentCode></parentCode><dateEffective>2004-06-10</dateEffective><dateCreated>2007-03-23</dateCreated><dateModified>2007-03-23</dateModified></detail>
+<detail><code>GD</code><description>GRADER (WHEELED)</description><parentCode></parentCode><dateEffective>2004-06-10</dateEffective><dateCreated>2007-03-27</dateCreated><dateModified>2007-03-27</dateModified></detail>
+<detail><code>GT</code><description>GARBAGE TRUCK/SWEEPER/SKIPLOADER</description><parentCode></parentCode><dateEffective>2004-06-10</dateEffective><dateCreated>2007-03-23</dateCreated><dateModified>2007-03-23</dateModified></detail>
+<detail><code>H1</code><description>TAXI</description><parentCode></parentCode><dateEffective>2004-06-10</dateEffective><dateCreated>2004-06-10</dateCreated><dateModified>2004-06-10</dateModified></detail>
+<detail><code>HC</code><description>HANDCART</description><parentCode></parentCode><dateEffective>2004-06-10</dateEffective><dateCreated>2007-03-27</dateCreated><dateModified>2007-03-27</dateModified></detail>
+<detail><code>HS</code><description>HEARSE</description><parentCode></parentCode><dateEffective>2004-06-10</dateEffective><dateCreated>2007-03-23</dateCreated><dateModified>2007-03-23</dateModified></detail>
+<detail><code>LD</code><description>LOADER</description><parentCode></parentCode><dateEffective>2004-06-10</dateEffective><dateCreated>2007-03-27</dateCreated><dateModified>2007-03-27</dateModified></detail>
+<detail><code>M3</code><description>MOTORCYCLE(WITH SIDE-CAR)</description><parentCode></parentCode><dateEffective>2004-06-10</dateEffective><dateCreated>2007-03-27</dateCreated><dateModified>2007-03-27</dateModified></detail>
+<detail><code>PAB</code><description>POWER ASSISTED BICYCLE</description><parentCode></parentCode><dateEffective>2004-06-10</dateEffective><dateCreated>2010-12-23</dateCreated><dateModified>2010-12-27</dateModified></detail>
+<detail><code>PL</code><description>PIPE LAYER</description><parentCode></parentCode><dateEffective>2004-06-10</dateEffective><dateCreated>2007-03-27</dateCreated><dateModified>2007-03-27</dateModified></detail>
+<detail><code>PM</code><description>PRIME MOVER</description><parentCode></parentCode><dateEffective>2004-06-10</dateEffective><dateCreated>2007-03-27</dateCreated><dateModified>2007-03-27</dateModified></detail>
+<detail><code>RC</code><description>RECOVERY VEHICLE</description><parentCode></parentCode><dateEffective>2004-06-10</dateEffective><dateCreated>2007-03-23</dateCreated><dateModified>2007-03-23</dateModified></detail>
+<detail><code>RR</code><description>ROAD ROLLER</description><parentCode></parentCode><dateEffective>2004-06-10</dateEffective><dateCreated>2007-03-23</dateCreated><dateModified>2007-03-23</dateModified></detail>
+<detail><code>RV</code><description>REFRIGERATED VEHICLE</description><parentCode></parentCode><dateEffective>2004-06-10</dateEffective><dateCreated>2007-03-23</dateCreated><dateModified>2007-03-23</dateModified></detail>
+<detail><code>SK</code><description>SKIDDER</description><parentCode></parentCode><dateEffective>2004-06-10</dateEffective><dateCreated>2007-03-27</dateCreated><dateModified>2007-03-27</dateModified></detail>
+<detail><code>SP</code><description>SCRAPER</description><parentCode></parentCode><dateEffective>2004-06-10</dateEffective><dateCreated>2007-03-27</dateCreated><dateModified>2007-03-27</dateModified></detail>
+<detail><code>TC</code><description>TRICYCLE</description><parentCode></parentCode><dateEffective>2004-06-10</dateEffective><dateCreated>2004-06-10</dateCreated><dateModified>2004-06-10</dateModified></detail>
+<detail><code>TS</code><description>TRISHAW</description><parentCode></parentCode><dateEffective>2004-06-10</dateEffective><dateCreated>2004-06-10</dateCreated><dateModified>2004-06-10</dateModified></detail>
+<detail><code>XX</code><description>OTHERS</description><parentCode></parentCode><dateEffective>2004-06-10</dateEffective><dateCreated>2004-06-10</dateCreated><dateModified>2004-06-10</dateModified></detail>
+<detail><code>ZZ</code><description>UNKNOWN</description><parentCode></parentCode><dateEffective>2004-06-10</dateEffective><dateCreated>2004-06-10</dateCreated><dateModified>2004-06-10</dateModified></detail>
+<trailer>
+<totalNumber>51</totalNumber>
+</trailer>
+</spotsVehicleTypeCode>

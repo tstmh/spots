@@ -1,0 +1,415 @@
+﻿@model SPOTSAdminModule.ViewModels.SummonsEchoEnquiryHyperLinkViewModel
+
+@{
+
+    ViewBag.Title = "SUMMONS ECHO";
+    Layout = "~/Views/Shared/_SummonsPdfLayout.cshtml";
+
+    var km = " KM/H";
+    var dollar = "$";
+}
+
+@if (Model != null && Model.RetrievedSummonsEcho.Summon != null)
+{
+    <div class="row">
+        <div class="col-xs-3">
+            <img src="~/Content/Images/SPFLogoPDF.png" />
+        </div>
+        <div align="right" class="col-md-3 col-md-offset-6 spotsMarginMediumSmallTop">
+            @*@if (Model.IsShowPrintButton)
+            {
+                <a href="@Url.Action("PrintSummonsM401EHyperLinkToPdf", "Enquiry")" title="Print">
+                    <span class="glyphicon glyphicon-print gi-2x" style="color:black"></span>
+                </a>
+            }*@   
+            <h4 class="summonsDetails">
+                @ViewBag.Title
+            </h4>
+            <h4 class="summonsDetails">
+                <b>Ref No. </b>@Model.RetrievedSummonsEcho.Summon.spots_id
+            </h4>
+            <h4 class="summonsDetails">
+                <b>TIMS Report No. </b>@Model.RetrievedSummonsEcho.Offences.tims_report_number
+            </h4>
+            <h4 class="summonsDetails">
+                <b>Officer ID: </b>@Model.RetrievedSummonsEcho.User.ad_account
+            </h4>
+            <h4 class="summonsDetails">
+                <b>Officer Name: </b>@Model.RetrievedSummonsEcho.User.display_name
+            </h4>
+        </div>
+    </div>
+
+    @*Location*@
+    <div class="collapse-group">
+        <h4 class="collapseHeader" data-toggle="collapse" data-target="#location">Location &raquo;</h4>
+        <div class="collapse in" id="location">
+            <div class="row">
+                <table class="summonsesHyperLinkTable table table-responsive table-hover" >
+                    <tr>
+                        <td class="col-xs-3">
+                            <b>Incident Occurred: </b>
+                        </td>
+                        <td class="col-xs-9 col-xs-pull-12">@Model.RetrievedSummonsEcho.Location</td>
+                    </tr>
+                    <tr>
+                        <td class="col-xs-3">
+                            <b>Location Remarks</b>
+                        </td>
+                        <td class="col-xs-9 col-xs-pull-12">@Model.RetrievedSummonsEcho.Summon.location_remarks</td>
+                    </tr>
+                    <tr>
+                        <td class="col-xs-3">
+                            <b>Special Zone: </b>
+                        </td>
+                        <td class="col-xs-9 col-xs-pull-12">@Model.RetrievedSummonsEcho.SpecialZone</td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-3">
+                            <b>School Name: </b>
+                        </td>
+                        <td class="col-md-3 col-md-pull-12">@Model.RetrievedSummonsEcho.Summon.school_name</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    @*
+        foreach vehicle
+    *@
+
+
+    if (Model.RetrievedSummonsEcho.SummonedVehicles != null)
+    {
+    <div class="collapse-group">
+        <h4 class="collapseHeader" data-toggle="collapse" data-target="#vehicle">Vehicle &raquo;</h4>
+        <div class="collapse in" id="vehicle">
+            <div class="row">
+                <h4 class="summonsesHyperLink">Vehicle @Model.RetrievedSummonsEcho.Vehicles.registration_number</h4>
+            </div>
+            <div class="collapse-group">
+                <h4 class="summonsesHyperLinkLightBlue" data-toggle="collapse" data-target="#vehicleDetails">Vehicle Details &raquo;</h4>
+                <div class="collapse in" id="vehicleDetails">
+                    <div class="row">
+                        <table class="summonsesHyperLinkTable table table-responsive table-hover">
+                            <tr>
+                                <td class="col-xs-3">
+                                    <b>Registration No.: </b>
+                                </td>
+                                <td class="col-xs-3">@Model.RetrievedSummonsEcho.Vehicles.registration_number</td>
+                                <td class="col-xs-3">
+                                    <b>Vehicle Colour: </b>
+                                </td>
+                                @if (Model.RetrievedSummonsEcho.VehicleColorCode.IsEmpty() || Model.RetrievedSummonsEcho.VehicleColorCode.Equals("Others"))
+                                {
+                                    <td class="col-xs-3">@Model.RetrievedSummonsEcho.Vehicles.vehicle_colour</td>
+                                }
+                                else
+                                {
+                                    <td class="col-xs-3">@Model.RetrievedSummonsEcho.VehicleColorCode</td>
+                                }
+                            </tr>
+                            <tr>
+                                <td class="col-xs-3">
+                                    <b>Local Vehicle </b>
+                                </td>
+                                @if (Model.RetrievedSummonsEcho.Vehicles.local_vehicle.HasValue)
+                                {
+                                    if (Model.RetrievedSummonsEcho.Vehicles.local_vehicle == true)
+                                    {
+                                        <td class="col-xs-3">Yes</td>
+                                    }
+                                    else
+                                    {
+                                        <td class="col-xs-3">No</td>
+                                    }
+                                }
+                                else
+                                {
+                                    <td class="col-xs-3"></td>
+                                }
+                                <td class="col-xs-3">
+                                    <b>Vehicle Type: </b>
+                                </td>
+                                <td class="col-xs-3">@Model.RetrievedSummonsEcho.VehicleType</td>
+                            </tr>
+                            <tr>
+                                <td class="col-xs-3">
+                                    <b>Special Plate Vehicle: </b>
+                                </td>
+                                @if (Model.RetrievedSummonsEcho.Vehicles.special_plate.HasValue)
+                                {
+                                    if (Model.RetrievedSummonsEcho.Vehicles.special_plate == true)
+                                    {
+                                        <td class="col-xs-3">Yes</td>
+                                    }
+                                    else
+                                    {
+                                        <td class="col-xs-3">No</td>
+                                    }
+                                }
+                                else
+                                {
+                                    <td class="col-xs-3"></td>
+                                }
+                                <td class="col-xs-3">
+                                    <b>Vehicle Unladen Weight: </b>
+                                </td>
+                                <td class="col-xs-3">@Model.RetrievedSummonsEcho.Vehicles.vehicle_weight</td>
+                            </tr>
+
+                            <tr>
+                                <td class="col-xs-3">
+                                    <b>Vehicle Category: </b>
+                                </td>
+                                @if (Model.RetrievedSummonsEcho.Vehicles.vehicle_category.HasValue)
+                                {
+                                    if (Model.RetrievedSummonsEcho.Vehicles.vehicle_category == 1)
+                                    {
+                                        <td class="col-xs-3">LIGHT</td>
+                                    }
+                                    else
+                                    {
+                                        <td class="col-xs-3">HEAVY</td>
+                                    }
+                                }
+                                else
+                                {
+                                    <td class="col-xs-3"></td>
+                                }
+
+                                <td class="col-xs-3">
+                                    <b>Vehicle Unladen Weight: </b>
+                                </td>
+                                @if (Model.RetrievedSummonsEcho.Vehicles.vehicle_transmission_type.HasValue)
+                                {
+                                    if (Model.RetrievedSummonsEcho.Vehicles.vehicle_transmission_type == 1)
+                                    {
+                                        <td class="col-xs-3">AUTO</td>
+                                    }
+                                    else if (Model.RetrievedSummonsEcho.Vehicles.vehicle_transmission_type == 2)
+                                    {
+                                        <td class="col-xs-3">MANUAL</td>
+                                    }
+                                    else
+                                    {
+                                        <td class="col-xs-3">UNKNOWN</td>
+                                    }
+                                }
+                                else
+                                {
+                                    <td class="col-xs-3"></td>
+                                }
+                            </tr>
+
+                            <tr>
+                                <td class="col-xs-3">
+                                    <b>Eligible for Class 3C: </b>
+                                </td>
+                                @if (Model.RetrievedSummonsEcho.Vehicles.vehicle_class_3c_eligibility.HasValue)
+                                {
+                                    if (Model.RetrievedSummonsEcho.Vehicles.vehicle_class_3c_eligibility == 1)
+                                    {
+                                        <td class="col-xs-3">Yes</td>
+                                    }
+                                    else
+                                    {
+                                        <td class="col-xs-3">No</td>
+                                    }
+                                }
+                                else
+                                {
+                                    <td class="col-xs-3"></td>
+                                }
+                                <td class="col-xs-3">
+                                    <b>Operation Type</b>
+
+                                </td>
+                                <td class="col-xs-3">@Model.RetrievedSummonsEcho.OperationType</td>
+                            </tr>
+                            <tr>
+                                <td class="col-xs-3">
+                                    <b>Vehicle Make: </b>
+                                </td>
+                                <td class="col-xs-3">@Model.RetrievedSummonsEcho.VehicleMake</td>
+                        </table>
+                    </div>
+                </div>
+            @if (Model.RetrievedSummonsEcho.SummonedVehicles.SpeedingOffence != null)
+            {
+                if (Model.RetrievedSummonsEcho.SummonedVehicles.SpeedingOffence.offender_vehicle_id>0 )
+                { 
+                    <h4 class="summonsesHyperLinkLightBlue" data-toggle="collapse" data-target="#speedingDetails">Vehicle Speeding Details, if any? &raquo;</h4>
+                    <div class="collapse in" id="speedingDetails">
+                   
+                        <div class="row">
+                            <table class="summonsesHyperLinkTable table table-responsive table-hover">
+                                <tr>
+                                    <td class="col-xs-3">
+                                        <b>Vehicle Speed Clocked: </b>
+                                    </td>
+                                    @if (Model.RetrievedSummonsEcho.SummonedVehicles.SpeedingOffence.speed_clocked > 0)
+                                    {
+                                        <td class="col-xs-3">@string.Concat(Model.RetrievedSummonsEcho.SummonedVehicles.SpeedingOffence.speed_clocked.ToString(), km)</td>
+                                    }
+                                    else
+                                    {
+                                        <td class="col-xs-3"></td>
+                                    }
+
+                                    <td class="col-xs-3">
+                                        <b>Vehicle Speed Limit: </b>
+                                    </td>
+                                    @if (Model.RetrievedSummonsEcho.SummonedVehicles.SpeedingOffence.speed_limit > 0)
+                                    {
+                                        <td class="col-xs-3">@string.Concat(Model.RetrievedSummonsEcho.SummonedVehicles.SpeedingOffence.speed_limit.ToString(), km)</td>
+                                    }
+                                    else
+                                    {
+                                        <td class="col-xs-3"></td>
+                                    }
+                                </tr>
+                                <tr>
+                                    <td class="col-xs-3">
+                                        <b>Road Speed Limit: </b>
+                                    </td>
+                                    @if (Model.RetrievedSummonsEcho.SummonedVehicles.SpeedingOffence.road_limit > 0)
+                                    {
+                                        <td class="col-xs-3">@string.Concat(Model.RetrievedSummonsEcho.SummonedVehicles.SpeedingOffence.road_limit.ToString(), km)</td>
+                                    }
+                                    else
+                                    {
+                                        <td class="col-xs-3"></td>
+                                    }
+                                    <td class="col-xs-3">
+                                        <b>Speed Limiter Required: </b>
+                                    </td>
+                                    @if (Model.RetrievedSummonsEcho.SummonedVehicles.SpeedingOffence.speed_limiter_required_code.HasValue)
+                                    {
+                                        if (Model.RetrievedSummonsEcho.SummonedVehicles.SpeedingOffence.speed_limiter_required_code == 1)
+                                        {
+                                            <td class="col-xs-3">Yes</td>
+                                        }
+                                        else
+                                        {
+                                            <td class="col-xs-3">No</td>
+                                        }
+                                    }
+                                    else
+                                    {
+                                        <td class="col-xs-3"></td>
+                                    }
+                                </tr>
+                                <tr>
+                                    <td class="col-xs-3">
+                                        <b>Speed Device Used: </b>
+                                    </td>
+                                    <td class="col-xs-3">@Model.RetrievedSummonsEcho.speedDeviceUsed</td>
+                                    <td class="col-xs-3">
+                                        <b>Vehicle Speed Limiter Installed: </b>
+                                    </td>
+                                    @if (Model.RetrievedSummonsEcho.SummonedVehicles.SpeedingOffence.speed_limiter_installed_code.HasValue)
+                                    {
+                                        if (Model.RetrievedSummonsEcho.SummonedVehicles.SpeedingOffence.speed_limiter_installed_code == 1)
+                                        {
+                                            <td class="col-xs-3">Yes</td>
+                                        }
+                                        else
+                                        {
+                                            <td class="col-xs-3">No</td>
+                                        }
+                                    }
+                                    else
+                                    {
+                                        <td class="col-xs-3"></td>
+                                    }
+                                </tr>
+                                <tr>
+                                    <td class="col-xs-3">
+                                        <b>Sent for Inspection?: </b>
+                                    </td>
+                                    @if (@Model.RetrievedSummonsEcho.SummonedVehicles.SpeedingOffence.sent_to_inspection.HasValue)
+                                    {
+                                        if (@Model.RetrievedSummonsEcho.SummonedVehicles.SpeedingOffence.sent_to_inspection.Value)
+                                        {
+                                            <td class="col-xs-3">Yes</td>
+                                        }
+                                        else
+                                        {
+                                            <td class="col-xs-3">No</td>
+                                        }
+                                    }
+                                    else
+                                    {
+                                        <td class="col-xs-3"></td>
+                                    }
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                            </table>
+                        </div>
+                   
+                    </div>
+                }
+            }
+
+            @foreach (var offence in Model.RetrievedSummonsEcho.SummonedVehicles.Offences)
+            {
+                <h4 class="summonsesHyperLinkLightBlue" data-toggle="collapse" data-target="#offences">OFFENCE @offence.offence_code &raquo;</h4>
+                <div class="collapse in" id="offences">
+                    <div class="row">
+                        <table class="summonsesHyperLinkTable table table-responsive table-hover">
+                            <tr>
+                                <td class="col-xs-3">
+                                    <b>Offence Description: </b>
+                                </td>
+                                <td class="col-xs-3">@offence.description</td>
+                                <td class="col-xs-3">
+                                    <b>Offence Code: </b>
+                                </td>
+                                <td class="col-xs-3">@offence.offence_code</td>
+                            </tr>
+                            <tr>
+                                <td class="col-xs-3">
+                                    <b>Fine Amount: </b>
+                                </td>
+                                @if (offence.fine_amount.HasValue)
+                                {
+                                    <td class="col-xs-3">@string.Concat(dollar, offence.fine_amount)</td>
+                                }
+                                else
+                                {
+                                    <td class="col-xs-3"></td>
+                                }
+                                <td class="col-xs-3">
+                                    <b>Demerit Points: </b>
+                                </td>
+                                <td class="col-xs-3">@offence.demerit_point</td>
+                            </tr>
+                            <tr>
+                                <td class="col-xs-3">
+                                    <b>Offence Date: </b>
+                                </td>
+                                <td class="col-xs-3">@offence.offence_time.ToShortDateString()</td>
+
+                                <td class="col-xs-3">
+                                    <b>Offence Time: </b>
+                                </td>
+                                <td class="col-xs-3">@offence.offence_time.ToShortTimeString()</td>
+                            </tr>
+                            <tr>
+                                <td class="col-xs-3">
+                                    <b>Description of Incident: </b>
+                                </td>
+                                <td class="col-xs-3" colspan="3">@offence.remarks</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            }
+            </div>
+        </div>
+    </div>
+    }
+}

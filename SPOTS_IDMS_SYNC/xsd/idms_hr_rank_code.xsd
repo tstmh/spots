@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="RankInfor">
+    <xs:complexType>
+      <xs:sequence> 
+        <xs:element name="Rank" maxOccurs="unbounded">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="RankCode" type="xs:string"/>
+              <xs:element name="RankName" type="xs:string"/>         
+              <xs:element name="RankNameForDisplay" type="xs:string"/>         
+              <xs:element name="CategoryType" type="xs:string"/>         
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element> 
+	  </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

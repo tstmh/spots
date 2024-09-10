@@ -1,0 +1,397 @@
+﻿@using SPOTS_Repository.Models
+
+
+@{
+    var vehicleList = (List<OnSceneInvestigationReportsEnquiry>)ViewData["vehicleList"];
+    var accidentReportsList = (List<OnSceneInvestigationReportsEnquiry>)ViewData["accidentReportsList"];
+    var index = 0;
+    var id = "#";
+    var vehicle = "Vehicle";
+    var driver = "Driver";
+    var details = "Details";
+    var addressDetails = "AddressDetails";
+    var treatmentDetails = "TreatmentDetails";
+}
+<!--#region Vehicle Involved Information-->
+<div class="collapse-group">
+    <h4 class="collapseHeader" data-toggle="collapse" data-target="#vehiclesInvolved">Vehicle/s Involved Information &raquo;</h4>
+    <div class="collapse in" id="vehiclesInvolved">
+        @foreach (var accidentReport in vehicleList)
+        {
+            index += 1;
+            <!--#region Vehicle Registered Number-->
+            <div class="collapse-group">
+                @if (accidentReport.Vehicle != null)
+                {
+                    <h4 class="summonsesHyperLink" data-toggle="collapse" data-target="@id@vehicle@index">
+                        Vehicle @accidentReport.Vehicle.registration_number @id@index &raquo;
+                    </h4>
+                }
+                else
+                {
+                    <h4 class="summonsesHyperLink" data-toggle="collapse" data-target="@id@vehicle@index">
+                        *Vehicle Registration Not Available @id@index &raquo;
+                    </h4>
+                }
+
+                <!--#region Vehicle Details-->
+                <div class="collapse in" id="@vehicle@index">
+                    <div class="collapse-group">
+                        <h4 class="summonsesHyperLinkLightBlue" data-toggle="collapse" data-target="@id@vehicle@index@details">Vehicle Details &raquo;</h4>
+                        <div class="collapse in" id="@vehicle@index@details">
+                            <div class="row">
+                                <table class="summonsesHyperLinkTable table table-responsive table-hover">
+                                    <tr>
+                                        <td class="col-xs-3">
+                                            <b>Registration No.: </b>
+                                        </td>
+                                        <td class="col-xs-3">@(accidentReport.Vehicle?.registration_number)</td>
+                                        <td class="col-xs-3">
+                                            <b>Vehicle Model: </b>
+                                        </td>
+                                        <td class="col-xs-3">@(accidentReport.Vehicle?.vehicle_model)</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="col-xs-3">
+                                            <b>Local Vehicle </b>
+                                        </td>
+                                        @if (accidentReport.Vehicle != null && accidentReport.Vehicle.local_vehicle.HasValue)
+                                        {
+                                            <td class="col-xs-3">@(accidentReport.Vehicle.local_vehicle.Value ? "Yes" : "No")</td>
+                                        }
+                                        else
+                                        {
+                                            <td class="col-xs-3"> </td>
+                                        }
+                                        <td class="col-xs-3">
+                                            <b>Vehicle Colour: </b>
+                                        </td>
+                                        @if (accidentReport.TimsVehicleColor == null || accidentReport.TimsVehicleColor?.description == "Others")
+                                        {
+                                            <td class="col-xs-3">@(accidentReport.Vehicle?.vehicle_colour)</td>
+                                        }
+                                        else
+                                        {
+                                            <td class="col-xs-3">@(accidentReport.TimsVehicleColor?.description)</td>
+                                        }
+                                    </tr>
+                                    <tr>
+                                        <td class="col-xs-3">
+                                            <b>Special/Foreign/Partial Plate Vehicle Number: </b>
+                                        </td>
+                                        @if (accidentReport.Vehicle != null && accidentReport.Vehicle.special_plate.HasValue)
+                                        {
+                                            <td class="col-xs-3">@(accidentReport.Vehicle.special_plate.Value ? "Yes" : "No")</td>
+                                        }
+                                        else
+                                        {
+                                            <td class="col-xs-3"> </td>
+                                        }
+                                        <td class="col-xs-3">
+                                            <b>Vehicle Remarks: </b>
+                                        </td>
+                                        <td class="col-xs-3">@(accidentReport.Vehicle?.vehicle_remarks)</td>
+                                        }
+                                    <tr>
+                                        <td class="col-xs-3">
+                                            <b>Vehicle Type: </b>
+                                        </td>
+                                        <td class="col-xs-3">@(accidentReport.TimsVehicleType?.description)</td>
+                                        <td class="col-xs-3">
+                                            <b>Did vehicle catch fire?: </b>
+                                        </td>
+                                        @if (accidentReport.Vehicle != null && accidentReport.Vehicle.vehicle_in_flame.HasValue)
+                                        {
+                                            <td class="col-xs-3">@(accidentReport.Vehicle.vehicle_in_flame.Value ? "Yes" : "No")</td>
+                                        }
+                                    </tr>
+                                    <tr>
+                                        <td class="col-xs-3">
+                                            <b>Vehicle Make: </b>
+                                        </td>
+                                        <td class="col-xs-3">@(accidentReport.TimsVehicleMake?.description)</td>
+                                        <td class="col-xs-3">
+                                            <b></b>
+                                        </td>
+
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--#endregion-->
+                <!--#region Driver Details-->
+                <div class="collapse-group">
+                    <h4 class="summonsesHyperLinkLightBlue" data-toggle="collapse" data-target="@id@driver@details@index">Driver Details &raquo;</h4>
+                    <div class="collapse in" id="@driver@details@index">
+                        <div class="row">
+                            <table class="summonsesHyperLinkTable table table-responsive table-hover">
+                                <tr>
+                                    <td class="col-xs-3">
+                                        <b>Driver Name: </b>
+                                    </td>
+                                    <td class="col-xs-3">@(accidentReport.Driver?.person?.name)</td>
+                                    <td class="col-xs-3">
+                                        <b>Country of Birth: </b>
+                                    </td>
+                                    <td class="col-xs-3">@(accidentReport.DriverBirthCountryCode?.description)</td>
+                                </tr>
+                                <tr>
+                                    <td class="col-xs-3">
+                                        <b>ID Type: </b>
+                                    </td>
+                                    <td class="col-xs-3">@(accidentReport.DriverIdentityTypeSystemCode?.value)</td>
+                                    <td class="col-xs-3">
+                                        <b>Nationality: </b>
+                                    </td>
+                                    <td class="col-xs-3">@(accidentReport.DriverNationalityCode?.description)</td>
+                                </tr>
+                                <tr>
+                                    <td class="col-xs-3">
+                                        <b>ID No.: </b>
+                                    </td>
+                                    <td class="col-xs-3">@(accidentReport.Driver?.person?.id_number)</td>
+                                    <td class="col-xs-3">
+                                        <b>Contact Information 1: </b>
+                                    </td>
+                                    <td class="col-xs-3">@(accidentReport.PersonDriver?.contact_number_1)</td>
+                                </tr>
+                                <tr>
+                                    <td class="col-xs-3">
+                                        <b>Date of Birth: </b>
+                                    </td>
+                                    @if (accidentReport.PersonDriver != null && accidentReport.PersonDriver.date_of_birth.HasValue)
+                                    {
+                                        <td class="col-xs-3">@accidentReport.PersonDriver.date_of_birth.Value.ToShortDateString()</td>
+                                    }
+                                    else
+                                    {
+                                        <td class="col-xs-3"></td>
+                                    }
+                                    <td class="col-xs-3">
+                                        <b>Contact Information 2: </b>
+                                    </td>
+                                    <td class="col-xs-3">@(accidentReport.PersonDriver?.contact_number_2)</td>
+                                </tr>
+                                <tr>
+                                    <td class="col-xs-3">
+                                        <b>Gender: </b>
+                                    </td>
+                                    <td class="col-xs-3">@(accidentReport.DriverGenderTypeSystemCode?.value)</td>
+                                    <td class="col-xs-3">
+                                        <b>Remarks: </b>
+                                    </td>
+                                    <td class="col-xs-3">@(accidentReport.PersonDriver?.remarks)</td>
+                                </tr>
+                                <tr>
+                                    <td class="col-xs-3">
+                                        <b>Age: </b>
+                                    </td>
+                                    @if (accidentReport.PersonDriver != null && accidentReport.PersonDriver.date_of_birth.HasValue)
+                                    {
+
+                                        var today = DateTime.Today;
+                                        var age = today.Year - accidentReport.PersonDriver.date_of_birth.Value.Year;
+                                        // Go back to the year the person was born in case of a leap year
+                                        if (accidentReport.PersonDriver.date_of_birth.Value > today.AddYears(-age))
+                                        {
+                                            age--;
+                                        }
+                                        <td class="col-xs-3">@age</td>
+                                    }
+                                    else
+                                    {
+                                        <td class="col-xs-3"></td>
+                                    }
+                                    <td class="col-xs-3">
+                                        <b>Driver/Riders's Degree Of Injury: </b>
+                                    </td>
+                                    <td class="col-xs-3">@(accidentReport.Driver?.degree_of_injury)</td>
+                                </tr>
+                                <tr>
+                                    <td class="col-xs-3">
+                                        <b>License Type: </b>
+                                    </td>
+                                    <td class="col-xs-3">@(accidentReport.DrivingLicenceTypeSystemCode?.value)</td>
+                                    <td class="col-xs-3">
+                                        <b>Driving License Class: </b>
+                                    </td>
+                                    <td class="col-xs-3">@(accidentReport.Driver?.licence_class)</td>
+                                </tr>
+                                <tr>
+                                    <td class="col-xs-3">
+                                        <b>Expiry Date: </b>
+                                    </td>
+                                    @if (accidentReport.Driver != null && accidentReport.Driver.licence_expiry_date.HasValue)
+                                    {
+                                        <td class="col-xs-3">@accidentReport.Driver.licence_expiry_date.Value.ToShortDateString()</td>
+                                    }
+                                    else
+                                    {
+                                        <td class="col-xs-3"></td>
+                                    }
+                                    <td class="col-xs-3">
+                                        <b>Other Licence: </b>
+                                    </td>
+                                    <td class="col-xs-3">@(accidentReport.Driver?.other_licence)</td>
+                                </tr>
+                                <tr>
+                                    <td class="col-xs-3">
+                                        <b>Alcohol Breath: </b>
+                                    </td>
+                                    <td class="col-xs-3">@(accidentReport.DriverBreathalyzerTestCode?.value)</td>
+                                    <td class="col-xs-3">
+                                        <b>Breathalyzer Result: </b>
+                                    </td>
+                                    <td class="col-xs-3">@(accidentReport.DriverBreathalyzerResultCode?.value)</td>
+                                </tr>
+                                <tr>
+                                    <td class="col-xs-3">
+                                        <b>Breathalyzer No: </b>
+                                    </td>
+                                    <td class="col-xs-3" colspan="3">@(accidentReport.Driver?.breathalyzer_number)</td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <!--#endregion-->
+                <!--#region Address Details-->
+                <div class="collapse-group">
+                    <h4 class="summonsesHyperLinkLightBlue" data-toggle="collapse" data-target="@id@driver@addressDetails@index">Address Details &raquo;</h4>
+                    <div class="collapse in" id="@driver@addressDetails@index">
+                        <div class="row">
+                            <table class="summonsesHyperLinkTable table table-responsive table-hover">
+                                <tr>
+                                    <td class="col-xs-3">
+                                        <b>Address Type: </b>
+                                    </td>
+                                    <td class="col-xs-3">@(accidentReport.DriverAddressTypeSystemCode?.value)</td>
+                                    <td class="col-xs-3">
+                                        <b>Unit No.: </b>
+                                    </td>
+                                    <td class="col-xs-3">@(accidentReport.DriverAddress?.unit_number)</td>
+                                </tr>
+                                <tr>
+                                    <td class="col-xs-3">
+                                        <b>Block/House No: </b>
+                                    </td>
+                                    <td class="col-xs-3">@(accidentReport.DriverAddress?.block)</td>
+                                    <td class="col-xs-3">
+                                        <b>Building Name: </b>
+                                    </td>
+                                    <td class="col-xs-3">@(accidentReport.DriverAddress?.building_name)</td>
+                                </tr>
+                                <tr>
+                                    <td class="col-xs-3">
+                                        <b>Street: </b>
+                                    </td>
+                                    <td class="col-xs-3">@(accidentReport.DriverAddress?.street)</td>
+                                    <td class="col-xs-3">
+                                        <b>Postal Code: </b>
+                                    </td>
+                                    <td class="col-xs-3">@(accidentReport.DriverAddress?.postal_code)</td>
+                                </tr>
+                                <tr>
+                                    <td class="col-xs-3">
+                                        <b>Floor: </b>
+                                    </td>
+                                    <td class="col-xs-3">@(accidentReport.DriverAddress?.floor)</td>
+                                    <td class="col-xs-3">
+                                        <b>Remarks: </b>
+                                    </td>
+                                    <td class="col-xs-3">@(accidentReport.DriverAddress?.address_remarks)</td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <!--#endregion-->
+                <!--#region Treatment-->
+                <div class="collapse-group">
+                    <h4 class="summonsesHyperLinkLightBlue" data-toggle="collapse" data-target="@id@driver@treatmentDetails@index">Treatment Details &raquo;</h4>
+                    <div class="collapse in" id="@driver@treatmentDetails@index">
+                        <div class="row">
+                            <table class="summonsesHyperLinkTable table table-responsive table-hover">
+                                <tr>
+                                    <td class="col-xs-3">
+                                        <b>Ambulance No.: </b>
+                                    </td>
+                                    <td class="col-xs-3">@(accidentReport.DriverInjuryTreatment?.ambulance_number)</td>
+                                    <td class="col-xs-3">
+                                        <b>AO Identity: </b>
+                                    </td>
+                                    <td class="col-xs-3">@(accidentReport.DriverInjuryTreatment?.ao_id)</td>
+                                </tr>
+                                <tr>
+                                    <td class="col-xs-3">
+                                        <b>Ambulance Arrival: </b>
+                                    </td>
+                                    @if (accidentReport.DriverInjuryTreatment != null && accidentReport.DriverInjuryTreatment.ambulance_arrival.HasValue)
+                                    {
+                                        <td class="col-xs-3">@accidentReport.DriverInjuryTreatment.ambulance_arrival.Value.ToShortTimeString()</td>
+                                    }
+                                    else
+                                    {
+                                        <td class="col-xs-3"></td>
+                                    }
+                                    <td class="col-xs-3">
+                                        <b>Ambulance Departure: </b>
+                                    </td>
+                                    @if (accidentReport.DriverInjuryTreatment != null && accidentReport.DriverInjuryTreatment.ambulance_departure.HasValue)
+                                    {
+                                        <td class="col-xs-3">@accidentReport.DriverInjuryTreatment.ambulance_departure.Value.ToShortTimeString()</td>
+                                    }
+                                    else
+                                    {
+                                        <td class="col-xs-3"></td>
+                                    }
+                                </tr>
+                                <tr>
+                                    <td class="col-xs-3">
+                                        <b>Hospital: </b>
+                                    </td>
+                                    <td class="col-xs-3">@(accidentReport.DriverInjuryTreatment?.hospital)</td>
+                                    @if (accidentReport.DriverInjuryTreatment != null && accidentReport.DriverInjuryTreatment.other_hospital != null)
+                                    {
+                                        <td class="col-xs-3">
+                                            <b>Others(Specify): </b>
+                                        </td>
+                                        <td class="col-xs-3">@accidentReport.DriverInjuryTreatment.other_hospital</td>
+                                    }
+                                    else
+                                    {
+                                        <td class="col-xs-3" colspan="2"></td>
+                                    }
+
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <!--#endregion-->
+                <!--#region Passengers-->
+                @{
+                    // Select only the distinct passenger(s) in the vehicle
+                    var accidentReportPassengerList = accidentReportsList.Where(x => x.Passenger != null
+                    && accidentReport.Vehicle != null && x.Passenger.vehicle_id == accidentReport.Vehicle.vehicle_id)
+                    .GroupBy(y => y.Passenger.person_id)
+                    .Select(z => z.First());
+                }
+
+
+                @if (accidentReportPassengerList?.Count() > 0)
+                {
+                    @Html.Partial("Tables/_TableAccidentReportPassengerView", new ViewDataDictionary { { "accidentReportPassengerList", accidentReportPassengerList.ToList() } })
+                }
+                <!--#endregion-->
+
+            </div>
+
+            <!--#endregion-->
+        }
+    </div>
+</div>
+<!--#endregion-->

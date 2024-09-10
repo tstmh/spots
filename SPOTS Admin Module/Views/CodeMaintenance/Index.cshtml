@@ -1,0 +1,130 @@
+﻿@model SPOTSAdminModule.ViewModels.SystemCodeViewModel
+
+@{
+    ViewBag.Title = "CODE MAINTENANCE";
+}
+
+<script>
+    $().ready(function () {
+
+        $('#tabs').tabs({ active: 0 });
+
+        $('#tabs').click('tabsselect', function (event, ui) {
+            $("#selectedTab").val($("#tabs").tabs('option', 'active'));
+        });
+    }
+    )
+    function OnSubmit() {
+        $.LoadingOverlay("show");
+    }
+    function OnSuccess() {
+        $.LoadingOverlay("hide");
+    }
+    function OnFailure() {
+        $.LoadingOverlay("hide");
+
+    }
+    $(function () {
+        $("form").submit(function () {
+            var selectedCodeTypeDescription = $("#SearchTIMSCodeType option:selected").text();
+            $("#TIMSCodeTypeDescription").val(selectedCodeTypeDescription);
+        });
+    });
+</script>
+
+
+<script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
+<script src="~/Scripts/loadingoverlay.min.js"></script>
+
+
+@Scripts.Render("~/bundles/datatable")
+
+
+@using (Ajax.BeginForm("Index", "CodeMaintenance",
+    new AjaxOptions
+    {
+        HttpMethod = "POST",
+        InsertionMode = InsertionMode.Replace,
+        UpdateTargetId = "maintenanceCodeSearchResultTable",
+        OnBegin = "OnSubmit",
+        OnSuccess = "OnSuccess",
+        OnComplete = "showPagination",
+        OnFailure = "OnFailure"
+    }))
+{
+    <div id="tabs">
+        <ul>
+            <li><a href="#tabs-1">Search By SPOTS</a></li>
+            <li><a href="#tabs-2">Search By TIMS</a></li>
+        </ul>
+        <div id="tabs-1">
+            <div class="row">
+                <div class="col-md-2">
+                    <label class="control-label spotsMarginMediumSmallTop">Code Type</label>
+                    <div class="input">
+                        @if (Model?.SystemCodeSelectList != null)
+                        {
+                            @Html.DropDownList("SearchSystemCodeType", Model.SystemCodeSelectList,
+                               new
+                               {
+                                   @class = "form-control",
+                                   @placeholder = "Select one"
+                               })
+                        }
+                    </div>
+                    <label class="control-label spotsMarginMediumSmallTop">Code Description</label>
+                    <div class="input">                        
+                        @Html.TextBox("SearchSPOTSCodeDescription","", new { @class = "form-control" })                        
+                        <input type="hidden" name="SearchByCodeMaintenanceType" id="selectedTab" />
+                    </div>
+                </div>
+                <div class="col-md-2 spotsMarginSmallTop">
+                    <div class="input">
+                        <input class="form-control" type="submit" value="Search" />
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="tabs-2">
+            <div class="row">
+                <div class="col-md-2">
+                    <label class="control-label spotsMarginMediumSmallTop">Code Type</label>
+                    <div class="input">
+                        @if (Model?.TIMSCodeSelectList != null)
+                        {
+
+                            @Html.DropDownList("SearchTIMSCodeType", Model.TIMSCodeSelectList,
+                               new
+                               {
+                                   @class = "form-control",
+                                   @placeholder = "Select one"
+                               })
+                            @Html.Hidden("TIMSCodeTypeDescription");              
+                           
+
+                        }
+                        
+                    </div>
+                    <label class="control-label spotsMarginMediumSmallTop">Code Description</label>
+                    <div class="input">
+                        @Html.TextBox("SearchTIMSCodeDescription", "", new { @class = "form-control" })                                                
+                        <input type="hidden" name="SearchByCodeMaintenanceType" id="selectedTab" />
+                    </div>
+                </div>
+                <div class="col-md-2 spotsMarginSmallTop">
+                    <div class="input">
+                        <input class="form-control" type="submit" value="Search" />
+                    </div>
+                </div>
+            </div>           
+        </div>
+    </div>
+}
+
+<div class="row" id="maintenanceCodeSearchResultTable">
+    @if (Model != null && !string.IsNullOrEmpty(Model.PartialTableViewName))
+    {
+        @Html.Partial(Model.PartialTableViewName, Model);
+    }
+</div>
+

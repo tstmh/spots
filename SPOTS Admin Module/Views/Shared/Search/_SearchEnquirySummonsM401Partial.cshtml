@@ -1,0 +1,48 @@
+﻿@model SPOTSAdminModule.ViewModels.SummonsEnquiryViewModel
+
+<ul>
+    <li><a href="#tabs-1">Search By</a></li>
+</ul>
+<div id="tabs-1">
+
+    @using (Ajax.BeginForm("SummonsEnquiry", "Enquiry",
+                                            new AjaxOptions
+                                            {
+                                                InsertionMode = InsertionMode.Replace,
+                                                UpdateTargetId = "summonsSearchResultTable"
+                                            }))
+    {
+        <div class="row">
+            <div class="col-md-2">
+                Officer ID<br />
+                @Html.TextBoxFor(m => m.SearchModel.SearchOfficerId)
+                Officer Name<br />
+                @Html.TextBoxFor(m => m.SearchModel.SearchOfficerName)
+            </div>
+            <div class="col-md-2">
+                Date From<br />
+                @Html.TextBoxFor(m => m.SearchModel.SearchFromDate, new { @class = "datepicker", @placeholder = "From" })
+                Date To<br />
+                @Html.TextBoxFor(m => m.SearchModel.SearchToDate, new { @class = "datepicker", @placeholder = "To" })
+            </div>
+            <div class="col-md-2">
+                Offender Name<br />
+                @Html.TextBoxFor(m => m.SearchModel.SearchOffenderName)
+                Offender ID<br />
+                @Html.TextBoxFor(m => m.SearchModel.SearchOffenderId)
+            </div>
+            <div class="col-md-2">
+                Vehicle No.<br />
+                @Html.TextBoxFor(m => m.SearchModel.SearchVehicleId)
+                TIMS Report No.<br />
+                @Html.TextBoxFor(m => m.SearchModel.SearchTimsReport)
+            </div>
+            <div class="col-md-2">
+                Location<br />
+                @Html.TextBoxFor(m => m.SearchModel.SearchLocation)
+                <br /><br />
+                <input class="enquirySubmit" type="submit" />
+            </div>            
+        </div>
+    }
+</div>

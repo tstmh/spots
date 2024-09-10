@@ -1,0 +1,244 @@
+﻿@using SPOTS_Repository.Models
+
+@{
+
+    var accidentReportPedestrianList = (List<OnSceneInvestigationReportsEnquiry>)ViewData["accidentReportPedestrianList"];
+    var index = 0;
+    var id = "#";
+    var pedestrian = "Pedestrian";
+    var address = "Address";
+    var treatment = "Treatment";
+    var details = "Details";
+    var addressDetails = "AddressDetails";
+    var treatmentDetails = "TreatmentDetails";
+}
+
+<!--#region Pedestrian/s Involved-->
+@if (accidentReportPedestrianList != null && accidentReportPedestrianList.Any())
+{
+    <div class="collapse-group">
+        <h4 class="summonsesHyperLink" data-toggle="collapse" data-target="#pedestrianInvolved">
+            Pedestrian/s Involved (@accidentReportPedestrianList.Count()) &raquo;
+        </h4>        
+        <div class="collapse in" id="pedestrianInvolved">
+            @foreach (var accidentReportPedestrian in accidentReportPedestrianList)
+            {
+                {
+                    index += 1;
+                }
+                <!--#region Pedestrian-->
+                <div class="collapse-group">
+                    <h4 class="summonsesHyperLinkLightBlue" data-toggle="collapse" data-target="@id@pedestrian@index">
+                        Pedestrian @(accidentReportPedestrian.PersonPedestrian?.name) @id@index &raquo;
+                    </h4>
+                    <!--#region Identification Details-->
+                    <div class="collapse in" id="@pedestrian@index">                        
+                        <div class="collapse-group">                            
+                            <h4 class="summonsesHyperLinkLightBlue" data-toggle="collapse" data-target="@id@pedestrian@details">
+                                Identification Details &raquo;
+                            </h4>
+                            <div class="collapse in" id="@pedestrian@details">
+                                <div class="row">
+                                    <table class="summonsesHyperLinkTable table table-responsive table-hover">
+                                        <tr>
+                                            <td class="col-xs-3">
+                                                <b>Pedestrian Name:	</b>
+                                            </td>
+                                            <td class="col-xs-3">@(accidentReportPedestrian.PersonPedestrian?.name)</td>
+                                            <td class="col-xs-3">
+                                                <b>Contact Information 1: </b>
+                                            </td>
+                                            <td class="col-xs-3">@(accidentReportPedestrian.PersonPedestrian?.contact_number_1)</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="col-xs-3">
+                                                <b>ID Type:	</b>
+                                            </td>
+                                            <td class="col-xs-3">@(accidentReportPedestrian.PedestrianIdentityTypeSystemCode?.value)</td>
+                                            <td class="col-xs-3">
+                                                <b>Contact Information 2: </b>
+                                            </td>
+                                            <td class="col-xs-3">@(accidentReportPedestrian.PersonPedestrian?.contact_number_2)</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="col-xs-3">
+                                                <b>ID No.:	</b>
+                                            </td>
+                                            <td class="col-xs-3">@(accidentReportPedestrian.PersonPedestrian?.id_number)</td>
+                                            <td class="col-xs-3">
+                                                <b>Injury/Condition: </b>
+                                            </td>
+                                            <td class="col-xs-3">@(accidentReportPedestrian.PedestrianInjuryTreatment?.injury_condition)</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="col-xs-3">
+                                                <b>Date of Birth: </b>
+                                            </td>
+                                            @if (accidentReportPedestrian.PersonPedestrian != null && accidentReportPedestrian.PersonPedestrian.date_of_birth.HasValue)
+                                            {
+                                                <td class="col-xs-3">@accidentReportPedestrian.PersonPedestrian.date_of_birth.Value.ToShortDateString()</td>
+                                            }
+                                            else
+                                            {
+                                                <td class="col-xs-3"></td>
+                                            }
+                                            <td class="col-xs-3">
+                                                <b>Remarks: </b>
+                                            </td>
+                                            <td class="col-xs-3">@(accidentReportPedestrian.PersonPedestrian?.remarks)</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="col-xs-3">
+                                                <b>Gender: </b>
+                                            </td>
+                                            <td class="col-xs-3">@(accidentReportPedestrian.PedestrianGenderTypeSystemCode?.value)</td>
+                                            <td class="col-xs-3">
+                                                <b>Age: </b>
+                                            </td>
+                                            @if (accidentReportPedestrian.PersonPedestrian != null && accidentReportPedestrian.PersonPedestrian.date_of_birth.HasValue)
+                                            {
+                                                var today = DateTime.Today;
+                                                var age = today.Year - accidentReportPedestrian.PersonPedestrian.date_of_birth.Value.Year;
+                                                // Go back to the year the person was born in case of a leap year
+                                                if (accidentReportPedestrian.PersonPedestrian.date_of_birth.Value > today.AddYears(-age))
+                                                {
+                                                    age--;
+                                                }
+                                                <td class="col-md-3">@age</td>
+                                            }
+                                            else
+                                            {
+                                                <td class="col-xs-3"></td>
+                                            }
+                                        </tr>
+                                    </table>
+                                </div>                                
+                            </div>                            
+                        </div>
+                    </div>
+                    <!--#endregion-->
+                    <!--#region Address Details-->
+                    <div class="collapse-group">
+                        <h4 class="summonsesHyperLinkLightBlue" data-toggle="collapse" data-target="@id@address@addressDetails@index">
+                            Address Details &raquo;
+                        </h4>
+                        <div class="collapse in" id="@address@addressDetails@index">
+                            <div class="row">
+                                <table class="summonsesHyperLinkTable table table-responsive table-hover">
+                                    <tr>
+                                        <td class="col-xs-3">
+                                            <b>Address Type: </b>
+                                        </td>
+                                        <td class="col-xs-3">@(accidentReportPedestrian.PedestrianAddressTypeSystemCode?.value)</td>
+                                        <td class="col-xs-3">
+                                            <b>Unit No.: </b>
+                                        </td>
+                                        <td class="col-xs-3">@(accidentReportPedestrian.PedestrianAddress?.unit_number)</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="col-xs-3">
+                                            <b>Block/ House No: </b>
+                                        </td>
+                                        <td class="col-xs-3">@(accidentReportPedestrian.PedestrianAddress?.block)</td>
+                                        <td class="col-xs-3">
+                                            <b>Building Name: </b>
+                                        </td>
+                                        <td class="col-xs-3">@(accidentReportPedestrian.PedestrianAddress?.building_name)</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="col-xs-3">
+                                            <b>Street: </b>
+                                        </td>
+                                        <td class="col-xs-3">@(accidentReportPedestrian.PedestrianAddress?.street)</td>
+                                        <td class="col-xs-3">
+                                            <b>Postal Code:	</b>
+                                        </td>
+                                        <td class="col-xs-3">@(accidentReportPedestrian.PedestrianAddress?.postal_code)</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="col-xs-3">
+                                            <b>Floor: </b>
+                                        </td>
+                                        <td class="col-xs-3">@(accidentReportPedestrian.PedestrianAddress?.floor)</td>
+                                        <td class="col-xs-3">
+                                            <b>Remarks:	</b>
+                                        </td>
+                                        <td class="col-xs-3">@(accidentReportPedestrian.PedestrianAddress?.address_remarks)</td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <!--#endregion-->
+                    <!--#region Treatment Details-->
+                    <div class="collapse-group">
+                        <h4 class="summonsesHyperLinkLightBlue" data-toggle="collapse" data-target="@id@treatment@treatmentDetails@index">
+                            Treatment Details &raquo;
+                        </h4>
+                        <div class="collapse in" id="@treatment@treatmentDetails@index">
+                            <div class="row">
+                                <table class="summonsesHyperLinkTable table table-responsive table-hover">
+                                    <tr>
+                                        <td class="col-xs-3">
+                                            <b>Ambulance No: </b>
+                                        </td>
+                                        <td class="col-xs-3">@(accidentReportPedestrian.PedestrianInjuryTreatment?.ambulance_number)</td>
+                                        <td class="col-xs-3">
+                                            <b>AO Identity:	</b>
+                                        </td>
+                                        <td class="col-xs-3">@(accidentReportPedestrian.PedestrianInjuryTreatment?.ao_id)</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="col-xs-3">
+                                            <b>Ambulance Arrival:	</b>
+                                        </td>
+                                        @if (accidentReportPedestrian.PedestrianInjuryTreatment != null && accidentReportPedestrian.PedestrianInjuryTreatment.ambulance_arrival.HasValue)
+                                        {
+                                            <td class="col-xs-3">@accidentReportPedestrian.PedestrianInjuryTreatment.ambulance_arrival.Value.ToShortTimeString()</td>
+                                        }
+                                        else
+                                        {
+                                            <td class="col-xs-3"></td>
+                                        }
+                                        <td class="col-xs-3">
+                                            <b>Ambulance Departure:	</b>
+                                        </td>
+                                        @if (accidentReportPedestrian.PedestrianInjuryTreatment != null && accidentReportPedestrian.PedestrianInjuryTreatment.ambulance_departure.HasValue)
+                                        {
+                                            <td class="col-xs-3">@accidentReportPedestrian.PedestrianInjuryTreatment.ambulance_departure.Value.ToShortTimeString()</td>
+                                        }
+                                        else
+                                        {
+                                            <td class="col-xs-3"></td>
+                                        }
+                                    </tr>
+                                    <tr>
+                                        <td class="col-xs-3">
+                                            <b>Hospital: </b>
+                                        </td>
+                                        <td class="col-xs-3" >@(accidentReportPedestrian.PedestrianInjuryTreatment?.hospital)</td>
+                                    
+                                    @if (accidentReportPedestrian.PedestrianInjuryTreatment != null && accidentReportPedestrian.PedestrianInjuryTreatment.other_hospital != null)
+                                    {
+                                        <td class="col-xs-3">
+                                            <b>Others(Specify): </b>
+                                        </td>
+                                        <td class="col-xs-3">@accidentReportPedestrian.PedestrianInjuryTreatment.other_hospital</td>
+                                    }
+                                    else
+                                    {
+                                        <td class="col-xs-3" colspan="2"></td>
+                                    }
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <!--#endregion-->
+                </div>
+                <!--#endregion-->
+            }
+        </div>
+    </div>
+}
+<!--#endregion-->

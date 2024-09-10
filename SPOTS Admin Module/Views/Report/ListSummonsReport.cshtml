@@ -1,0 +1,125 @@
+﻿@model SPOTSAdminModule.ViewModels.ListSummonsViewModel
+
+@{
+    ViewBag.Title = "LIST SUMMONS";
+}
+
+<script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
+<script src="~/Scripts/moment.js"></script>
+<script src="~/Scripts/searchValidator.js"></script>
+<script src="~/Scripts/loadingoverlay.min.js"></script>
+@Scripts.Render("~/bundles/datatable")
+
+<script>
+    $().ready(function () {
+        $("#tabs").tabs();
+        $(".datepicker-my").datepicker($.datepicker.regional["en-GB"]).datepicker("option", {
+            dateFormat: 'dd/mm/yy'
+        });
+        $('.btn').click(function () {
+            $(".datepicker-my", $(this).closest(".input-group")).focus();
+        });
+    })
+    function OnSuccess() {
+        $.LoadingOverlay("hide");
+    }
+    function OnFailure() {
+        $.LoadingOverlay("hide");
+    }
+</script>
+
+
+<div id="tabs">
+    <ul>
+        <li>
+            <a href="#tabs-1">Search By</a>
+        </li>
+    </ul>
+    <div id="tabs-1">
+        @using (Ajax.BeginForm("ListSummonsReport", "Report",
+                                                new AjaxOptions
+                                                {
+                                                    HttpMethod = "POST",
+                                                    InsertionMode = InsertionMode.Replace,
+                                                    UpdateTargetId = "listSummonsSearchResultTable",
+                                                    OnBegin = "validateListSummonsSearch",
+                                                    OnComplete = "showPagination",
+                                                    OnSuccess = "OnSuccess",
+                                                    OnFailure = "OnFailure"
+                                                }))
+        {
+            <div class="row">
+                <div class="col-md-3">
+                    <label class="control-label ">Date From</label>
+                    <div class="input-group">
+                        @Html.TextBoxFor(m => m.SearchModel.SearchFromDate, new { @class = "datepicker-my form-control", @placeholder = "Enter from Date" })
+                        <span class="input-group-addon btn" style="cursor:pointer;">
+                            <span class="glyphicon glyphicon-calendar"></span>
+                        </span>
+                    </div>
+
+                    <label class="control-label ">Date To</label>
+                    <div class="input-group">
+                        @Html.TextBoxFor(m => m.SearchModel.SearchToDate, new { @class = "datepicker-my form-control", @placeholder = "Enter to Date" })
+                        <span class="input-group-addon btn" style="cursor:pointer;">
+                            <span class="glyphicon glyphicon-calendar"></span>
+                        </span>
+                    </div>
+                </div>
+
+                <div class="col-md-3">
+                    <label class="control-label ">Officer ID</label>
+                    <div class="input">
+                        @Html.TextBoxFor(m => m.SearchModel.SearchOfficerId, new { @class = "form-control", @placeholder = "Enter Officer ID" })
+                    </div>
+
+                    <label class="control-label ">Summons Type</label>
+                    <div class="input">
+                        @Html.DropDownListFor(m => m.SearchModel.SearchSummonsType, Model.ApplicationTypeSelectList,
+                            new
+                            {
+                                @class = "form-control",
+                                @placeholder = "Select one"
+                            })
+                    </div>
+                </div>
+
+
+                <div class="col-md-3">
+                    <label class="control-label ">Location</label>
+                    <div class="input">
+                        @Html.TextBoxFor(m => m.SearchModel.SearchLocation, new
+                   {
+                       @class = "form-control",
+                       @placeholder = "Road Name, Street Name, Postal Code"
+                   })
+                    </div>
+                    <label class="control-label ">Offence Description</label>
+                    <div class="input">
+                        @Html.TextBoxFor(m => m.SearchModel.SearchOffenceDescription, new { @class = "form-control", @placeholder = "" })
+                    </div>
+                </div>
+
+                <div class="col-md-3 ">
+                    <div class="input">
+                        <input class="form-control" type="submit" value="Search" />
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-3">
+        <p id="validationResult" style="color:red;font-size:13px">
+        </p>
+    </div>
+</div>
+
+<div class="row" id="listSummonsSearchResultTable">
+    @{        
+        Html.RenderPartial("Tables/_TableListSummonsPartial", Model);
+    }
+</div>
+

@@ -1,0 +1,18 @@
+﻿@model ModelStateDictionary
+
+<div class="spotsMarginMediumTop loginObjectCenter">
+        @if (Html.ViewData.ModelState.IsValid)
+        {
+            <div class="spotsMarginSmallTopBottom " style="color: rgba(250, 250, 250, 0.00);">s</div>
+            <div class="spotsMarginSmallTopBottom " style="color: rgba(250, 250, 250, 0.00);">s</div>
+        }
+    </div>
+    <div class="@(Html.ViewData.ModelState.IsValid ? "validation-summary-valid" : "validation-summary-errors")" data-valmsg-summary="true">
+        <div class="spotsMarginMediumTop loginObjectCenter">
+            @foreach (var modelError in Model.SelectMany(keyValuePair => keyValuePair.Value.Errors))
+            {
+                <div class="spotsMarginSmallTopBottom">@modelError.ErrorMessage</div>
+            }
+        </div>
+    </div>
+</div>

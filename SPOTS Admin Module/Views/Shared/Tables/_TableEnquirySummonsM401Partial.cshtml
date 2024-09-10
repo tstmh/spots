@@ -1,0 +1,109 @@
+﻿@model SPOTSAdminModule.ViewModels.SummonsEnquiryViewModel
+
+@{
+    var rowNo = 0;
+}
+
+@if (Model != null && Model.EnquirySummonsList != null)
+{
+    <div class="row">
+        <div class="col-md-3 spotsMarginMediumTop spotsMarginMediumSmallBottom">
+            <b class="gi-1x">Total Records Found: @Model.EnquirySummonsList.Count()</b>
+        </div>
+    </div>
+
+    if (@Model.EnquirySummonsList.Count() > 0)
+    {
+        <div class="row">
+            <div class="col-md-12">
+                <table class="table table-responsive table-striped table-hover" id="searchResult">
+                    <thead>
+                        <tr>
+                            <th>S/N</th>
+                            <th>Officer ID</th>
+                            <th>Officer Name</th>
+                            <th>Offender Type</th>
+                            <th>Offender ID</th>
+                            <th>Offender Name</th>
+                            <th>Vehicle No.</th>
+                            <th>Offence Description</th>
+                            <th>Offence Date and Time</th>
+                            <th>Location</th>
+                            <th>Device ID</th>
+                            <th>Report No.</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var enquirySummon in Model.EnquirySummonsList)
+                        {
+                            var rowClass = (rowNo % 2) == 0 ? "" : "alternateRow";
+                            <tr class="@rowClass">
+                                <td>@(rowNo += 1)</td>
+
+                                <td>@if (enquirySummon.AdAccount != null)
+                                { @enquirySummon.AdAccount }</td>
+                                                                        
+                                <td nowrap="nowrap">@if (enquirySummon.DisplayName != null)
+                                {@enquirySummon.DisplayName}</td>
+
+                                <td>@if (enquirySummon.OffenderType != null)
+                                {@enquirySummon.OffenderType}</td>
+
+                                <td>
+                                    @if (!String.IsNullOrEmpty(enquirySummon.VehicleNo))
+                                    {
+                                        <a href="@Url.Action("RetrieveSummonsM401Vehicle", "Enquiry", new { summons = enquirySummon.VehicleNo + "|" + enquirySummon.Summon.summons_id + "|" + enquirySummon.Offender.offender_id })"
+                                           target="printM401window" alt="Export Image">
+
+                                            @if (enquirySummon.OffenderPersonNRIC != null)
+                                            { @enquirySummon.OffenderPersonNRIC }
+
+                                            
+                                        </a>
+                                    }
+                                    else
+                                    {
+                                        <a href="@Url.Action("RetrieveSummonsM401Pedestrian", "Enquiry", new { summons = enquirySummon.Offender.offender_id + "|" + enquirySummon.Summon.summons_id })"
+                                            target="printM401window" alt="Export Image">
+                                            @if (enquirySummon.OffenderPersonNRIC != null)
+                                            { @enquirySummon.OffenderPersonNRIC }
+
+                                            
+                                        </a>
+                                    }                                                
+                                  </td>
+                               
+                                <td>@if (enquirySummon.OffenderPersonName != null)
+                                    { @enquirySummon.OffenderPersonName }</td>
+                                
+                                <td>@if (enquirySummon.VehicleNo != null)
+                                {@enquirySummon.VehicleNo}</td>
+
+                                
+                                <td>@if (enquirySummon.OffenceDescription != null)
+                                {@enquirySummon.OffenceDescription}</td>
+                                
+                                
+                                <td>@if (enquirySummon.OffenceDateTime != null)
+                                {@enquirySummon.OffenceDateTime}</td>
+                                
+                                
+                                <td>@if (enquirySummon.Location != null)
+                                {@enquirySummon.Location}</td>
+                                
+                                
+                                <td>@if (enquirySummon.DeviceId != null)
+                                {@enquirySummon.DeviceId}</td>
+                                
+                                
+                                <td>@if (enquirySummon.TimsReportNo != null)
+                                {@enquirySummon.TimsReportNo}</td>
+                                
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    }
+}

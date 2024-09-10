@@ -1,0 +1,64 @@
+﻿@model SPOTSAdminModule.ViewModels.ListSummonsViewModel
+
+@{
+    var rowNo = 0;
+}
+
+@if (Model != null && Model.SummonsReportsList != null)
+{
+    <div class="row">
+        <div class="col-md-3 spotsMarginMediumTop">
+            <h6 style="font-weight:bold">Total Records Found: @Model.SummonsReportsList.Count()</h6>
+            <h6>Generated on: @Model.GeneratedDateTime</h6>
+        </div>
+        @*@if (@Model.SummonsReportsList.Any())
+        {
+            <div align="right" class="col-md-1 col-md-offset-8 spotsMarginMediumSmallTop">
+                <a href="@Url.Action("ListSummonsExportToCsv", "Report", new { searchParameterString = Model.SearchParameterString })" alt="Export Image">
+                    <span class="glyphicon glyphicon-download-alt gi-2x spotsMarginMediumTop" style="color:black"></span>
+                </a>
+                <a href="@Url.Action("PrintSummonsToPdf", "Report", new { searchParameterString = Model.SearchParameterString})" alt="Print to PDF Image">
+                    <span class="glyphicon glyphicon-print gi-2x" style="color:black"></span>
+                </a>
+            </div>
+        }*@
+    </div>
+    if (Model.SummonsReportsList.Any())
+    {
+        <div class="row">
+            <div class="col-md-12">
+                <table class="table table-responsive table-striped table-hover" id="searchResult">
+                    <thead>
+                        <tr>
+                            <th>S/N</th>
+                            <th>Officer ID</th>
+                            <th>Officer Name</th>
+                            <th>Summon Type</th>
+                            <th>Offence Description</th>
+                            <th>Report No.</th>
+                            <th>Offence Date and Time</th>
+                            <th>Location</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    @foreach (var summons in Model.SummonsReportsList)
+                    {
+                        var rowClass = (rowNo % 2) == 0 ? "" : "alternateRow";
+                        var location = summons.Summon.tims_location_code_1;
+                        <tr class="@rowClass">
+                            <td>@(rowNo += 1)</td>
+                            <td>@(summons?.AdAccount)</td>
+                            <td>@(summons?.DisplayName)</td>
+                            <td>@(summons?.SummonsType)</td>
+                            <td>@(summons?.OffenceDescription)</td>
+                            <td>@(summons?.TimsReportNo)</td>
+                            <td>@(summons?.OffenceDateTime.ToShortDateString() + " " + summons.OffenceDateTime.ToShortTimeString())
+                            <td>@(summons?.Location)</td>
+                        </tr>
+                    }
+                    </tbody>                    
+                </table>
+            </div>
+        </div>
+    }
+}

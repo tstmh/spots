@@ -1,0 +1,39 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SPOTS Admin Module - @ViewBag.Title</title>
+    @Styles.Render("~/Content/css")
+    @Styles.Render("~/Content/themes/base/css")
+    @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jqueryui")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="imagePadding col-md-5">
+                <img src="~/Content/Images/SPFLogo.png" class="img-responsive" alt="Responsive image"/>
+            </div>           
+
+            <div class="logoText col-md-7">
+                <h3>SINGAPORE POLICE ON-THE-SPOT TICKETING SYSTEM (SPOTS)</h3>                
+            </div>
+        </div>
+    </div>
+    @{
+        Html.RenderPartial("_HeaderNavBarPartial");
+    }    
+    <div class="row">
+        @{ Html.RenderPartial("BuildNumber"); }
+        
+        <div class="span12 body-content"> 
+            <span>@{Html.RenderPartial("_BreadCrumbPartial"); }</span>
+            @RenderBody()
+        </div>
+    </div>
+</body>
+</html>

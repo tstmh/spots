@@ -1,0 +1,40 @@
+﻿@model SPOTSAdminModule.ViewModels.SystemCodeViewModel
+
+<ul>
+    <li><a href="#tabs-1">Search By</a></li>
+</ul>
+
+
+@using (Ajax.BeginForm("SystemCode", "Search",
+            new AjaxOptions
+            {
+                InsertionMode = InsertionMode.Replace,
+                UpdateTargetId = "systemCodeSearchResultTable"
+            }))
+{
+    <div id="tabs">
+        <ul>
+            <li><a href="#tabs-1">Search By SPOTS</a></li>
+            <li><a href="#tabs-2">Search By TIMS</a></li>
+        </ul>
+        <div id="tabs-1">
+            <strong>Code Type</strong>
+            <div>@Html.DropDownList("SystemCode", String.Empty)</div><br />
+            <strong>Code Description</strong>
+            <div>@Html.TextBoxFor(m => m.SearchSystemCodeModel.SearchValue) <input type="Submit" contextmenu="SearchBy" id="SearchBy" name="SearchBy" value="Search SPOTS" /></div>
+
+        </div>
+        <div id="tabs-2">
+            Code Type
+            <div>
+                @Html.DropDownList("TIMSCode", ViewData["TIMSInterface"] as SelectList)
+            </div><br />
+            Code Description
+            <div>
+                @Html.TextBoxFor(m => m.SearchSystemCodeModel.SearchValue
+                <input type="Submit" contextmenu="SearchBy" id="SearchBy" name="SearchBy" value="Search TIMS" />
+            </div>
+
+        </div>
+    </div>
+}

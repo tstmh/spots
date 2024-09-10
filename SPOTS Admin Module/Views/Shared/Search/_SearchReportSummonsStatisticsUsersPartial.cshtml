@@ -1,0 +1,35 @@
+﻿@model SPOTSAdminModule.ViewModels.SummonsStatisticsUsersViewModel
+
+<div id="tabs">
+    <ul>
+        <li>
+            <a href="#tabs-1">Search By</a>
+        </li>
+    </ul>
+    <div id="tabs-1">
+        @using (Ajax.BeginForm("SummonsStatisticsUsers", "Report",
+                    new AjaxOptions { InsertionMode = InsertionMode.Replace, UpdateTargetId = "summonsStatisticUserResultTable" }))
+        {
+            <div class="row">
+                <div class="col-md-3">
+                    Date From
+                    @Html.TextBoxFor(m => m.SearchModel.SearchFromDate, new { id= "datepicker-my", @class = "datepicker", @placeholder = "Enter from Date" })
+                    <span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>
+                </div>
+                <div class="col-md-3">
+                    Date To
+                    @Html.TextBoxFor(m => m.SearchModel.SearchToDate, new { @class = "datepicker", @placeholder = "Enter to Date" })
+                    <span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>
+                </div>
+
+                <div class="col-md-2">
+                    Officer ID
+                    @Html.TextBoxFor(m => m.SearchModel.SearchOfficerId, new { @placeholder = "Enter Officer ID" })
+                </div>
+                <div class="col-md-2">
+                    <input class="" type="submit" />
+                </div>
+            </div>
+        }
+    </div>
+</div>

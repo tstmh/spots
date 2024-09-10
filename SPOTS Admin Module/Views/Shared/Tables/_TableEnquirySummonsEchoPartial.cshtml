@@ -1,0 +1,72 @@
+﻿@model SPOTSAdminModule.ViewModels.SummonsEchoEnquiryViewModel
+
+
+@{
+    var rowNo = 0;
+}
+
+@if (Model != null && Model.EnquirySummonsEchoList != null)
+{
+    <div class="row">
+        <div class="col-md-3 spotsMarginMediumTop spotsMarginMediumSmallBottom">
+            <b class="gi-1x">Total Records Found: @Model.EnquirySummonsEchoList.Count()</b>
+        </div>
+    </div>
+
+    if (@Model.EnquirySummonsEchoList.Count() > 0)
+    {
+        <div class="row">
+            <div class="col-md-12">
+                <table id="searchResult" class="table table-responsive table-striped table-hover" >
+                    <thead>
+                        <tr>
+                            <th>S/N</th>
+                            <th>Officer ID</th>
+                            <th>Officer Name</th>
+                            <th>Vehicle No.</th>
+                            <th>Offence Description</th>
+                            <th>Offence Date and Time</th>
+                            <th>Location</th>
+                            <th>Device ID</th>
+                            <th>Report No.</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var enquirySummonEcho in Model.EnquirySummonsEchoList)
+                    {
+                        var rowClass = (rowNo % 2) == 0 ? "" : "alternateRow";
+
+                            <tr class="@rowClass">
+                                <td>@(rowNo += 1)</td>
+                                @if (enquirySummonEcho.AdAccount != null)
+                                {
+                                    <td>@enquirySummonEcho.AdAccount</td>
+                                }
+                                @if (enquirySummonEcho.DisplayName != null)
+                                {
+                                    <td>@enquirySummonEcho.DisplayName</td>
+                                }
+
+                                <td>
+                                    <a href="@Url.Action("RetrieveSummonsEcho", "Enquiry", new { summons = enquirySummonEcho.VehicleNo + "|" +enquirySummonEcho.Summon.summons_id })"
+                                       target="printEchoWindow" alt="Export Image">
+                                        @if (enquirySummonEcho.VehicleNo != null)
+                                        {
+                                            @enquirySummonEcho.VehicleNo
+                                        }
+                                    </a>
+                                </td>
+                                <td>@( enquirySummonEcho.OffenceDescription != null ? enquirySummonEcho.OffenceDescription : "")</td>
+                                <td>@( enquirySummonEcho.OffenceDateTime != null ? enquirySummonEcho.OffenceDateTime.ToString() : "")</td>
+                                <td>@( enquirySummonEcho.Location != null ? enquirySummonEcho.Location : "")</td>
+                                <td>@enquirySummonEcho.Summon.device_id</td>
+                                <td>@( enquirySummonEcho.TimsReportNo != null ? enquirySummonEcho.TimsReportNo : "")</td>
+
+                            </tr>
+                        }
+                    </tbody>                    
+                </table>
+            </div>
+        </div>        
+    }
+}

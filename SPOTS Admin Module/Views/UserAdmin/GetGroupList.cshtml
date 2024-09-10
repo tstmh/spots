@@ -1,0 +1,40 @@
+﻿@model SPOTSAdminModule.ViewModels.ListGroupViewModel
+
+<div class="row">
+    <div class="col-md-offset-11">
+        <div class="input tableActionBar">
+            @Html.ActionLink("Add", "AddGroup")
+        </div>
+    </div>
+</div>
+
+@if (Model != null)
+{
+    <table class="table table-responsive table-striped table-hover" id="searchResult">
+        <tr>
+            <th width="5%">S/N</th>
+            <th width="20%">Group Name</th>
+            <th width="65%">Group Description</th>
+            <th width="10%" align="center">ACTION</th>
+        </tr>
+        @{
+            int rowNo = 0;
+            var rowClass = "";
+        }
+        @foreach (var item in Model.GroupList)
+                {
+                    rowClass = (rowNo % 2) == 0 ? "" : "alternateRow";
+
+            <tr class="@rowClass">
+                <td>@(rowNo += 1)</td>
+                <td>@Html.DisplayFor(modelItem => item.group_name)</td>
+                <td>@Html.DisplayFor(modelItem => item.group_description)</td>
+                <td align="center">
+                    <a href="@Url.Action("EditGroup", "UserAdmin", new { groupID = item.group_id })" title="" class="actionImage">
+                        <img alt="Edit" src="@Url.Content("~/Content/Images/edit.png")" />
+                    </a>
+                </td>
+            </tr>
+        }
+    </table>
+            }

@@ -1,0 +1,108 @@
+﻿@model MvcSiteMapProvider.Web.Html.Models.MenuHelperModel
+@using System.Web.Mvc.Html
+@using MvcSiteMapProvider.Web.Html.Models
+@using SPOTSAdminModule.Utility;
+
+@helper  TopMenu(List<SiteMapNodeModel> nodeList)
+{
+    HttpCookie authCookie = Request.Cookies[FormsAuthentication.FormsCookieName];
+    FormsAuthenticationTicket ticket = FormsAuthentication.Decrypt(authCookie.Value);
+
+    <nav class="navbar navbar-default" role="navigation">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+            </div>
+            <div class="collapse navbar-collapse" id="myNavbar">
+                <ul class="nav navbar-nav">
+                    @foreach (SiteMapNodeModel node in nodeList)
+                    {
+                        string url = node.IsClickable ? node.Url : "#";
+
+                        if (!node.Children.Any())
+                        {
+                            <li><a href="@url" id="@node.Action">@node.Title</a></li>
+                        }
+                        else
+                        {
+                            if (
+                                (node.Title.Contains(SpotsConstant.MENU_ENQUIRY) && (ticket.UserData.Contains(SpotsConstant.CAN_VIEW_ACCIDENT_REPORT) || ticket.UserData.Contains(SpotsConstant.CAN_VIEW_SUMMONS) || ticket.UserData.Contains(SpotsConstant.CAN_VIEW_SUMMONS_ECHO)))  ||
+                                (node.Title.Contains(SpotsConstant.MENU_REPORT) && ticket.UserData.Contains(SpotsConstant.CAN_VIEW_REPORT)) ||
+                                (node.Title.Contains(SpotsConstant.MENU_SYSTEM_ADMIN) && (ticket.UserData.Contains(SpotsConstant.CAN_VIEW_SYSTEM_CODE) || ticket.UserData.Contains(SpotsConstant.CAN_VIEW_LOGIN_LOG) || ticket.UserData.Contains(SpotsConstant.CAN_VIEW_TRANSACTION_LOG))) ||
+                                (node.Title.Contains(SpotsConstant.MENU_USER_ADMIN) && (ticket.UserData.Contains(SpotsConstant.CAN_VIEW_USER_ACCOUNT) || ticket.UserData.Contains(SpotsConstant.CAN_VIEW_USER_GROUP)))
+                            )
+                            {
+                                <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown">@node.Title <span class="caret"></span></a>@DropDownMenu(node.Children)</li>
+                            }
+                        }
+
+                        if (node != nodeList.Last())
+                        {
+                            <li class="divider-vertical"></li>
+                        }
+                    }
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="">
+                            You are logged in as:
+                            <span class="glyphicon glyphicon-user"></span>
+                            @User.Identity.Name <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a href="@Url.Action("Logoff", "Account")">Logout</a></li>                            
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+    </nav>
+}
+
+@helper DropDownMenu(SiteMapNodeModelList nodeList)
+{
+
+    HttpCookie authCookie = Request.Cookies[FormsAuthentication.FormsCookieName];
+    FormsAuthenticationTicket ticket = FormsAuthentication.Decrypt(authCookie.Value);
+
+    <ul class="dropdown-menu" role="menu">
+    @foreach (SiteMapNodeModel node in nodeList)
+    {
+        if (node.Title == "Separator")
+        {
+            <li class="divider"></li>
+            continue;
+        }
+
+        string url = node.IsClickable ? node.Url : "#";
+
+        if (!node.Children.Any())
+        {
+            if (
+                (url.Contains(SpotsConstant.URL_ENQUIRY_OSI) && ticket.UserData.Contains(SpotsConstant.CAN_VIEW_ACCIDENT_REPORT)) ||
+                (url.Contains(SpotsConstant.URL_ENQUIRY_SUMMONS) && ticket.UserData.Contains(SpotsConstant.CAN_VIEW_SUMMONS)) ||
+                (url.Contains(SpotsConstant.URL_ENQUIRY_SUMMONS_ECHO) && ticket.UserData.Contains(SpotsConstant.CAN_VIEW_SUMMONS_ECHO)) ||
+                (url.Contains(SpotsConstant.URL_GROUP_ADMIN) && ticket.UserData.Contains(SpotsConstant.CAN_VIEW_USER_GROUP)) ||
+                (url.Contains(SpotsConstant.URL_LOGIN_LOGS) && ticket.UserData.Contains(SpotsConstant.CAN_VIEW_LOGIN_LOG)) ||
+                (url.Contains(SpotsConstant.URL_REPORT) && ticket.UserData.Contains(SpotsConstant.CAN_VIEW_REPORT)) ||
+                (url.Contains(SpotsConstant.URL_SYSTEM_CODE) && ticket.UserData.Contains(SpotsConstant.CAN_VIEW_SYSTEM_CODE)) ||
+                (url.Contains(SpotsConstant.URL_TRANSACTION_LOGS) && ticket.UserData.Contains(SpotsConstant.CAN_VIEW_TRANSACTION_LOG)) ||
+                (url.Contains(SpotsConstant.URL_USER_ADMIN) && ticket.UserData.Contains(SpotsConstant.CAN_VIEW_USER_ACCOUNT))
+               )
+                {
+                        <li><a href="@url">@node.Title</a></li>
+                }
+            }
+            else
+            {
+                    <li class="dropdown-submenu"><a href="@url" id="@node.Action">@node.Title</a>@DropDownMenu(node.Children)</li>
+            }
+        }
+        </ul>
+    }
+@TopMenu(Model.Nodes)

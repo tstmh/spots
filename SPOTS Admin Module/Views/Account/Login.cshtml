@@ -1,0 +1,98 @@
+﻿@model SPOTSAdminModule.ViewModels.LoginModel
+
+@{
+    ViewBag.Title = "Login";
+    Layout = "~/Views/Shared/_LoginLayout.cshtml";
+}
+
+@if (ViewBag.Message != null)
+{
+    <div class="alert alert-info">
+        <a href="#popup" class="close" data-dismiss="alert" aria-label="close" onclick="return check()">&times;</a>
+        <strong>Alert: </strong> @ViewBag.Message
+    </div>
+
+    <script>
+        function check() {
+            var url = '@Url.Action("Index", "Home")';
+            window.location.href = url;
+            return false;
+        }
+    </script>
+
+}
+
+<div class="bs-docs-grid">
+    <div class="row">
+        <div class="col-md-12 col-md-offset-4 loginWelcomeMargin">
+            <h3 class="loginObjectCenter">Welcome to SPOTS!</h3>
+            <h5 class="loginObjectCenter">Please login to continue.</h5>
+        </div>
+    </div>
+
+    @using (Html.BeginForm("Login", "Account", FormMethod.Post))
+    {
+        if (ViewBag.ReturnUrl != null)
+        {
+            @Html.Hidden("returnUrl", (string)ViewBag.ReturnUrl.ToString());
+        }
+
+        <div class="row">
+            <div class="col-md-4 col-md-offset-4 spotsMarginSmallTop">
+                <div class="loginObjectCenter">
+                    @Html.TextBoxFor(m => m.UserName, new { @class = "spotsMarginSmallTopBottom form-control loginInput", @placeholder = "Username" })
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-4 col-md-offset-4">
+                <div class="loginObjectCenter">
+                    @Html.PasswordFor(m => m.Password, new { @class = "spotsMarginSmallTopBottom form-control loginInput", @placeholder = "Password" })
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-4 col-md-offset-4">
+                <div class="loginObjectCenter">
+                    <input class="form-control loginInput" type="submit" value="Login" />
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4 col-md-offset-4">
+                @Html.Partial("_ValidationSummary", ViewData.ModelState)
+            </div>
+        </div>
+    }
+
+
+</div>
+
+<div class="row">
+    <div class="col-md-6 col-md-offset-3 spotsMarginLargeBottom">
+        <h5 class="loginObjectCenter">For account matters (i.e account unlock, password reset), please proceed to <a href="https://spfidms.intranet.spf.gov.sg/Login.aspx#no-back-button">Identity Management System (IDMS)</a></h5>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-3"></div>
+    <div class="col-md-6">
+        <strong>
+            <p class="text-danger">
+                Warning
+            </p>
+            <p>This is a Singapore Police Force protected computer system. If you are not authorised to access this system, DO NOT attempt to log-in!</p>
+            <p />
+            <p>Usage of this system, as well as access to all classified information and personal data will be monitored.</p>
+            <p />
+            <p>
+                Any unauthorised access or use of this computer system is liable to disciplinary action and/or criminal prosecution.
+                For more information, please contact your ITLO/DTO.
+            </p>
+        </strong>
+    </div>
+    <div class="col-md-3"></div>
+</div>
+

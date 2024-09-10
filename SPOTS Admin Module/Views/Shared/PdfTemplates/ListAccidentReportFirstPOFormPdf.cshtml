@@ -1,0 +1,541 @@
+﻿@model SPOTSAdminModule.ViewModels.ListAccidentReportViewModel
+
+@{
+    ViewBag.Title = "Accident Report First PO Form";
+    Layout = "~/Views/Shared/_SummonsPdfLayout.cshtml";
+    var pedestrian = 1;
+    var witness = 2;
+    var photoCount = 0;
+    var sketchPlanCount = 0;
+    var vdrCount = 0;
+    var id = "#";
+    var vehicle = "vdr";
+
+} 
+
+<!DOCTYPE html>
+<html lang="en">
+
+<body>
+    @if (Model != null)
+    {
+
+        if (Model.IsShowOSIFirstPOForm)
+        {
+
+            @Html.Partial("Tables/_TableOSIReportHeaderView", new ViewDataDictionary
+                                            {{"listAccidentReportViewModel", Model}})
+
+            <!--#region First PO Header-->
+        <div class="row">
+            <h4 class="highlightedHeader" data-toggle="collapse" data-target="#location">FIRST PO FORM</h4>
+        </div>
+
+        <div class="row">
+            <h5 class="officerDeclarationText">
+                I arrived at scene at @Model.OfficerArrivalTime. On my arrival, I established the following vehicle/s involved in the accident.
+            </h5>
+            <h5 class="officerDeclarationText">
+                I resumed my patrol duty at @Model.OfficerResumeDutyTime
+            </h5>
+        </div>
+
+        <div class="collapse-group">
+            <h4 class="collapseHeader" data-toggle="collapse" data-target="#location">Location &raquo;</h4>
+            <div class="collapse in" id="location">
+                <div class="row">
+                    <table class="summonsesHyperLinkTable table table-responsive table-hover">
+                        <tr>
+                            <td class="col-md-3">
+                                <b>Incident Occurred: </b>
+                            </td>
+                            <td class="col-md-3 col-md-pull-3">@Model.IncidentOccurred</td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-3">
+                                <b>Location Remarks: </b>
+                            </td>
+                            <td class="col-md-3 col-md-pull-3">@Model.LocationRemarks</td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-3">
+                                <b>Special Zone: </b>
+                            </td>
+                            <td class="col-md-3 col-md-pull-3">@Model.SpecialZone</td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-3">
+                                <b>School Name: </b>
+                            </td>
+                            <td class="col-md-3 col-md-pull-3">@Model.SchoolName</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+         <!--#endregion-->
+
+            <!--#region Vehicle/Passengers List-->
+            if (Model.VehicleList != null && Model.VehicleList.Any())
+            {
+
+            @Html.Partial("Tables/_TableAccidentReportVehicleInformationView", new ViewDataDictionary
+                                            { { "vehicleList", Model.VehicleList.ToList() },
+                                              {"accidentReportsList", Model.AccidentReportsList} })
+            }
+        <!--#endregion-->
+
+            <!--#region Pedestrian-->
+            // Select only the distinct pedestrians
+            var accidentReportPedestrianList = Model.AccidentReportsList.Where(x => x.PedestrianPersonInvolved != null
+            && x.PedestrianPersonInvolved.incident_number == Model.IncidentReportNumber && x.PedestrianPersonInvolved.pedestrian_or_witness == pedestrian)
+            .GroupBy(y => y.PedestrianPersonInvolved.person_involved_id)
+            .Select(z => z.First());
+
+            if (accidentReportPedestrianList != null && accidentReportPedestrianList.Any())
+            {
+            @Html.Partial("Tables/_TableAccidentReportPedestrianInvolvedView", new ViewDataDictionary { { "accidentReportPedestrianList", accidentReportPedestrianList.ToList() } })
+            }
+        <!--#endregion-->
+
+            <!--#region Structure Damage-->
+        <div class="collapse-group">
+            <h4 class="collapseHeader" data-toggle="collapse" data-target="#structureDamage">
+                Structure Damage/s &raquo;
+            </h4>
+            <div class="collapse in" id="structureDamage">
+                <div class="row">
+                    <table class="summonsesHyperLinkTable table table-responsive table-hover">
+                        <tr>
+                            <td class="col-xs-3">
+                                <b>Remarks: </b>
+                            </td>
+                            @if (Model.StructureDamage != null)
+                            {
+                                <td class="col-xs-9">@Model.StructureDamage</td>
+                            }
+                            else
+                            {
+                                <td class="col-xs-9"></td>
+                            }
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <!--#endregion-->
+
+            <!--#region Witnesses-->
+            // Select only the distinct witnesses
+            var accidentReportWitnessesList = Model.AccidentReportsList.Where(x => x.WitnessPersonInvolved != null
+                                                                                                                && x.WitnessPersonInvolved.incident_number == Model.IncidentReportNumber && x.WitnessPersonInvolved.pedestrian_or_witness == witness)
+                                                                                                                .GroupBy(y => y.WitnessPersonInvolved.person_involved_id)
+                                                                                                                .Select(z => z.First());
+
+            if (accidentReportWitnessesList != null && accidentReportWitnessesList.Any())
+            {
+           
+            @Html.Partial("Tables/_TableAccidentReportWitnessesView", new ViewDataDictionary { { "accidentReportWitnessesList", accidentReportWitnessesList.ToList() } })
+            }
+
+        <!--#endregion-->
+
+            <!--#region Officer's Declaration-->
+        <div class="collapse-group">
+            <h4 class="collapseHeader" data-toggle="collapse" data-target="#officerDeclaration">
+                Officer's Declaration &raquo;
+            </h4>
+            <div class="collapse in" id="officerDeclaration">
+                <div class="row">
+                    <h4 class="officerDeclarationText">
+                        At the time of my arrival, I observed
+                    </h4>
+                    <table class="summonsesHyperLinkTable table table-responsive table-hover">
+                        <tr>
+                            <td class="col-md-2">
+                                <b>Weather:</b> @Model.Weather
+                            </td>
+                            <td class="col-md-2 col-md-pull-2"></td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-2">
+                                <b>Road Surface:</b> @Model.RoadSurface
+                            </td>
+                            <td class="col-md-2 col-md-pull-2"></td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-2">
+                                <b>Traffic Volume:</b> @Model.TrafficVolume
+                            </td>
+                            <td class="col-md-2 col-md-pull-2"></td>
+                        </tr>
+                    </table>
+
+                    @if (Model.IsShowPreserveSceneSection)
+                    {
+                        <h4 class="officerDeclarationText">
+                            I preserved the scene till arrival of @Model.OfficerName
+                        </h4>
+                        <h4 class="officerDeclarationText">
+                            from @Model.OfficerTeam
+                        </h4>
+                        <h4 class="officerDeclarationText">
+                            at @Model.PreserveDate
+                        </h4>
+                        <h4 class="officerDeclarationText">
+                            I handed over the case, the vehicle and the removable items to him/her
+                        </h4>
+                    }
+
+                    <h4 class="officerDeclarationHighlightedText">
+                        "I declare that this statement is true to the best knowledge and belief and I make it knowing that if it is tendered in evidence, I may be liable to prosecution if I have wilfully stated in it anything which I know to be false or do not believe to be true."
+                    </h4>
+                    <table class="summonsesHyperLinkTable table table-responsive table-hover">
+                        <tr>
+                            <td class="col-xs-1">
+                                <b>Submitted By:</b>
+                            </td>
+                            <td class="col-xs-1">@Model.CreatedByAdAccount , @Model.CreatedByDisplayName</td>
+                            <td class="col-xs-1">
+                                <b>Created By:</b>
+                            </td>
+                            <td class="col-xs-1">@Model.CreatedByAdAccount , @Model.CreatedByDisplayName</td>
+                        </tr>
+                        <tr>
+                            <td class="col-xs-1">
+                                <b>Submitted Date:</b>
+                            </td>
+                            <td class="col-xs-1">@Model.OfficerDeclarationTime</td>
+                            <td class="col-xs-1">
+                                <b>Created Date:</b>
+                            </td>
+                            <td class="col-xs-1">@(Model.CreatedTime.ToShortDateString()) </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <!--#endregion-->
+        }
+
+        if (Model.IsShowOSIImages)
+        {
+
+            <!--#region Sketch Plan-->
+            // Select the distinct list of Sketch Plan
+            var sketchPlanList = Model.AccidentReportsList.Where(y => y.SketchPlanAccidentReport != null).GroupBy(x => x.SketchPlanAccidentReport.sketch_id).Select(y => y.First());
+
+            if (sketchPlanList != null && sketchPlanList.Any())
+            {
+                foreach (var sketchPlan in sketchPlanList)
+                {
+
+                <P class="breakhere"></P>
+
+                    if (!Model.IsShowPrintButton)
+                    {
+                        // Display Header for PDF format
+                    @Html.Partial("Tables/_TableOSIReportNonFirstPOHeaderView", new ViewDataDictionary
+                                            {{"listAccidentReportViewModel", Model}})
+                    }
+
+                <div class="row">
+                    <h4 class="highlightedHeader" data-toggle="collapse" data-target="#location">SketchPlan (@(sketchPlanCount += 1) of @(sketchPlanList.Count()))</h4>
+                </div>
+                <div class="row">
+                    <table class="summonsesHyperLinkTable table table-responsive table-hover">
+                        <tbody>
+
+                            <tr>
+                                <td class="col-md-3">
+                                    <b>Remarks: </b>
+                                    @if (sketchPlan.SketchPlanAccidentReport != null)
+                                    {
+                                        @sketchPlan.SketchPlanAccidentReport.sketch_caption
+                                    }
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="row text-center">
+                    @if (sketchPlan.SketchPlanAccidentReport != null)
+                    {
+                        <div class="col-md-12">
+                            <img  src=@Url.Content("~/ReportImages/" + sketchPlan.SketchPlanAccidentReport.sketch_image_file_path) title="Sketch Plan Image" alt="Sketch Plan Image" width="100%"/>
+                        </div>
+
+                    }
+                    else
+                    {
+                        <div class="col-md-12">No sketch plan</div>
+                    }
+                </div>
+                <div class="row">
+                    <table class="summonsesHyperLinkTable table table-responsive table-hover">
+                        <tr>
+                            <td class="col-xs-1">
+                                <b>Created By:</b>
+                            </td>
+                            <td class="col-xs-1">@(sketchPlan.UserSketchPlan?.ad_account) , @(sketchPlan.UserSketchPlan?.display_name)</td>
+                            <td class="col-xs-1">
+                                <b>Created Date:</b>
+                            </td>
+                            <td class="col-xs-1">@(sketchPlan.SketchPlanAccidentReport?.created_time.ToShortDateString())</td>
+                        </tr>
+                    </table>
+                </div>
+                }
+            }
+        <!--#endregion-->
+
+            <!--#region VDR-->
+            // Select the distinct list of VDR
+            var vdrList = Model.AccidentReportsList.Where(y => y.VdrAccidentReport != null).GroupBy(x => x.VdrAccidentReport.vdr_id).Select(y => y.First());
+
+            if (vdrList != null && vdrList.Any())
+            {
+
+
+                foreach (var vdr in vdrList)
+                {
+                    {
+                        vdrCount += 1;
+                    }
+
+                <P class="breakhere"></P>
+
+                    if (!Model.IsShowPrintButton)
+                    {
+                        // Display Header for PDF format
+                    @Html.Partial("Tables/_TableOSIReportNonFirstPOHeaderView", new ViewDataDictionary
+                                            {{"listAccidentReportViewModel", Model}})
+                    }
+
+                <div class="row">
+                    <h4 class="highlightedHeader" data-toggle="collapse" data-target="#location">VEHICLE DAMAGED REPORT (@vdrCount of @(vdrList.Count()))</h4>
+                </div>
+
+                <div class="collapse-group">
+                    <h4 class="collapseHeader" data-toggle="collapse" data-target="@id@vehicle@vdrCount">
+                        Vehicle Damage Report @vdrCount &raquo;
+                    </h4>
+                    <div class="collapse in" id="@vehicle@vdrCount">
+                        <div class="row">
+                            <table class="summonsesHyperLinkTable table table-responsive table-hover">
+                                <tbody>
+                                    <tr>
+                                        <td class="col-xs-3">
+                                            <b>Vehicle No: </b>
+                                        </td>
+                                        @if (vdr.VdrAccidentReport != null)
+                                        {
+                                            <td class="col-xs-3">@vdr.VdrAccidentReport.vehicle_number</td>
+                                        }
+                                        else
+                                        {
+                                            <td class="col-xs-3"></td>
+                                        }
+                                        <td class="col-xs-3">
+                                            <b>Accident Date and Time: </b>
+                                        </td>
+                                        @if (vdr.VdrAccidentReport != null)
+                                        {
+                                            <td class="col-xs-3">@vdr.VdrAccidentReport.accident_date</td>
+                                        }
+                                        else
+                                        {
+                                            <td class="col-xs-3"></td>
+                                        }
+                                    </tr>
+                                    <tr>
+                                        <td class="col-xs-3">
+                                            <b>Vehicle Make: </b>
+                                        </td>
+                                        @if (vdr.TimsVehicleMakeVDR != null)
+                                        {
+                                            <td class="col-xs-3">@vdr.TimsVehicleMakeVDR.description</td>
+                                        }
+                                        else
+                                        {
+                                            <td class="col-xs-3"></td>
+                                        }
+                                        <td class="col-xs-3">
+                                            <b>Examination Date and Time: </b>
+                                        </td>
+                                        @if (vdr.VdrAccidentReport != null)
+                                        {
+                                            <td class="col-xs-3">@vdr.VdrAccidentReport.examination_date</td>
+                                        }
+                                        else
+                                        {
+                                            <td class="col-xs-3"></td>
+                                        }
+                                    </tr>
+                                    <tr>
+                                        <td class="col-xs-3">
+                                            <b>Vehicle Colour: </b>
+                                        </td>
+                                        @if (vdr.TimsVehicleColorVDR == null || vdr.TimsVehicleColorVDR.description.Equals("Others"))
+                                        {
+                                            <td class="col-xs-3">@vdr.VdrAccidentReport.vehicle_colour</td>
+                                        }
+                                        else
+                                        {
+                                    <td class="col-xs-3">@vdr.TimsVehicleColorVDR.description</td>
+                                        }
+                                        <td class="col-xs-3">
+                                            <b>'P' Plate Displayed: </b>
+                                        </td>
+                                        @if (vdr.VdrAccidentReport != null)
+                                        {
+                                            if (vdr.VdrAccidentReport.p_plate_displayed == 1)
+                                             {
+                                                 <td class="col-xs-3">YES</td>
+                                            }
+                                            else if (vdr.VdrAccidentReport.p_plate_displayed == 2)
+                                            {
+                                                <td class="col-xs-3">NO</td>
+                                            }
+                                            else 
+                                            {
+                                                 <td class="col-xs-3">UNKNOWN</td>
+                                            }
+                                        
+
+                                            
+                                        }
+                                        else
+                                        {
+                                            <td class="col-xs-3"></td>
+                                        }
+                                    </tr>
+                                    <tr>
+                                        <td class="col-xs-3">
+                                            <b>Location: </b>
+                                        </td>
+                                        @if (!string.IsNullOrEmpty(vdr.TimsVDRFormattedLocation))
+                                        {
+                                            <td class="col-xs-3">@vdr.TimsVDRFormattedLocation</td>
+                                        }
+                                        else
+                                        {
+                                            <td class="col-xs-3"></td>
+                                        }
+                                        <td class="col-xs-3">
+                                            <b>Remarks: </b>
+                                        </td>
+                                        @if (vdr.VdrAccidentReport != null)
+                                        {
+                                            <td class="col-xs-3">@vdr.VdrAccidentReport.caption</td>
+                                        }
+                                        else
+                                        {
+                                            <td class="col-xs-3"></td>
+                                        }
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="row text-center">
+                            @if (vdr.VdrAccidentReport != null)
+                            {
+                                <div class="col-md-12">
+                                    <img src=@Url.Content("~/ReportImages/" + vdr.VdrAccidentReport.vdr_image_file_path) title="VDR" alt="VDR" width="100%" />
+                                </div>
+
+                            }
+                            else
+                            {
+                                <div class="col-md-12">No VDR Image here</div>
+                            }
+                        </div>
+                        <div class="row">
+                            <table class="summonsesHyperLinkTable table table-responsive table-hover">
+                                <tr>
+                                    <td class="col-xs-1">
+                                        <b>Created By:</b>
+                                    </td>
+                                    <td class="col-xs-1">@(vdr.UserVDR?.ad_account) , @(vdr.UserVDR?.display_name)</td>
+                                    <td class="col-xs-1">
+                                        <b>Created Date:</b>
+                                    </td>
+                                    <td class="col-xs-1">@(vdr.VdrAccidentReport?.created_time.ToShortDateString())</td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                }
+            }
+        <!--#endregion-->
+
+            <!--#region Photo-->
+            // Select the distinct list of photos
+            var photoList = Model.AccidentReportsList.Where(y => y.PhotoAccidentReport != null).GroupBy(x => x.PhotoAccidentReport.photo_id).Select(y => y.First());
+
+            if (photoList != null && photoList.Any())
+            {
+
+                foreach (var photo in photoList)
+                {
+                    {
+                        photoCount += 1;
+                    }
+
+                    <P class="breakhere"></P>
+
+                    if (!Model.IsShowPrintButton)
+                    {
+                        // Display Header for PDF format
+                        @Html.Partial("Tables/_TableOSIReportNonFirstPOHeaderView", new ViewDataDictionary
+                                            {{"listAccidentReportViewModel", Model}})
+                    }
+
+                <div class="collapse-group">
+                    <h4 class="collapseHeader" data-toggle="collapse" data-target="#@photoCount">
+                        Scene Photo (@(photoCount) of @(photoList.Count())) &raquo;
+                    </h4>
+                    <div class="collapse in" id="@photoCount">
+                        <div class="row">
+                            <table class="summonsesHyperLinkTable table table-responsive table-hover">
+                                <tbody>
+                                    <tr>
+                                        <td class="col-md-3">
+                                            <b>Caption: </b>
+                                            @if (photo.PhotoAccidentReport != null)
+                                            {
+                                                @photo.PhotoAccidentReport.photo_caption
+                                            }
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="row text-center">
+                            @if (photo.PhotoAccidentReport != null)
+                            {
+                                <div class="col-md-12">
+                                    <img src=@Url.Content("~/ReportImages/" + photo.PhotoAccidentReport.photo_file_path) title="Photo Image" alt="Photo Image" />
+                                </div>
+                            }
+                            else
+                            {
+                                <div class="col-md-12">No photo</div>
+                            }
+                        </div>
+                    </div>
+                </div>
+                }
+            }
+        <!--#endregion-->
+        }
+    }
+    else
+    {
+        <h2> Error in retrieving accident report </h2>
+    }
+</body>
+
+</html>

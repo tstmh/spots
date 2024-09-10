@@ -1,0 +1,99 @@
+﻿@if (ViewBag.Title != "Home")
+{
+    <h1>@ViewBag.Title</h1>
+}
+@if (ViewContext.RouteData.Values["controller"].ToString().ToLower() != "home")
+{
+    <ol class="breadcrumb">
+        <li>
+            Home
+        </li>
+        <li>
+            @{
+                var _controller = ViewContext.RouteData.Values["controller"].ToString();
+                var _action = ViewContext.RouteData.Values["action"].ToString();
+                var _controllerLabel = "";
+                var _actionLabel = "";
+
+                switch (_controller)
+                {
+                    case "CodeMaintenance":
+                        _controllerLabel = "System Admin";
+                        _actionLabel = "Code Maintenance";
+                        break;
+                    case "Logs":
+                        _controllerLabel = "System Admin - System Logs";
+                        switch (_action)
+                        {
+
+                            case "GetTransactionLogs":
+                                _actionLabel = "Transaction Logs";
+                                break;
+                            case "GetUserLoginsLogs":
+                                _actionLabel = "User Logins";
+                                break;
+                        }
+                        break;
+                    case "UserAdmin":
+                        _controllerLabel = "User Admin";
+                        switch (_action)
+                        {
+                            case "GetUserList":
+                                _actionLabel = "User Maintenance";
+                                break;
+                            case "GetGroupList":
+                                _actionLabel = "Group Maintenance";
+                                break;
+                        }
+                        break;
+                    case "Enquiry":
+                        _controllerLabel = "Enquiry";
+                        switch (_action)
+                        {
+                            case "SummonsEnquiry":
+                                _actionLabel = "Summons M401";
+                                break;
+                            case "SummonsEchoEnquiry":
+                                _actionLabel = "Summons Echo M401E";
+                                break;
+                            case "OnSceneInvestigationReportsEnquiry":
+                                _actionLabel = "On Scene Investigation Report";
+                                break;
+                        }
+                        break;
+
+                    case "Report":
+                        _controllerLabel = "Report";
+                        switch (_action)
+                        {
+                            case "ListSummonsReport":
+                                _actionLabel = "List Summons";
+                                break;
+                            case "SummonsStatistics":
+                                _actionLabel = "Summons Statistics";
+                                break;
+                            case "SummonsStatisticsUsers":
+                                _actionLabel = "Summons Statistics Users";
+                                break;
+                            case "SummonsReconciliation":
+                                _actionLabel = "Summons Reconciliation";
+                                break;
+                            case "ListAccidentReport":
+                                _actionLabel = "List Accident Report";
+                                break;
+                            case "AccidentReportStatistics":
+                                _actionLabel = "Accident Report Statistics (User)";
+                                break;
+                        }
+                        break;
+                    case "Error":
+                        _controllerLabel = "Error";
+                        break;
+                }
+                    }
+                    @_controllerLabel
+                </li>
+        
+                <li class="active">@_actionLabel</li>
+    </ol>
+}

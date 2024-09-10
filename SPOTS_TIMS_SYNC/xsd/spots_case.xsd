@@ -1,0 +1,111 @@
+﻿spots_case.xsd
+
+<?xml version="1.0" encoding="UTF-8" ?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+	<xs:element name="spotsCase">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="header">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="timestamp" type="xs:dateTime"/>
+							<xs:element name="source" type="xs:string"/>
+							<xs:element name="destination" type="xs:string"/>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>    
+				<xs:element name="detail" maxOccurs="unbounded">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="summonsType" type="xs:string"/>
+							<xs:element name="reportNumber" type="xs:string"/>         
+							<xs:element name="reportDate" type="xs:dateTime"/>           
+							<xs:element name="offenceDate" type="xs:dateTime"/>           
+							<xs:element name="locationCode1" type="xs:string"/>    
+							<xs:element name="locationCode2" type="xs:string" minOccurs="0"/>    
+							<xs:element name="locationCode2Type" type="xs:string" minOccurs="0"/>    
+							<xs:element name="locationRemarks" type="xs:string" minOccurs="0"/>    
+							<xs:element name="specialZone" type="xs:string" minOccurs="0"/>    
+							<xs:element name="schoolName" type="xs:string" minOccurs="0"/>    
+							<xs:element name="vehicleNumber" type="xs:string" minOccurs="0"/>    
+							<xs:element name="foreignLocalOrSpecialVehicleFlag" type="xs:string" minOccurs="0"/>    
+							<xs:element name="vehicleType" type="xs:string" minOccurs="0"/>
+							<xs:element name="vehicleCategory" type="xs:string" minOccurs="0"/>
+							<xs:element name="vehicleTransmission" type="xs:string" minOccurs="0"/>
+							<xs:element name="vehicleMake" type="xs:string" minOccurs="0"/>
+							<xs:element name="vehicleColourCode" type="xs:string" minOccurs="0"/>
+							<xs:element name="vehicleColour" type="xs:string" minOccurs="0"/>
+							<xs:element name="unladenWeight" type="xs:string" minOccurs="0"/>
+							<xs:element name="vehicleClass3CEligibility" type="xs:string" minOccurs="0"/>
+							<xs:element name="vehicleSpeed" type="xs:positiveInteger" minOccurs="0"/>
+							<xs:element name="vehicleSpeedLimit" type="xs:positiveInteger"  minOccurs="0"/>
+							<xs:element name="roadSpeedLimit" type="xs:positiveInteger" minOccurs="0"/>
+							<xs:element name="speedDeviceUsed" type="xs:string" minOccurs="0"/>
+							<xs:element name="speedLimiterRequired" type="xs:string" minOccurs="0"/>
+							<xs:element name="speedLimiterInstalled" type="xs:string" minOccurs="0"/>
+							<xs:element name="sentForInspection" type="xs:string" minOccurs="0"/>
+							<xs:element name="roType" type="xs:string"/>
+							<xs:element name="roID" type="xs:string"/>
+							<xs:element name="roName" type="xs:string" />
+							<xs:element name="roRank" type="xs:string"/>
+							<xs:element name="roDivision" type="xs:string"/>
+							<xs:element name="offenderInvolvement" type="xs:string"/>
+							<xs:element name="offenderIDType" type="xs:string"/>
+							<xs:element name="offenderIDNumber" type="xs:string"/>
+							<xs:element name="offenderName" type="xs:string" minOccurs="0"/>
+							<xs:element name="offenderGender" type="xs:string" minOccurs="0"/>
+							<xs:element name="offenderDOB" type="xs:date" minOccurs="0"/>
+							<xs:element name="offenderCountryOfBirth" type="xs:string" minOccurs="0"/>
+							<xs:element name="offenderContact1" type="xs:string" minOccurs="0"/>
+							<xs:element name="offenderContact2" type="xs:string" minOccurs="0"/>
+							<xs:element name="offenderNationality" type="xs:string" minOccurs="0"/>
+							<xs:element name="registeredAddressFlag" type="xs:string" minOccurs="0"/>
+							<xs:element name="addressType" type="xs:string" minOccurs="0"/>
+							<xs:element name="blockHouseNumber" type="xs:string" minOccurs="0"/>
+							<xs:element name="street" type="xs:string" minOccurs="0"/>
+							<xs:element name="floorNumber" type="xs:string" minOccurs="0"/>
+							<xs:element name="unitNumber" type="xs:string" minOccurs="0"/>
+							<xs:element name="buildingName" type="xs:string" minOccurs="0"/>
+							<xs:element name="postalCode" type="xs:string" minOccurs="0"/>
+							<xs:element name="licenceType" type="xs:string" minOccurs="0"/>
+							<xs:element name="dlClass1" type="xs:string" minOccurs="0"/>
+							<xs:element name="dlClass2" type="xs:string" minOccurs="0"/>
+							<xs:element name="dlClass2A" type="xs:string" minOccurs="0"/>
+							<xs:element name="dlClass2B" type="xs:string" minOccurs="0"/>
+							<xs:element name="dlClass3" type="xs:string" minOccurs="0"/>
+							<xs:element name="dlClass3A" type="xs:string" minOccurs="0"/>
+							<xs:element name="dlClass3C" type="xs:string" minOccurs="0"/>
+							<xs:element name="dlClass3CA" type="xs:string" minOccurs="0"/>
+							<xs:element name="dlClass4" type="xs:string" minOccurs="0"/>
+							<xs:element name="dlClass4A" type="xs:string" minOccurs="0"/>
+							<xs:element name="dlClass5" type="xs:string" minOccurs="0"/>
+							<xs:element name="licenceDescription" type="xs:string" minOccurs="0"/>
+							<xs:element name="licenceExpiryDate" type="xs:date" minOccurs="0"/>
+							<xs:element name="reportRemarks" type="xs:string" minOccurs="0"/>     
+							<xs:element name="caseRemarks" type="xs:string" minOccurs="0"/>     
+							<xs:element name="operationType" type="xs:string"/>     
+							<xs:element name="totalOffence" type="xs:positiveInteger"/>    
+							<xs:element name="offenceList" minOccurs="1">
+								<xs:element name="offence" minOccurs="1">
+									<xs:complexType>
+										<xs:sequence>
+											<xs:element name="offenceCode" type="xs:string"/>
+											<xs:element name="offenceRemarks" type="xs:string"/>
+										</xs:sequence>
+									</xs:complexType>
+								</xs:element>               
+							</xs:element>	
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>            
+				<xs:element name="trailer">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="totalNumber" type="xs:positiveInteger"/>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>          
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

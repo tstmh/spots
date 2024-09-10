@@ -1,0 +1,172 @@
+﻿@model SPOTSAdminModule.ViewModels.ListAccidentReportViewModel
+
+@{
+    ViewBag.Title = "List On-Scene Investigation Report";
+    Layout = "~/Views/Shared/_PdfLayout.cshtml";
+
+    var rowNo = 0;
+
+    if (Model?.AccidentReportsList != null)
+    {
+        var tempSearchParameterString = Model.SearchParameterString;
+    }
+}
+
+<div class="row">
+    <div class="col-xs-12">
+        <h3>Report Name: @ViewBag.Title</h3>
+    </div>
+
+</div>
+<div class="row">
+    <div class="col-xs-12">
+        <h4>Search Criteria:</h4>
+    </div>
+</div>
+
+
+<div class="row">
+    <div class="col-xs-1"></div>
+    @if (Model.SearchModel != null)
+    {
+        <table>
+            <tbody>
+                <tr>
+                    <td id="report">Date From:</td>
+                    @if (Model.SearchModel.SearchFromDate.HasValue)
+                    {
+                        <td id="report">@Model.SearchModel.SearchFromDate.Value.ToShortDateString()</td>
+                    }
+                    else
+                    {
+                        <td style="color: rgba(250, 250, 250, 0.00);">n</td>
+                    }
+                </tr>
+                <tr>
+                    <td id="report">Date To:</td>
+                    @if (Model.SearchModel.SearchToDate.HasValue)
+                    {
+                        <td id="report">@Model.SearchModel.SearchToDate.Value.ToShortDateString()</td>
+                    }
+                    else
+                    {
+                        <td style="color: rgba(250, 250, 250, 0.00);">n</td>
+                    }
+                </tr>
+                <tr>
+                    <td id="report">Incident No:</td>
+                    @if (Model.SearchModel.SearchIncidentNo != null)
+                    {
+                        <td id="report">@Model.SearchModel.SearchIncidentNo.ToString()</td>
+                    }
+                    else
+                    {
+                        <td style="color: rgba(250, 250, 250, 0.00);">n</td>
+                    }
+                </tr>
+                <tr>
+                    <td id="report">Officer ID:</td>
+                    @if (Model.SearchModel.SearchOfficerId!=null)
+                    {
+                        <td id="report">@Model.SearchModel.SearchOfficerId.ToString()</td>
+                    }
+                    else
+                    {
+                        <td style="color: rgba(250, 250, 250, 0.00);">n</td>
+                    }
+                </tr>
+                <tr>
+                    <td id="report">Officer Name:</td>
+                    @if (Model.SearchModel.SearchOfficerName!=null)
+                    {
+                        <td id="report">@Model.SearchModel.SearchOfficerName.ToString()</td>
+                    }
+                    else
+                    {
+                        <td style="color: rgba(250, 250, 250, 0.00);">n</td>
+                    }
+                </tr>
+                <tr>
+                    <td id="report">Investigation Officer:</td>
+                    @if (Model.SearchModel.SearchInvestigationOfficerName!=null)
+                    {
+                        <td id="report">@Model.SearchModel.SearchInvestigationOfficerName.ToString()</td>
+                    }
+                    else
+                    {
+                        <td style="color: rgba(250, 250, 250, 0.00);">n</td>
+                    }
+                </tr>
+                <tr>
+                    <td style="color: rgba(250, 250, 250, 0.00);">n</td>
+                </tr>
+            </tbody>
+        </table>
+    }    
+</div>
+
+<div class="row">
+    <div class="col-xs-3 col-xs-offset-3">
+    </div>
+</div>
+
+@if (Model?.AccidentReportsList != null)
+{
+    if (Model.AccidentReportsList.Any())
+    {
+        <div class="row">
+            <div class="col-md-12">
+                <table class="table table-responsive table-striped table-hover" id="searchResult" style="font-size:16px">
+                    <thead>
+                        <tr>
+                            <th>S/N</th>
+                            <th>Officer ID</th>
+                            <th>Officer Name</th>
+                            <th>Incident No.</th>
+                            <th>Investigation Officer</th>
+                            <th>Ext. No.</th>
+                            <th>Accident Date</th>
+                            <th>Accident Time</th>
+                            <th>Location</th>
+                            <th>Device ID</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var accidentReport in Model.AccidentReportsList)
+                    {
+                        var rowClass = rowNo % 2 == 0 ? "" : "alternateRow";
+
+                            <tr class="@rowClass">
+                                <td>@(rowNo += 1)</td>
+                                @if (!accidentReport.User.ad_account.IsEmpty())
+                                {
+                                    <td>@accidentReport.User.ad_account</td>
+                                }
+                                else
+                                {
+                                    <td>@accidentReport.User.ad_account_2</td>
+                                }
+                                <td>@accidentReport.AccidentReport.officer_name</td>
+                                <td>@accidentReport.AccidentReport.incident_number</td>
+                                <td>@accidentReport.AccidentReport.io_name</td>
+                                <td>@accidentReport.AccidentReport.io_extension_number</td>
+                                <td>@accidentReport.AccidentReport.created_time.ToShortDateString()</td>
+                                <td>@accidentReport.AccidentReport.created_time.ToShortTimeString()</td>
+                                <td>@accidentReport.TimsFormattedLocation</td>
+                                <td>@accidentReport.AccidentReport.device_id</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-xs-12">
+                <p style="font-size:16px">Total Records Found: @Model.AccidentReportsList.Count()</p>
+                <p style="font-size:16px">Generated by: @HttpContext.Current.User.Identity.Name, @Model.ReportGeneratedBy </p>
+                <p style="font-size:16px">Generated on: @Model.GeneratedDateTime</p>
+            </div>
+        </div>
+    }
+}

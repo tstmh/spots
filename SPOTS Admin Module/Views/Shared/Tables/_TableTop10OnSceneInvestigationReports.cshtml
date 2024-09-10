@@ -1,0 +1,47 @@
+﻿@model SPOTSAdminModule.ViewModels.OnSceneInvestigationReportsEnquiryViewModel
+
+@{
+    var rowNo = 0;
+}
+
+<img id="welcome" src="~/Content/Images/Welcome.png"/>
+
+    @if (Model?.AccidentReportsList != null)
+    {
+        <h1>On-Scene Investigation Report</h1>
+        <p>You have <span class="red">@Model.AccidentReportsList.Count()</span> notifications.</p>
+
+        if (Model.AccidentReportsList.Any())
+        {
+            <table id="top10">
+                <tr>
+                    <th>S/N</th>
+                    <th>Officer ID</th>
+                    <th>Officer Name</th>
+                    <th>Incident No.</th>
+                    <th>Incident Date and Time</th>
+                    <th>Device ID</th>
+                </tr>
+
+
+                @foreach (var accidentReport in Model.AccidentReportsList)
+                {
+                    var rowClass = rowNo % 2 == 0 ? "" : "alternateRow";
+
+                    <tr class="@rowClass">
+                        <td>@(rowNo += 1)</td>
+                        <td>@(accidentReport.User?.ad_account)</td>
+                        <td>@(accidentReport.User?.display_name)</td>
+                        <td>
+                            <a href="@Url.Action("RetrieveOnSceneInvestigationReport", "Enquiry", new { incidentNo = @accidentReport.AccidentReport.incident_number })" target="_blank">
+                                @(accidentReport.AccidentReport?.incident_number)
+                            </a>
+                        </td><td>@(accidentReport.AccidentReport?.accident_time)</td>
+                        <td>@(accidentReport.AccidentReport?.device_id)</td>
+                    </tr>
+                }
+            </table>
+            
+            @Html.ActionLink("View More", "OnSceneInvestigationReportsEnquiry", "Enquiry", null, new { @id="viewMore"});
+        }
+    }

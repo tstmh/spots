@@ -1,0 +1,172 @@
+﻿
+@using SPOTS_Repository.Models
+
+@{
+
+    var accidentReportWitnessesList = (List<OnSceneInvestigationReportsEnquiry>)ViewData["accidentReportWitnessesList"];
+    var index = 0;
+    var id = "#";
+    var details = "Details";
+    var addressDetails = "AddressDetails";
+}
+
+<!--#region Witnesses Involved Information (con't)-->
+@if (accidentReportWitnessesList != null && accidentReportWitnessesList.Any())
+{
+    <div class="collapse-group">
+        <h4 class="collapseHeader" data-toggle="collapse" data-target="#witnesses">
+            Witnesses/es (@accidentReportWitnessesList.Count()) &raquo;
+        </h4>
+        <div class="collapse in" id="witnesses">
+            @foreach (var witnessList in accidentReportWitnessesList)
+            {
+                {
+                    index += 1;
+                }
+                <!--#region Witness-->
+                <div class="collapse-group">
+                    <h4 class="summonsesHyperLink" data-toggle="collapse" data-target="@id@index">
+                        Witness @(witnessList.PersonWitness?.name) @id@index &raquo;
+                    </h4>
+                    <div class="collapse in" id="@index">
+                        <!--#region Witness's Identification Details-->
+                        <div class="collapse-group">
+                            <h4 class="summonsesHyperLinkLightBlue" data-toggle="collapse" data-target="@id@index@details">
+                                Identification Details &raquo;
+                            </h4>
+                            <div class="collapse in" id="@index@details">
+                                <div class="row">
+                                    <table class="summonsesHyperLinkTable table table-responsive table-hover">
+                                        <tr>
+                                            <td class="col-xs-3">
+                                                <b>Witness Name: </b>
+                                            </td>
+                                            <td class="col-xs-3">@(witnessList.PersonWitness?.name)</td>
+                                            <td class="col-xs-3">
+                                                <b>Contact Information 1: </b>
+                                            </td>
+                                            <td class="col-xs-3">@(witnessList.PersonWitness?.contact_number_1)</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="col-xs-3">
+                                                <b>ID Type: </b>
+                                            </td>
+                                            <td class="col-xs-3">@(witnessList.WitnessIdentityTypeSystemCode?.value)</td>
+                                            <td class="col-xs-3">
+                                                <b>Contact Information 2: </b>
+                                            </td>
+                                            <td class="col-xs-3">@(witnessList.PersonWitness?.contact_number_2)</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="col-xs-3">
+                                                <b>ID No: </b>
+                                            </td>
+                                            <td class="col-xs-3">@(witnessList.PersonWitness?.id_number)</td>
+                                            <td class="col-xs-3">
+                                                <b>Remarks: </b>
+                                            </td>
+                                            <td class="col-xs-3">@(witnessList.PersonWitness?.remarks)</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="col-xs-3">
+                                                <b>Date of Birth: </b>
+                                            </td>
+                                            @if (@witnessList.PersonWitness != null && @witnessList.PersonWitness.date_of_birth.HasValue)
+                                            {
+                                                <td class="col-xs-3">@witnessList.PersonWitness.date_of_birth.Value.ToShortDateString()</td>
+                                            }
+                                            else
+                                            {
+                                                <td class="col-xs-3"></td>
+                                            }
+                                            <td class="col-xs-3">
+                                                <b>Gender: </b>
+                                            </td>
+                                            <td class="col-xs-3">@(witnessList.WitnessGenderTypeSystemCode?.value)</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="col-xs-3">
+                                                <b>Age: </b>
+                                            </td>
+                                            @if (witnessList.PersonWitness != null && witnessList.PersonWitness.date_of_birth.HasValue)
+                                            {
+                                                var today = DateTime.Today;
+                                                var age = today.Year - witnessList.PersonWitness.date_of_birth.Value.Year;
+                                                // Go back to the year the person was born in case of a leap year
+                                                if (witnessList.PersonWitness.date_of_birth.Value > today.AddYears(-age))
+                                                {
+                                                    age--;
+                                                }
+                                                <td class="col-md-3" colspan="3">@age</td>
+                                            }
+                                            else
+                                            {
+                                                <td class="col-md-3" colspan="3"></td>
+                                            }
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <!--#endregion-->
+                        <!--#region Witness's Address Details-->
+                        <div class="collapse-group">
+                            <h4 class="summonsesHyperLinkLightBlue" data-toggle="collapse" data-target="@id@index@addressDetails">
+                                Address Details &raquo;
+                            </h4>
+                            <div class="collapse in" id="@index@addressDetails">
+                                <div class="row">
+                                    <table class="summonsesHyperLinkTable table table-responsive table-hover">
+                                        <tr>
+                                            <td class="col-xs-3">
+                                                <b>Address Type: </b>
+                                            </td>
+                                            <td class="col-xs-3">@(witnessList.WitnessAddressTypeSystemCode?.value)</td>
+                                            <td class="col-xs-3">
+                                                <b>Unit No.: </b>
+                                            </td>
+                                            <td class="col-xs-3">@(witnessList.WitnessAddress?.unit_number)</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="col-xs-3">
+                                                <b>Block/House No: </b>
+                                            </td>
+                                            <td class="col-xs-3">@(witnessList.WitnessAddress?.block)</td>
+                                            <td class="col-xs-3">
+                                                <b>Building Name: </b>
+                                            </td>
+                                            <td class="col-xs-3">@(witnessList.WitnessAddress?.building_name)</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="col-xs-3">
+                                                <b>Street: </b>
+                                            </td>
+                                            <td class="col-xs-3">@(witnessList.WitnessAddress?.street)</td>
+                                            <td class="col-xs-3">
+                                                <b>Postal Code:	</b>
+                                            </td>
+                                            <td class="col-xs-3">@(witnessList.WitnessAddress?.postal_code)</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="col-xs-3">
+                                                <b>Floor: </b>
+                                            </td>
+                                            <td class="col-xs-3">@(witnessList.WitnessAddress?.floor)</td>
+                                            <td class="col-xs-3">
+                                                <b>Remarks: </b>
+                                            </td>
+                                            <td class="col-xs-3">@(witnessList.WitnessAddress?.address_remarks)</td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <!--#endregion-->
+                    </div>
+                </div>
+                <!--#endregion-->
+            }
+        </div>
+    </div>
+}
+<!--#endregion-->

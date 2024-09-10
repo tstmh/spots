@@ -1,0 +1,327 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<spotsCountryCode>
+<header>
+<timestamp>2017-09-08T12:30:00</timestamp>
+<source>TIMS</source>
+<destination>SPOTS</destination>
+</header>
+<detail><code>AA</code><description>ANGUILLA</description></detail>
+<detail><code>AB</code><description>ARUBA</description></detail>
+<detail><code>AD</code><description>ANDORRA</description></detail>
+<detail><code>AE</code><description>UNITED ARAB EM.</description></detail>
+<detail><code>AF</code><description>AFGHANISTAN</description></detail>
+<detail><code>AG</code><description>ANTIGUA</description></detail>
+<detail><code>AL</code><description>ALBANIA</description></detail>
+<detail><code>AM</code><description>ARMENIA</description></detail>
+<detail><code>AN</code><description>NETHERLANDS ANTIL.</description></detail>
+<detail><code>AO</code><description>ANGOLA</description></detail>
+<detail><code>AR</code><description>ARGENTINA</description></detail>
+<detail><code>AS</code><description>AMERICAN SAMOA</description></detail>
+<detail><code>AT</code><description>AUSTRIA</description></detail>
+<detail><code>AU</code><description>AUSTRALIA</description></detail>
+<detail><code>AZ</code><description>AZERBAIJAN</description></detail>
+<detail><code>BA</code><description>BOSNIA-HERZEGOVINA</description></detail>
+<detail><code>BB</code><description>BARBADOS</description></detail>
+<detail><code>BD</code><description>BANGLADESH</description></detail>
+<detail><code>BE</code><description>BELGIUM</description></detail>
+<detail><code>BF</code><description>BURKINA FASO</description></detail>
+<detail><code>BG</code><description>BULGARIA</description></detail>
+<detail><code>BH</code><description>BAHRAIN</description></detail>
+<detail><code>BI</code><description>BURUNDI</description></detail>
+<detail><code>BJ</code><description>BENIN</description></detail>
+<detail><code>BL</code><description>BELARUS</description></detail>
+<detail><code>BM</code><description>BERMUDA</description></detail>
+<detail><code>BN</code><description>BRUNEI</description></detail>
+<detail><code>BO</code><description>BOLIVIA</description></detail>
+<detail><code>BQ</code><description>BR ANTARCTIC TR</description></detail>
+<detail><code>BR</code><description>BRAZIL</description></detail>
+<detail><code>BS</code><description>BAHAMAS</description></detail>
+<detail><code>BT</code><description>BHUTAN</description></detail>
+<detail><code>BU</code><description>MYANMAR</description></detail>
+<detail><code>BW</code><description>BOTSWANA</description></detail>
+<detail><code>BZ</code><description>BELIZE</description></detail>
+<detail><code>CA</code><description>CANADA</description></detail>
+<detail><code>CB</code><description>CROATIA</description></detail>
+<detail><code>CC</code><description>COCOS KEELING ISL</description></detail>
+<detail><code>CD</code><description>CHANNEL ISLANDS</description></detail>
+<detail><code>CF</code><description>C'TRAL AFRICAN REP</description></detail>
+<detail><code>CG</code><description>CONGO</description></detail>
+<detail><code>CH</code><description>SWITZERLAND</description></detail>
+<detail><code>CI</code><description>IVORY COAST</description></detail>
+<detail><code>CK</code><description>COOK ISLANDS</description></detail>
+<detail><code>CL</code><description>CHILE</description></detail>
+<detail><code>CM</code><description>CAMEROON</description></detail>
+<detail><code>CN</code><description>CHINA</description></detail>
+<detail><code>CNAH</code><description>ANHUI</description></detail>
+<detail><code>CNBJ</code><description>BEIJING (PEKING)</description></detail>
+<detail><code>CNFJ</code><description>FUJIAN</description></detail>
+<detail><code>CNGD</code><description>GUANGDONG</description></detail>
+<detail><code>CNGS</code><description>GANSU</description></detail>
+<detail><code>CNGX</code><description>GUANGXI</description></detail>
+<detail><code>CNGZ</code><description>GUIZHOU</description></detail>
+<detail><code>CNHB</code><description>HUBEI</description></detail>
+<detail><code>CNHD</code><description>HAINAN DAO</description></detail>
+<detail><code>CNHE</code><description>HENAN</description></detail>
+<detail><code>CNHI</code><description>HEBEI</description></detail>
+<detail><code>CNHJ</code><description>HEILONGJANG</description></detail>
+<detail><code>CNHN</code><description>HUNAN</description></detail>
+<detail><code>CNJL</code><description>JILIN</description></detail>
+<detail><code>CNJS</code><description>JIANGSU</description></detail>
+<detail><code>CNJX</code><description>JIANGXI</description></detail>
+<detail><code>CNLN</code><description>LIAONING</description></detail>
+<detail><code>CNNM</code><description>NEI MONGOL ZIZHIQU</description></detail>
+<detail><code>CNNX</code><description>NINGXIA</description></detail>
+<detail><code>CNQH</code><description>QINGHAI</description></detail>
+<detail><code>CNSC</code><description>SICHUAN</description></detail>
+<detail><code>CNSD</code><description>SHANDONG</description></detail>
+<detail><code>CNSH</code><description>SHAANXI</description></detail>
+<detail><code>CNSN</code><description>SHANGHAI</description></detail>
+<detail><code>CNSX</code><description>SHANXI</description></detail>
+<detail><code>CNTJ</code><description>TIANJIN</description></detail>
+<detail><code>CNXJ</code><description>XXINJIANG U ZIZHIQU</description></detail>
+<detail><code>CNXZ</code><description>XIZHANG ZIZHIQU</description></detail>
+<detail><code>CNYN</code><description>YUNNAN</description></detail>
+<detail><code>CNZJ</code><description>ZHEJIANG</description></detail>
+<detail><code>CO</code><description>COLOMBIA</description></detail>
+<detail><code>CR</code><description>COSTA RICA</description></detail>
+<detail><code>CT</code><description>CTON &amp; ENDERBURY I</description></detail>
+<detail><code>CU</code><description>CUBA</description></detail>
+<detail><code>CV</code><description>CAPE VERDE</description></detail>
+<detail><code>CX</code><description>CHRISTMAS ISLAND</description></detail>
+<detail><code>CY</code><description>CYPRUS</description></detail>
+<detail><code>CZ</code><description>CZECH REPUBLIC</description></detail>
+<detail><code>DG</code><description>GERMANY</description></detail>
+<detail><code>DJ</code><description>DJIBOUTI</description></detail>
+<detail><code>DK</code><description>DENMARK</description></detail>
+<detail><code>DM</code><description>DOMINICA</description></detail>
+<detail><code>DO</code><description>DOMINICAN REPUBLIC</description></detail>
+<detail><code>DZ</code><description>ALGERIA</description></detail>
+<detail><code>EC</code><description>ECUADOR</description></detail>
+<detail><code>EG</code><description>EGYPT</description></detail>
+<detail><code>EH</code><description>WESTERN SAHARA</description></detail>
+<detail><code>EN</code><description>ESTONIA</description></detail>
+<detail><code>ER</code><description>ERITREA</description></detail>
+<detail><code>ES</code><description>SPAIN</description></detail>
+<detail><code>ET</code><description>ETHIOPIA</description></detail>
+<detail><code>FI</code><description>FINLAND</description></detail>
+<detail><code>FJ</code><description>FIJI</description></detail>
+<detail><code>FK</code><description>FALKLAND ISLANDS</description></detail>
+<detail><code>FO</code><description>FAEROE ISLANDS</description></detail>
+<detail><code>FQ</code><description>FR S &amp; ANTARCTIC T</description></detail>
+<detail><code>FR</code><description>FRANCE</description></detail>
+<detail><code>GA</code><description>GABON</description></detail>
+<detail><code>GB</code><description>UNITED KINGDOM</description></detail>
+<detail><code>GBDS</code><description>SCOTLAND</description></detail>
+<detail><code>GBEL</code><description>ENGLAND</description></detail>
+<detail><code>GBIE</code><description>NORTHERN IRELAND</description></detail>
+<detail><code>GBWA</code><description>WALES</description></detail>
+<detail><code>GD</code><description>GRENADA</description></detail>
+<detail><code>GF</code><description>FRENCH GUIANA</description></detail>
+<detail><code>GH</code><description>GHANA</description></detail>
+<detail><code>GI</code><description>GIBRALTAR</description></detail>
+<detail><code>GL</code><description>GREENLAND</description></detail>
+<detail><code>GM</code><description>GAMBIA</description></detail>
+<detail><code>GN</code><description>GUINEA</description></detail>
+<detail><code>GO</code><description>GEORGIA</description></detail>
+<detail><code>GP</code><description>GUADELOUPE</description></detail>
+<detail><code>GQ</code><description>EQUATORIAL GUINEA</description></detail>
+<detail><code>GR</code><description>GREECE</description></detail>
+<detail><code>GT</code><description>GUATEMALA</description></detail>
+<detail><code>GU</code><description>GUAM</description></detail>
+<detail><code>GW</code><description>GUINEA-BISSAU</description></detail>
+<detail><code>GY</code><description>GUYANA</description></detail>
+<detail><code>GZ</code><description>GAZA</description></detail>
+<detail><code>HK</code><description>HONG KONG</description></detail>
+<detail><code>HM</code><description>HEARD &amp; MCDONALD I</description></detail>
+<detail><code>HN</code><description>HONDURAS</description></detail>
+<detail><code>HS</code><description>HONG KONG SAR</description></detail>
+<detail><code>HT</code><description>HAITI</description></detail>
+<detail><code>HU</code><description>HUNGARY</description></detail>
+<detail><code>HV</code><description>UPPER VOLTA</description></detail>
+<detail><code>ID</code><description>INDONESIA</description></detail>
+<detail><code>IE</code><description>IRELAND</description></detail>
+<detail><code>IL</code><description>ISRAEL</description></detail>
+<detail><code>IN</code><description>INDIA</description></detail>
+<detail><code>INAP</code><description>ANDHRA PRADESH</description></detail>
+<detail><code>INAR</code><description>ARUNACHAL PRADESH</description></detail>
+<detail><code>INAS</code><description>ASSAM</description></detail>
+<detail><code>INBH</code><description>BIHAR</description></detail>
+<detail><code>INGJ</code><description>GUJARAT</description></detail>
+<detail><code>INHR</code><description>HIMACHAL PRADESH</description></detail>
+<detail><code>INHY</code><description>HARYANA</description></detail>
+<detail><code>INJK</code><description>JAMMU AND KASHMIR</description></detail>
+<detail><code>INKR</code><description>KERALA</description></detail>
+<detail><code>INKT</code><description>KARNATAKA</description></detail>
+<detail><code>INMG</code><description>MEGHALAYA</description></detail>
+<detail><code>INMH</code><description>MAHARASHTRA</description></detail>
+<detail><code>INMN</code><description>MANIPUR</description></detail>
+<detail><code>INMR</code><description>MADHYA PRADESH</description></detail>
+<detail><code>INMZ</code><description>MIZORAM</description></detail>
+<detail><code>INNL</code><description>NAGALAND</description></detail>
+<detail><code>INOR</code><description>ORISSA</description></detail>
+<detail><code>INPJ</code><description>PUNJAB</description></detail>
+<detail><code>INRJ</code><description>RAJASTHAN</description></detail>
+<detail><code>INSK</code><description>SIKKIM</description></detail>
+<detail><code>INTN</code><description>TAMIL NADU</description></detail>
+<detail><code>INTP</code><description>TRIPURA</description></detail>
+<detail><code>INUR</code><description>UTTAR PRADESH</description></detail>
+<detail><code>INWB</code><description>WEST BENGAL</description></detail>
+<detail><code>IO</code><description>BR INDIAN OCEAN TR</description></detail>
+<detail><code>IQ</code><description>IRAQ</description></detail>
+<detail><code>IR</code><description>IRAN</description></detail>
+<detail><code>IS</code><description>ICELAND</description></detail>
+<detail><code>IT</code><description>ITALY</description></detail>
+<detail><code>JM</code><description>JAMAICA</description></detail>
+<detail><code>JO</code><description>JORDAN</description></detail>
+<detail><code>JP</code><description>JAPAN</description></detail>
+<detail><code>JT</code><description>JOHNSTON ISLAND</description></detail>
+<detail><code>KA</code><description>CAMBODIA</description></detail>
+<detail><code>KE</code><description>KENYA</description></detail>
+<detail><code>KG</code><description>KIRGHIZIA</description></detail>
+<detail><code>KI</code><description>KIRIBATI</description></detail>
+<detail><code>KM</code><description>COMOROS</description></detail>
+<detail><code>KN</code><description>ST. KITTS-NEVIS</description></detail>
+<detail><code>KP</code><description>KOREA, NORTH</description></detail>
+<detail><code>KR</code><description>KOREA, SOUTH</description></detail>
+<detail><code>KS</code><description>KYRGYZSTAN</description></detail>
+<detail><code>KV</code><description>KOSOCO</description></detail>
+<detail><code>KW</code><description>KUWAIT</description></detail>
+<detail><code>KY</code><description>CAYMAN ISLANDS</description></detail>
+<detail><code>KZ</code><description>KAZAKHSTAN</description></detail>
+<detail><code>LA</code><description>LAOS</description></detail>
+<detail><code>LB</code><description>LEBANON</description></detail>
+<detail><code>LC</code><description>ST. LUCIA</description></detail>
+<detail><code>LH</code><description>LITHUANIA</description></detail>
+<detail><code>LI</code><description>LIECHTENSTEIN</description></detail>
+<detail><code>LK</code><description>SRI LANKA</description></detail>
+<detail><code>LR</code><description>LIBERIA</description></detail>
+<detail><code>LS</code><description>LESOTHO</description></detail>
+<detail><code>LU</code><description>LUXEMBOURG</description></detail>
+<detail><code>LV</code><description>LATVIA</description></detail>
+<detail><code>LY</code><description>LIBYA</description></detail>
+<detail><code>MA</code><description>MOROCCO</description></detail>
+<detail><code>MB</code><description>MACEDONIA</description></detail>
+<detail><code>MC</code><description>MONACO</description></detail>
+<detail><code>MD</code><description>MOLDOVA</description></detail>
+<detail><code>ME</code><description>MAYOTTE</description></detail>
+<detail><code>MF</code><description>MACAU SAR</description></detail>
+<detail><code>MG</code><description>MADAGASCAR</description></detail>
+<detail><code>MH</code><description>MARSHALL ISLANDS</description></detail>
+<detail><code>MI</code><description>MIDWAY ISLANDS</description></detail>
+<detail><code>ML</code><description>MALI</description></detail>
+<detail><code>MM</code><description>ISLE OF MAN</description></detail>
+<detail><code>MN</code><description>MONGOLIA</description></detail>
+<detail><code>MO</code><description>MACAO</description></detail>
+<detail><code>MQ</code><description>MARTINIQUE</description></detail>
+<detail><code>MR</code><description>MAURITANIA</description></detail>
+<detail><code>MS</code><description>MONTSERRAT</description></detail>
+<detail><code>MT</code><description>MALTA</description></detail>
+<detail><code>MU</code><description>MAURITIUS</description></detail>
+<detail><code>MV</code><description>MALDIVES</description></detail>
+<detail><code>MW</code><description>MALAWI</description></detail>
+<detail><code>MX</code><description>MEXICO</description></detail>
+<detail><code>MY</code><description>MALAYSIA</description></detail>
+<detail><code>MYJH</code><description>JOHORE</description></detail>
+<detail><code>MYKD</code><description>KEDAH</description></detail>
+<detail><code>MYKN</code><description>KELANTAN</description></detail>
+<detail><code>MYMC</code><description>MALACCA</description></detail>
+<detail><code>MYNS</code><description>NEGRI SEMBILAN</description></detail>
+<detail><code>MYPH</code><description>PAHANG</description></detail>
+<detail><code>MYPK</code><description>PERAK</description></detail>
+<detail><code>MYPN</code><description>PENANG</description></detail>
+<detail><code>MYPS</code><description>PERLIS</description></detail>
+<detail><code>MYSB</code><description>SABAH</description></detail>
+<detail><code>MYSG</code><description>SELANGOR</description></detail>
+<detail><code>MYSW</code><description>SARAWAK</description></detail>
+<detail><code>MYTR</code><description>TRENGGANU</description></detail>
+<detail><code>MZ</code><description>MOZAMBIQUE</description></detail>
+<detail><code>NA</code><description>NAMIBIA</description></detail>
+<detail><code>NC</code><description>NEW CALEDONIA</description></detail>
+<detail><code>NE</code><description>NIGER</description></detail>
+<detail><code>NF</code><description>NORFOLK ISLAND</description></detail>
+<detail><code>NG</code><description>NIGERIA</description></detail>
+<detail><code>NI</code><description>NICARAGUA</description></detail>
+<detail><code>NL</code><description>NETHERLANDS</description></detail>
+<detail><code>NO</code><description>NORWAY</description></detail>
+<detail><code>NP</code><description>NEPAL</description></detail>
+<detail><code>NR</code><description>NAURU</description></detail>
+<detail><code>NU</code><description>NIUE ISLAND</description></detail>
+<detail><code>NZ</code><description>NEW ZEALAND</description></detail>
+<detail><code>OM</code><description>OMAN</description></detail>
+<detail><code>PA</code><description>PANAMA</description></detail>
+<detail><code>PC</code><description>PACIFIC IS TRUST T</description></detail>
+<detail><code>PE</code><description>PERU</description></detail>
+<detail><code>PF</code><description>FRENCH POLYNESIA</description></detail>
+<detail><code>PG</code><description>PAPUA NEW GUINEA</description></detail>
+<detail><code>PH</code><description>PHILIPPINES</description></detail>
+<detail><code>PK</code><description>PAKISTAN</description></detail>
+<detail><code>PL</code><description>POLAND</description></detail>
+<detail><code>PM</code><description>ST. PIERRE &amp; MQLON</description></detail>
+<detail><code>PN</code><description>PITCAIRN ISLAND</description></detail>
+<detail><code>PR</code><description>PUERTO RICO</description></detail>
+<detail><code>PT</code><description>PORTUGAL</description></detail>
+<detail><code>PY</code><description>PARAGUAY</description></detail>
+<detail><code>PZ</code><description>PANAMA CANAL ZONE</description></detail>
+<detail><code>QA</code><description>QATAR</description></detail>
+<detail><code>RE</code><description>REUNION</description></detail>
+<detail><code>RF</code><description>RUSSIA</description></detail>
+<detail><code>RO</code><description>ROMANIA</description></detail>
+<detail><code>RW</code><description>RWANDA</description></detail>
+<detail><code>SA</code><description>SAUDI ARABIA</description></detail>
+<detail><code>SB</code><description>SOLOMON ISLANDS</description></detail>
+<detail><code>SC</code><description>SEYCHELLES</description></detail>
+<detail><code>SD</code><description>SUDAN</description></detail>
+<detail><code>SE</code><description>SWEDEN</description></detail>
+<detail><code>SG</code><description>SINGAPORE</description></detail>
+<detail><code>SH</code><description>ST. HELENA</description></detail>
+<detail><code>SI</code><description>SLOVENIA</description></detail>
+<detail><code>SK</code><description>SLOVAK REPUBLIC</description></detail>
+<detail><code>SL</code><description>SIERRA LEONE</description></detail>
+<detail><code>SM</code><description>SAN MARINO</description></detail>
+<detail><code>SN</code><description>SENEGAL</description></detail>
+<detail><code>SO</code><description>SOMALIA</description></detail>
+<detail><code>SR</code><description>SURINAME</description></detail>
+<detail><code>ST</code><description>SAO TOME &amp; PRINCI.</description></detail>
+<detail><code>SV</code><description>EL SALVADOR</description></detail>
+<detail><code>SY</code><description>SYRIA</description></detail>
+<detail><code>SZ</code><description>SWAZILAND</description></detail>
+<detail><code>TC</code><description>TURKS &amp; CAICOS ISL</description></detail>
+<detail><code>TD</code><description>CHAD</description></detail>
+<detail><code>TG</code><description>TOGO</description></detail>
+<detail><code>TH</code><description>THAILAND</description></detail>
+<detail><code>TJ</code><description>TADZHIKISTAN</description></detail>
+<detail><code>TK</code><description>TOKELAU ISLANDS</description></detail>
+<detail><code>TM</code><description>TURKMENISTAN</description></detail>
+<detail><code>TN</code><description>TUNISIA</description></detail>
+<detail><code>TO</code><description>TONGA</description></detail>
+<detail><code>TR</code><description>TURKEY</description></detail>
+<detail><code>TT</code><description>TRINIDAD &amp; TOBAGO</description></detail>
+<detail><code>TV</code><description>TUVALU</description></detail>
+<detail><code>TW</code><description>TAIWAN</description></detail>
+<detail><code>TZ</code><description>TANZANIA</description></detail>
+<detail><code>UG</code><description>UGANDA</description></detail>
+<detail><code>UN</code><description>UNKNOWN</description></detail>
+<detail><code>UR</code><description>UKRAINE</description></detail>
+<detail><code>US</code><description>UNITED STATES</description></detail>
+<detail><code>UY</code><description>URUGUAY</description></detail>
+<detail><code>UZ</code><description>UZBEKISTAN</description></detail>
+<detail><code>VA</code><description>VATICAN CITY STATE</description></detail>
+<detail><code>VC</code><description>ST. VINCENT</description></detail>
+<detail><code>VE</code><description>VENEZUELA</description></detail>
+<detail><code>VG</code><description>BR VIRGIN ISLANDS</description></detail>
+<detail><code>VI</code><description>US VIRGIN ISLANDS</description></detail>
+<detail><code>VN</code><description>VIETNAM</description></detail>
+<detail><code>VU</code><description>VANUATU</description></detail>
+<detail><code>WF</code><description>WALLIS AND FUTUNA</description></detail>
+<detail><code>WK</code><description>WAKE ISLAND</description></detail>
+<detail><code>WS</code><description>WESTERN SAMOA</description></detail>
+<detail><code>YM</code><description>YEMEN</description></detail>
+<detail><code>YU</code><description>YUGOSLAVIA</description></detail>
+<detail><code>ZA</code><description>SOUTH AFRICA</description></detail>
+<detail><code>ZM</code><description>ZAMBIA</description></detail>
+<detail><code>ZR</code><description>ZAIRE</description></detail>
+<detail><code>ZW</code><description>ZIMBABWE</description></detail>
+<trailer>
+<totalNumber>316</totalNumber>
+</trailer>
+</spotsCountryCode>

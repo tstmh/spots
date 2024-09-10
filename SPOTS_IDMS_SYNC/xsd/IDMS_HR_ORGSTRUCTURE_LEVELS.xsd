@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="OrganisationInfor">
+    <xs:complexType>
+      <xs:sequence> 
+        <xs:element name="OrganisationDetails" maxOccurs="unbounded">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="OrganisationLevel1ID" type="xs:string"/>
+              <xs:element name="OrganisationLevel1Name" type="xs:string"/>         
+              <xs:element name="OrganisationLevel2ID" type="xs:string"/>         
+              <xs:element name="OrganisationLevel2Name" type="xs:string"/>
+              <xs:element name="OrganisationLevel3ID" type="xs:string"/>
+              <xs:element name="OrganisationLevel3Name" type="xs:string"/>         
+              <xs:element name="OrganisationLevel4ID" type="xs:string"/>         
+              <xs:element name="OrganisationLevel4Name" type="xs:string"/> 
+              <xs:element name="OrganisationLevel5ID" type="xs:string"/>
+              <xs:element name="OrganisationLevel5Name" type="xs:string"/>         
+              <xs:element name="OrganisationLevel6ID" type="xs:string"/>         
+              <xs:element name="OrganisationLevel6Name" type="xs:string"/>         
+              <xs:element name="OrganisationLevel7ID" type="xs:string"/>         
+              <xs:element name="OrganisationLevel7Name" type="xs:string"/>
+              <xs:element name="OrganisationLevel8ID" type="xs:string"/>         
+              <xs:element name="OrganisationLevel8Name" type="xs:string"/>
+              <xs:element name="OrganisationShortName" type="xs:string"/>                                           
+              <xs:element name="ActiveDirectoryCode" type="xs:string"/>         
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element> 
+	  </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

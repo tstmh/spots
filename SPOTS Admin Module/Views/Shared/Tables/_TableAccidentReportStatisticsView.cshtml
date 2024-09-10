@@ -1,0 +1,79 @@
+﻿@model SPOTSAdminModule.ViewModels.ListAccidentReportViewModel
+
+@{
+    var rowNo = 0;
+    var totalAccidentReportsSubmitted = 0;
+    var tempSearchParameterString = string.Empty;
+
+    if (Model?.SearchParameterString != null)
+    {
+        tempSearchParameterString = Model.SearchParameterString;
+    }
+}
+
+@if (Model?.AccidentReportStatisticList != null)
+{
+    <div class="row">
+        <div class="col-md-3 spotsMarginMediumTop">
+            <h6 style="font-weight:bold">Total Records Found: @Model.AccidentReportStatisticList.Count()</h6>
+            <h6>Generated on: @Model.GeneratedDateTime</h6>
+        </div>
+        @*@if (@Model.AccidentReportStatisticList.Any())
+        {
+            <div align="right" class="col-md-1 col-md-offset-8 spotsMarginMediumSmallTop">
+                <a href="@Url.Action("ExportToCsvAccidentStatistics", "Report", new { searchParameterString = Model.SearchParameterString })" alt="Export Image">
+                    <span class="glyphicon glyphicon-download-alt gi-2x spotsMarginMediumTop" style="color:black"></span>
+                </a>
+                <a href="@Url.Action("PrintAccidentReportStatisticsToPdf", "Report", new { searchParameterString = Model.SearchParameterString})" alt="Print to PDF Image">
+                    <span class="glyphicon glyphicon-print gi-2x" style="color:black"></span>
+                </a>
+            </div>
+        }*@
+    </div>
+
+    if (Model.AccidentReportStatisticList.Any())
+    {
+        <div class="row">
+            <div class="col-md-12">
+                <table class="table table-responsive table-striped table-hover" id="searchResult">
+                    <thead>
+                        <tr>
+                            <th>S/N</th>
+                            <th>Officer ID</th>
+                            <th>Officer Name</th>
+                            <th>Accident Report Submitted</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    @foreach (var accidentReportStatistic in Model.AccidentReportStatisticList)
+                    {
+                        var rowClass = rowNo % 2 == 0 ? "" : "alternateRow";
+                        totalAccidentReportsSubmitted = totalAccidentReportsSubmitted + @accidentReportStatistic.AccidentReportsSubmitted;
+
+                            <tr class="@rowClass">
+                                <td>@(rowNo += 1)</td>
+                                <td>@(accidentReportStatistic?.AdAccount)</td>
+                                <td>@(accidentReportStatistic?.UserName)</td>
+                                <td>@(accidentReportStatistic?.AccidentReportsSubmitted)</td>
+                            </tr>
+                    }
+                    </tbody>
+                    
+                    <tfoot>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td>Total</td>
+                            <td>@totalAccidentReportsSubmitted</td>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+        </div>            
+    }
+}
+
+
+
+    
+
